@@ -4,16 +4,20 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class comment {
+
+public class Comment {
 
 
-    public static void main(String[] args) throws IOException {
+   /* public static void main(String[] args) throws IOException, ParseException {
            komenty();
-    }
+    }*/
 
 
-    private static String regex(String name) {
+     String regex(String name) {
         name = name.replaceAll("(?<=<i>).*?(?=</i>)", "");
         name = Jsoup.parse(name).text();
         name = name.substring(0, name.lastIndexOf(" "));
@@ -21,9 +25,10 @@ public class comment {
     }
 
 
-    private static void komenty() throws IOException {
+     void komenty() throws IOException, ParseException {
         String urlString = "https://zpravy.idnes.cz/diskuse.aspx?iddiskuse=A150730_143206_zahranicni_aba";
         Document doc = Jsoup.connect(urlString).get();
+        List<CommentEntity> commentList = new ArrayList<CommentEntity>();
 
         String selectorContributions = "div#disc-list";
         String selectorContribution = "div.contribution";
@@ -39,15 +44,18 @@ public class comment {
             Element date = div.select(selectorDate).first();
             Element content = div.select(selectorContent).first();
             String name = div.select(selectorName).first().html();
-            Document doc2 = Jsoup.parse(name);
-            Element link = doc2.select("a").first();
-            String linkHref = link.attr("href"); //
-            name = regex(name);
+            Document linkDoc = Jsoup.parse(name);
+            Element link = linkDoc.select("a").first();
+            String linkHref = link.attr("href");
             System.out.println(name);
+            name = regex(name);
+            commentList.add(new CommentEntity(name, linkHref, date.text(), content.text()));
+         /*   System.out.println(name);
             System.out.println(linkHref);
             System.out.println(date.text());
             System.out.println(content.text());
             System.out.println("=====================================");
-        }
+        */}
+        System.out.println(commentList.toString());
     }
 }
