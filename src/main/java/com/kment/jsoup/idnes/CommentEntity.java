@@ -1,15 +1,16 @@
-import org.jsoup.nodes.Element;
-
+package com.kment.jsoup.idnes;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//@Entity
+@Entity
 public class CommentEntity {
 
-    //@Id
+    @Id
     private int id;
     private String name;
     private String linkHref;
@@ -34,5 +35,45 @@ public class CommentEntity {
                 ", date='" + date + '\'' +
                 ", content='" + content + '\'' +
                 '}' + "\n";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLinkHref() {
+        return linkHref;
+    }
+
+    public void setLinkHref(String linkHref) {
+        this.linkHref = linkHref;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

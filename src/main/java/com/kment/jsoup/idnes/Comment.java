@@ -1,18 +1,22 @@
+package com.kment.jsoup.idnes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.SocketTimeoutException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
+@Component
 public class Comment {
 
-
+private int numberOfPages = 0;
 
 
 
@@ -24,7 +28,7 @@ public class Comment {
     }
 
 
-    void komenty() throws IOException, ParseException {
+    ArrayList<CommentEntity> findComments() throws IOException, ParseException {
 
 
         String urlString = "https://zpravy.idnes.cz/diskuse.aspx?iddiskuse=A150730_143206_zahranicni_aba";
@@ -59,9 +63,22 @@ public class Comment {
 
         }
 
+        List<Integer> pageNumber = new ArrayList<Integer>();
+        Pattern p = Pattern.compile("-?\\d+");
+        Matcher m = p.matcher(pageCount.text());
+        while (m.find()) {
+            pageNumber.add(Integer.parseInt(m.group()));
+            numberOfPages++;
+        }
 
-        urlString = urlString.concat("&strana=2");
-        doc = Jsoup.connect(urlString).get();
+    return (ArrayList<CommentEntity>) commentList;
+    }
 
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
     }
 }
