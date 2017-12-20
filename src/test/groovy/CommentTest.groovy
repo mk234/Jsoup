@@ -13,7 +13,7 @@ class CommentTest extends Specification {
 
     Comment comment = new Comment()
 
-    @Unroll
+
     def "regex for name"() {
         when:
 
@@ -24,7 +24,7 @@ class CommentTest extends Specification {
         result == "Petr Hariprasad Hajič"
     }
 
-    @Unroll
+
     def "number of comments"() {
         when:
 
@@ -35,7 +35,7 @@ class CommentTest extends Specification {
         commentEntityList.size() == 50
     }
 
-    @Unroll
+
     def "first and last comment"() {
         when:
         List<CommentEntity> commentEntityList = new ArrayList<>()
@@ -62,7 +62,7 @@ class CommentTest extends Specification {
 
     }
 
-    @Unroll
+
     def "number of pages"() {
         when:
         List<CommentEntity> commentEntityList = new ArrayList<>()
