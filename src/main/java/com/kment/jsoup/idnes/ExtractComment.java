@@ -1,0 +1,59 @@
+package com.kment.jsoup.idnes;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Component
+public class ExtractComment {
+
+    List<CommentEntity> findComments(String url) throws IOException, ParseException {
+        List<CommentEntity> commentList = new ArrayList<CommentEntity>();
+        url = "";
+        ParseUrl parseUrl = new ParseUrl();
+        Document document = parseUrl.parse(url);
+        NumberOfPages numberOfPage = new NumberOfPages();
+        int numberOfPages = numberOfPage.numberOfPages(document);
+
+
+        for (int i = 0; i < numberOfPages; i++) {
+            String selectorContributions = "div#disc-list";
+            String selectorContribution = "div.contribution";
+            Element contributions = document.select(selectorContributions).first();
+            Elements selectedDivs = contributions.select(selectorContribution);
+            commentList.addAll(getComments(selectedDivs));
+        }
+
+
+        return commentList;
+    }
+
+    private List<CommentEntity> getComments(Elements selectedDivs) throws ParseException {
+        List<CommentEntity> commentList = new ArrayList<CommentEntity>();
+        String selectorName = "h4.name";
+        String selectorDate = "div.date.hover";
+        String selectorContent = "div.user-text";
+        ParseName parseName = new ParseName();
+        for (Element div : selectedDivs) {
+            Element date = div.select(selectorDate).first();
+            Element content = div.select(selectorContent).first();
+            String name = div.select(selectorName).first().html();
+            Document linkDoc = Jsoup.parse(name);
+            Element link = linkDoc.select("a").first();
+            String linkHref = link.attr("href");
+            name = parseName.regex(name);
+            commentList.add(new CommentEntity(name, linkHref, date.text(), content.text()));
+        }
+        return commentList;
+    }
+
+
+}
