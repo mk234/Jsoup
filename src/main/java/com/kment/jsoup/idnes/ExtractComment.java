@@ -27,12 +27,15 @@ public class ExtractComment {
         String selectorContributions = "div#disc-list";
         String selectorContribution = "div.contribution";
 
+        Element contributions = document.select(selectorContributions).first();
+        Elements selectedDivs = contributions.select(selectorContribution);
+        commentList.addAll(getComments(selectedDivs));
 
-        for (int i = 2; i < numberOfPages; i++) {
+        for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
             document = parseUrl.parse(urlForNextPage);
-            Element contributions = document.select(selectorContributions).first();
-            Elements selectedDivs = contributions.select(selectorContribution);
+            contributions = document.select(selectorContributions).first();
+            selectedDivs = contributions.select(selectorContribution);
             commentList.addAll(getComments(selectedDivs));
         }
 

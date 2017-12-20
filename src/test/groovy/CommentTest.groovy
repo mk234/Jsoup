@@ -1,17 +1,11 @@
-import com.kment.jsoup.Application
-import com.kment.jsoup.idnes.Comment
 import com.kment.jsoup.idnes.CommentEntity
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @SpringBootTest
 class CommentTest extends Specification {
 
-
-    Comment comment = new Comment()
+    // Comment comment = new Comment()
 
 
     def "regex for name"() {
