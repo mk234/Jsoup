@@ -1,4 +1,5 @@
 package com.kment.jsoup.idnes;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,9 +16,7 @@ import java.util.regex.Pattern;
 
 @Component
 public class Comment {
-
-private int numberOfPages = 0;
-
+    private List<CommentEntity> commentList = new ArrayList<CommentEntity>();
 
 
     String regex(String name) {
@@ -30,26 +29,24 @@ private int numberOfPages = 0;
 
     ArrayList<CommentEntity> findComments() throws IOException, ParseException {
 
-
-        String urlString = "https://zpravy.idnes.cz/diskuse.aspx?iddiskuse=A150730_143206_zahranicni_aba";
-        Document doc = Jsoup.connect(urlString).get();
-        List<CommentEntity> commentList = new ArrayList<CommentEntity>();
+        String url = "";
+        ParseUrl parseUrl = new ParseUrl();
+        Document document = parseUrl.parse(url);
 
         String selectorContributions = "div#disc-list";
         String selectorContribution = "div.contribution";
-
-        Element contributions = doc.select(selectorContributions).first();
-
-        Element pages = contributions.select("table.nav-n4.ico").first();
-        Element pageCount = pages.select("td.tac").first();
-
-
+        Element contributions = document.select(selectorContributions).first();
+        int numberOfPages = numberOfPages(contributions);
         Elements selectedDivs = contributions.select(selectorContribution);
+       List<CommentEntity> comments = getComments(selectedDivs);
 
+      return null;
+    }
+
+    private List<CommentEntity> getComments(Elements selectedDivs) throws ParseException {
         String selectorName = "h4.name";
         String selectorDate = "div.date.hover";
         String selectorContent = "div.user-text";
-
         for (Element div : selectedDivs) {
             Element date = div.select(selectorDate).first();
             Element content = div.select(selectorContent).first();
@@ -59,10 +56,14 @@ private int numberOfPages = 0;
             String linkHref = link.attr("href");
             name = regex(name);
             commentList.add(new CommentEntity(name, linkHref, date.text(), content.text()));
-
-
         }
+        return  commentList;
+    }
 
+    private int numberOfPages(Element contributions) {
+        int numberOfPages = 0;
+        Element pages = contributions.select("table.nav-n4.ico").first();
+        Element pageCount = pages.select("td.tac").first();
         List<Integer> pageNumber = new ArrayList<Integer>();
         Pattern p = Pattern.compile("-?\\d+");
         Matcher m = p.matcher(pageCount.text());
@@ -70,15 +71,8 @@ private int numberOfPages = 0;
             pageNumber.add(Integer.parseInt(m.group()));
             numberOfPages++;
         }
-
-    return (ArrayList<CommentEntity>) commentList;
-    }
-
-    public int getNumberOfPages() {
         return numberOfPages;
     }
 
-    public void setNumberOfPages(int numberOfPages) {
-        this.numberOfPages = numberOfPages;
-    }
+
 }
