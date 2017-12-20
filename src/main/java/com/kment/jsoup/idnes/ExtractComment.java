@@ -16,17 +16,21 @@ import java.util.List;
 public class ExtractComment {
 
     List<CommentEntity> findComments(String url) throws IOException, ParseException {
-        List<CommentEntity> commentList = new ArrayList<CommentEntity>();
-        url = "";
+        List<CommentEntity> commentList = new ArrayList<>();
+        String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         NumberOfPages numberOfPage = new NumberOfPages();
         int numberOfPages = numberOfPage.numberOfPages(document);
 
 
-        for (int i = 0; i < numberOfPages; i++) {
-            String selectorContributions = "div#disc-list";
-            String selectorContribution = "div.contribution";
+        String selectorContributions = "div#disc-list";
+        String selectorContribution = "div.contribution";
+
+
+        for (int i = 2; i < numberOfPages; i++) {
+            urlForNextPage = getDocumentForNextPage(url, i);
+            document = parseUrl.parse(urlForNextPage);
             Element contributions = document.select(selectorContributions).first();
             Elements selectedDivs = contributions.select(selectorContribution);
             commentList.addAll(getComments(selectedDivs));
@@ -36,8 +40,13 @@ public class ExtractComment {
         return commentList;
     }
 
+    private String getDocumentForNextPage(String url, int i) {
+        return url + "&razeni=vlakno&strana=" + i;
+    }
+
+
     private List<CommentEntity> getComments(Elements selectedDivs) throws ParseException {
-        List<CommentEntity> commentList = new ArrayList<CommentEntity>();
+        List<CommentEntity> commentList = new ArrayList<>();
         String selectorName = "h4.name";
         String selectorDate = "div.date.hover";
         String selectorContent = "div.user-text";
