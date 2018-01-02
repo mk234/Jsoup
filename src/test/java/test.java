@@ -11,7 +11,5 @@ public class test {
                 "                \"<!--googleon: all-->\"");
         String expected = "Petr Hariprasad Hajič 83047 \\n\" +";
         assertEquals(expected, result);
-        System.out.println("rtgfdg");
-        System.out.println();
     }
 }
