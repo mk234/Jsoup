@@ -4,8 +4,7 @@ import spock.lang.Specification
 
 @SpringBootTest
 class CommentTest extends Specification {
-//dfdfd
-    // Comment comment = new Comment()
+   // Comment comment = new Comment()
     ParseName parseName = new ParseName()
 
     def "test parse"() {
