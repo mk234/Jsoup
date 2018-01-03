@@ -11,6 +11,5 @@ public class main {
         for (CommentEntity commentEntity : commentEntities) {
             System.out.println(commentEntity);
         }
-        System.out.println();
     }
 }
