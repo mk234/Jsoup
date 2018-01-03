@@ -1,6 +1,3 @@
-do příště - funkční aplikace- jedna stránka s tlačítkem na spuštění vyhledávání, crone pro spuštění vždy v nějakou hodinu, shromáždění článku a jejich komentářu za daný den, zatím pouze pro idnes, struktura - třída, která převede adresu na jsoup document(stejný pro všechny porátály) potoma volam parser pro dany portal,  
-
-
 rešerše - teorie - porovnaní s existujícími pracemi - co oni popisuji, v čem je ta má lepší, praktická - společná, 
 co je to testovaní
 fáze vývoje, finanční náročnost při odhalení chyb
