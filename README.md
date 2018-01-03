@@ -1,2 +1,2 @@
 # Jsoup
-Jsoup project
+Diplomova prace
