@@ -46,7 +46,6 @@ public class ExtractArticle {
         return url + "&strana=" + i;
     }
 
-
     private List<ArticleEntity> getComments(Elements selectedDivs) throws ParseException {
         List<ArticleEntity> commentList = new ArrayList<>();
         String selectorName = "div.perex";
