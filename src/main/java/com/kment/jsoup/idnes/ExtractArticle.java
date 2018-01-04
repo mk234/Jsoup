@@ -42,6 +42,7 @@ public class ExtractArticle {
         return commentList;
     }
 
+
     private String getDocumentForNextPage(String url, int i) {
         return url + "&strana=" + i;
     }
