@@ -1,0 +1,12 @@
+rešerše - teorie - porovnaní s existujícími pracemi - co oni popisuji, v čem je ta má lepší, praktická - společná, 
+co je to testovaní
+fáze vývoje, finanční náročnost při odhalení chyb
+manuální vs automatické testy
+životní cyklus vývoje
+testovací pyramida
+regresní testování - testy při přidání nové funkcionality, vhodné pro automatizaci
+dokumentace - tstovací scénáře, důležitost samovypovídajících názvů testů
+přístupy k automatizovanému testováí - data-driven, keywords-driven, test-driven
+nástroje pro testování - jMeter, Selenium, Spock(jUnit, jBehave, jMock)
+black  and white box
+návrhové vzory - page object pattern a screenplay pattern
