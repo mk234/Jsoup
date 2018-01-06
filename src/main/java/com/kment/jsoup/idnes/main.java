@@ -23,8 +23,8 @@ public class main {
         for (ArticleEntity articleEntity : articleEntities) {
             System.out.println(articleEntity);
         }*/
-
-        String urlString = "https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes";
+//-------------------------
+     /*   String urlString = "https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes";
         Document doc = Jsoup.connect(urlString).get();
 
         String selectorContributions = "div#content";
@@ -47,7 +47,7 @@ public class main {
             String absHref = link.attr("abs:href");
             System.out.println(absHref);
             System.out.println("=====================================");
-        }
+        }*/
 
     }
 }
