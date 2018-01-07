@@ -1,4 +1,4 @@
-package com.kment.jsoup.idnes;
+package com.kment.jsoup.idnes.Article;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;

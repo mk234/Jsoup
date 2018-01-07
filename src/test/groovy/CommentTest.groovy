@@ -1,4 +1,4 @@
-import com.kment.jsoup.idnes.ParseName
+import com.kment.jsoup.idnes.Comment.ParseName
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 

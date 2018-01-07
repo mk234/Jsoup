@@ -1,4 +1,4 @@
-package com.kment.jsoup.idnes;
+package com.kment.jsoup.idnes.Comment;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

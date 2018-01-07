@@ -1,22 +1,19 @@
 package com.kment.jsoup.idnes;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import com.kment.jsoup.idnes.Comment.CommentEntity;
+import com.kment.jsoup.idnes.Comment.ExtractComment;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class main {
     public static void main(String[] args) throws IOException, ParseException {
-    /*    ExtractComment extractComment = new ExtractComment();
+        ExtractComment extractComment = new ExtractComment();
         List<CommentEntity> commentEntities = extractComment.findComments("https://zpravy.idnes.cz/diskuse.aspx?iddiskuse=A150730_143206_zahranicni_aba");
         for (CommentEntity commentEntity : commentEntities) {
             System.out.println(commentEntity);
-        }*/
+        }
 /*
         ExtractArticle extractArticle = new ExtractArticle();
         List<ArticleEntity> articleEntities = extractArticle.findArticle("https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes");

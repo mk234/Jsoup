@@ -1,5 +1,7 @@
-package com.kment.jsoup.idnes;
+package com.kment.jsoup.idnes.Comment;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -11,6 +13,7 @@ import java.util.Date;
 public class CommentEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String linkHref;

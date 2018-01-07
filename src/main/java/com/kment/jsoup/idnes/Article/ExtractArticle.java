@@ -1,5 +1,8 @@
-package com.kment.jsoup.idnes;
+package com.kment.jsoup.idnes.Article;
 
+import com.kment.jsoup.idnes.Comment.NumberOfPages;
+import com.kment.jsoup.idnes.Comment.ParseName;
+import com.kment.jsoup.idnes.ParseUrl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,12 +14,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Component
-public class ExtractComment {
+public class ExtractArticle {
 
-    List<CommentEntity> findComments(String url) throws IOException, ParseException {
-        List<CommentEntity> commentList = new ArrayList<>();
+    List<ArticleEntity> findArticle(String url) throws IOException, ParseException {
+        List<ArticleEntity> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
@@ -24,8 +26,8 @@ public class ExtractComment {
         int numberOfPages = numberOfPage.numberOfPages(document);
 
 
-        String selectorContributions = "div#disc-list";
-        String selectorContribution = "div.contribution";
+        String selectorContributions = "div#content";
+        String selectorContribution = "div.art";
 
         Element contributions = document.select(selectorContributions).first();
         Elements selectedDivs = contributions.select(selectorContribution);
@@ -43,15 +45,15 @@ public class ExtractComment {
         return commentList;
     }
 
+
     private String getDocumentForNextPage(String url, int i) {
-        return url + "&razeni=vlakno&strana=" + i;
+        return url + "&strana=" + i;
     }
 
-
-    private List<CommentEntity> getComments(Elements selectedDivs) throws ParseException {
-        List<CommentEntity> commentList = new ArrayList<>();
-        String selectorName = "h4.name";
-        String selectorDate = "div.date.hover";
+    private List<ArticleEntity> getComments(Elements selectedDivs) throws ParseException {
+        List<ArticleEntity> commentList = new ArrayList<>();
+        String selectorName = "div.perex";
+        String selectorDate = "span.time-date";
         String selectorContent = "div.user-text";
         ParseName parseName = new ParseName();
         for (Element div : selectedDivs) {
@@ -62,10 +64,8 @@ public class ExtractComment {
             Element link = linkDoc.select("a").first();
             String linkHref = link.attr("href");
             name = parseName.regex(name);
-            commentList.add(new CommentEntity(name, linkHref, date.text(), content.text()));
+          //  commentList.add(new ArticleEntity(name, linkHref, date.text(), content.text()));
         }
         return commentList;
     }
-
-
 }
