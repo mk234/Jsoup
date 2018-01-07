@@ -18,26 +18,22 @@ public class main {
         List<CommentEntity> commentEntities = extractComment.findComments("https://rungo.idnes.cz/diskuse.aspx?iddiskuse=A150801_204413_behani_Pil");
          for (CommentEntity commentEntity : commentEntities) {
             System.out.println(commentEntity);
-        }
-*/
+        }*/
 
-        long time = System.currentTimeMillis();
+
+       long time = System.currentTimeMillis();
+       PrepareUrlForArchives prepareUrlForArchives= new PrepareUrlForArchives();
         ExtractComment extractComment = new ExtractComment();
         ExtractArticle extractArticle = new ExtractArticle();
         PrepareUrlForCommentary prepareUrlForCommentary = new PrepareUrlForCommentary();
         List<CommentEntity> commentEntities = new ArrayList<>();
         String commentUrl = "";
-    int counter = 0;
-        List<ArticleEntity> articleEntities = extractArticle.findArticle("https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes");
+        List<ArticleEntity> articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrlForYesterday());
         System.out.println(articleEntities.size());
         for (ArticleEntity articleEntity : articleEntities) {
-            System.out.println(counter);
-            counter++;
             commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
             commentEntities.addAll(extractComment.findComments(commentUrl));
         }
-
-
         System.out.println(commentEntities.size());
 
         System.out.println((System.currentTimeMillis() - time) * 0.001 + "s");
