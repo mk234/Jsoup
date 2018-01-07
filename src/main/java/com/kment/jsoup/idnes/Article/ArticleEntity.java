@@ -1,11 +1,7 @@
 package com.kment.jsoup.idnes.Article;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Entity
 public class ArticleEntity {
@@ -14,12 +10,11 @@ public class ArticleEntity {
     private int id;
     private String name;
     private String url;
-    private Date created;
-    private Date LastCollection;
+    private String created;
+    private String LastCollection;
     private String keywords;
 
-    public ArticleEntity(int id, String name, String url, Date created, Date lastCollection, String keywords) {
-        this.id = id;
+    ArticleEntity(String name, String url, String created, String lastCollection, String keywords) {
         this.name = name;
         this.url = url;
         this.created = created;
@@ -30,7 +25,6 @@ public class ArticleEntity {
     @Override
     public String toString() {
         return "ArticleEntity{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", created=" + created +
@@ -63,19 +57,19 @@ public class ArticleEntity {
         this.url = url;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public Date getLastCollection() {
+    public String getLastCollection() {
         return LastCollection;
     }
 
-    public void setLastCollection(Date lastCollection) {
+    public void setLastCollection(String lastCollection) {
         LastCollection = lastCollection;
     }
 

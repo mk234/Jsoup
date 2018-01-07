@@ -1,7 +1,6 @@
 package com.kment.jsoup.idnes.Article;
 
-import com.kment.jsoup.idnes.Comment.NumberOfPages;
-import com.kment.jsoup.idnes.Comment.ParseName;
+import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,16 +16,17 @@ import java.util.List;
 @Component
 public class ExtractArticle {
 
-    List<ArticleEntity> findArticle(String url) throws IOException, ParseException {
+    public List<ArticleEntity> findArticle(String url) throws IOException, ParseException {
         List<ArticleEntity> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         NumberOfPages numberOfPage = new NumberOfPages();
-        int numberOfPages = numberOfPage.numberOfPages(document);
+
 
 
         String selectorContributions = "div#content";
+        int numberOfPages = numberOfPage.numberOfPages(document, selectorContributions);
         String selectorContribution = "div.art";
 
         Element contributions = document.select(selectorContributions).first();
@@ -52,19 +52,15 @@ public class ExtractArticle {
 
     private List<ArticleEntity> getComments(Elements selectedDivs) throws ParseException {
         List<ArticleEntity> commentList = new ArrayList<>();
-        String selectorName = "div.perex";
+        String selectorName = "div.cell";
         String selectorDate = "span.time-date";
-        String selectorContent = "div.user-text";
-        ParseName parseName = new ParseName();
         for (Element div : selectedDivs) {
+            Element cell = div.select(selectorName).first();
+            Elements name = cell.select("h3");
             Element date = div.select(selectorDate).first();
-            Element content = div.select(selectorContent).first();
-            String name = div.select(selectorName).first().html();
-            Document linkDoc = Jsoup.parse(name);
-            Element link = linkDoc.select("a").first();
-            String linkHref = link.attr("href");
-            name = parseName.regex(name);
-          //  commentList.add(new ArticleEntity(name, linkHref, date.text(), content.text()));
+            Element  link = name.select("a").first();
+            String absHref = link.attr("abs:href");
+            commentList.add(new ArticleEntity(name.text(), absHref, date.text(), date.text(), "key"));
         }
         return commentList;
     }

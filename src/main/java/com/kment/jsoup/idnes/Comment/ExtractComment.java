@@ -1,5 +1,6 @@
 package com.kment.jsoup.idnes.Comment;
 
+import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,10 +23,11 @@ public class ExtractComment {
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         NumberOfPages numberOfPage = new NumberOfPages();
-        int numberOfPages = numberOfPage.numberOfPages(document);
+
 
 
         String selectorContributions = "div#disc-list";
+        int numberOfPages = numberOfPage.numberOfPages(document, selectorContributions);
         String selectorContribution = "div.contribution";
 
         Element contributions = document.select(selectorContributions).first();
