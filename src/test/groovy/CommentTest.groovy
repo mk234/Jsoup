@@ -7,7 +7,7 @@ class CommentTest extends Specification {
    // Comment comment = new Comment()
     ParseName parseName = new ParseName()
 // 117 artiklu v https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes
-
+// zadny komentar  https://rungo.idnes.cz/sto-kliku-denne-a-zavody-na-100-metru-zvlada-american-ve-100-letech-pbn-/behani.aspx?c=A150801_204413_behani_Pil
     // pro testovani https://ekonomika.idnes.cz/diskuse.aspx?iddiskuse=A150731_2180917_ekonomika_nio&razeni=vlakno&strana=8 je tam prazdne jmeno
     def "test parse"() {
         when:

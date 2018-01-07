@@ -14,32 +14,33 @@ import java.util.List;
 public class main {
     public static void main(String[] args) throws IOException, ParseException {
 
-        ExtractComment extractComment = new ExtractComment();
-        List<CommentEntity> commentEntities = extractComment.findComments("https://zpravy.idnes.cz/diskuse.aspx?iddiskuse=A150731_2180917_ekonomika_nio");
+      /*  ExtractComment extractComment = new ExtractComment();
+        List<CommentEntity> commentEntities = extractComment.findComments("https://rungo.idnes.cz/diskuse.aspx?iddiskuse=A150801_204413_behani_Pil");
          for (CommentEntity commentEntity : commentEntities) {
-    //        System.out.println(commentEntity);
+            System.out.println(commentEntity);
         }
+*/
 
-
-
-/*
+        long time = System.currentTimeMillis();
         ExtractComment extractComment = new ExtractComment();
         ExtractArticle extractArticle = new ExtractArticle();
         PrepareUrlForCommentary prepareUrlForCommentary = new PrepareUrlForCommentary();
         List<CommentEntity> commentEntities = new ArrayList<>();
         String commentUrl = "";
-
+    int counter = 0;
         List<ArticleEntity> articleEntities = extractArticle.findArticle("https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes");
         System.out.println(articleEntities.size());
         for (ArticleEntity articleEntity : articleEntities) {
+            System.out.println(counter);
+            counter++;
             commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
-            System.out.println(commentUrl);
             commentEntities.addAll(extractComment.findComments(commentUrl));
         }
 
 
-        System.out.println(commentEntities.size());*/
+        System.out.println(commentEntities.size());
 
+        System.out.println((System.currentTimeMillis() - time) * 0.001 + "s");
 
     }
 

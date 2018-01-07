@@ -65,7 +65,6 @@ public class ExtractComment {
             Element link = linkDoc.select("a").first();
             String linkHref = link.attr("href");
             name = parseName.regex(name);
-            System.out.println("-------------");
             commentList.add(new CommentEntity(name, linkHref, date.text(), content.text()));
         }
         return commentList;
