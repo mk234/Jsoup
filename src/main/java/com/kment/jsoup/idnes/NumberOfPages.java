@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 public class NumberOfPages {
     public int numberOfPages(Document document, String selectorContributions) {
         Element contributions = document.select(selectorContributions).first();
+        if (contributions == null)
+           return 0;
         Element pages = contributions.select("table.nav-n4.ico").first();
         if (pages == null) {
             return 1;

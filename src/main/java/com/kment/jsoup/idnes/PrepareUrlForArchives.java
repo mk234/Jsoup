@@ -8,7 +8,7 @@ import java.util.Date;
 public class PrepareUrlForArchives {
     public String prepareUrl(Date date) {
         String prefix = "https://zpravy.idnes.cz/archiv.aspx?datum=";
-        String postfix = "&idostrova=idnes";
+        String postfix = "&idostrova=zpravodaj";
         String dateString = new DateTime(date).toString("dd.MM.yyyy");
         System.out.println(dateString);
         String url = prefix + dateString + postfix;
@@ -17,7 +17,7 @@ public class PrepareUrlForArchives {
 
     public String prepareUrlForYesterday() {
         String prefix = "https://zpravy.idnes.cz/archiv.aspx?datum=";
-        String postfix = "&idostrova=idnes";
+        String postfix = "&idostrova=zpravodaj";
         final Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -1);
         Date yesterday = calendar.getTime();

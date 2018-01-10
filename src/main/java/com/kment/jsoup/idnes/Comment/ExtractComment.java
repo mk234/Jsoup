@@ -28,6 +28,9 @@ public class ExtractComment {
 
         String selectorContributions = "div#disc-list";
         int numberOfPages = numberOfPage.numberOfPages(document, selectorContributions);
+        if (numberOfPages == 0){
+            return  commentList;
+        }
         String selectorContribution = "div.contribution";
 
         Element contributions = document.select(selectorContributions).first();

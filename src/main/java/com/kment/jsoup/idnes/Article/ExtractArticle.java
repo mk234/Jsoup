@@ -2,11 +2,12 @@ package com.kment.jsoup.idnes.Article;
 
 import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -22,7 +23,6 @@ public class ExtractArticle {
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         NumberOfPages numberOfPage = new NumberOfPages();
-
 
 
         String selectorContributions = "div#content";
@@ -58,10 +58,62 @@ public class ExtractArticle {
             Element cell = div.select(selectorName).first();
             Elements name = cell.select("h3");
             Element date = div.select(selectorDate).first();
-            Element  link = name.select("a").first();
+            Element link = name.select("a").first();
             String absHref = link.attr("abs:href");
             commentList.add(new ArticleEntity(name.text(), absHref, date.text(), date.text(), "key"));
         }
         return commentList;
     }
+
+
+    public String getKeywors(Document document) throws IOException {
+        return
+                document.select("meta[name=keywords]").first()
+                        .attr("content");
+    }
+
+    public String getDescription(Document document) throws IOException {
+        String description =
+                document.select("meta[name=description]").get(0)
+                        .attr("content");
+        return description;
+    }
+
+    public String getAuthor(Document document) throws IOException {
+        String selectorName = "div.authors";
+        return document.select(selectorName).first().select("span").first().text();
+    }
+
+    public int getNumburOfComment(Document document) {
+        String numberOfComment = document.select("li.community-discusion").first().select("a#moot-linkin").first().select("span").text();
+        return extractDigits(numberOfComment);
+    }
+
+
+    public int extractDigits(String src) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < src.length(); i++) {
+            char c = src.charAt(i);
+            if (Character.isDigit(c)) {
+                builder.append(c);
+            }
+        }
+        return Integer.parseInt(builder.toString());
+    }
+
+
+    @Autowired
+    IArticleJpaRepository repository;
+
+    @Transactional
+    public void saveArticle() {
+        ArticleEntity articleEntity = new ArticleEntity("name", "String url", "String created", "String lastCollection", "String keywords");
+        System.out.println(articleEntity.toString());
+        repository.save(articleEntity);
+        List<ArticleEntity> articleEntityList = repository.findAll();
+        if (articleEntityList.size() != 0) {
+            System.out.println("save");
+        }
+    }
+
 }

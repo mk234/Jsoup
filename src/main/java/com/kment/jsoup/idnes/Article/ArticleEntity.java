@@ -7,14 +7,14 @@ import javax.persistence.Id;
 public class ArticleEntity {
 
     @Id
-    private int id;
+    private long id;
     private String name;
     private String url;
     private String created;
     private String LastCollection;
     private String keywords;
 
-    ArticleEntity(String name, String url, String created, String lastCollection, String keywords) {
+    public ArticleEntity(String name, String url, String created, String lastCollection, String keywords) {
         this.name = name;
         this.url = url;
         this.created = created;
@@ -33,11 +33,11 @@ public class ArticleEntity {
                 '}';
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
