@@ -1,4 +1,4 @@
-package com.kment.jsoup.idnes.Comment;
+package com.kment.jsoup.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-public class CommentEntity {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +20,7 @@ public class CommentEntity {
     private String date;
     private String content;
 
-     CommentEntity(String name, String linkHref, String date, String content) throws ParseException {
+     public Comment(String name, String linkHref, String date, String content) throws ParseException {
         this.name = name;
         this.linkHref = linkHref;
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
@@ -32,7 +32,7 @@ public class CommentEntity {
 
     @Override
     public String toString() {
-        return "CommentEntity{" +
+        return "Comment{" +
                 "name='" + name + '\'' +
                 ", linkHref='" + linkHref + '\'' +
                 ", date='" + date + '\'' +

@@ -1,12 +1,15 @@
-package com.kment.jsoup.idnes.Article;
+package com.kment.jsoup.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
-public class ArticleEntity {
+public class Article {
 
     @Id
+    @GeneratedValue
     private long id;
     private String name;
     private String url;
@@ -14,7 +17,19 @@ public class ArticleEntity {
     private String LastCollection;
     private String keywords;
 
-    public ArticleEntity(String name, String url, String created, String lastCollection, String keywords) {
+    public Article() {
+    }
+
+    public Article(long id, String name, String url, String created, String lastCollection, String keywords) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.created = created;
+        LastCollection = lastCollection;
+        this.keywords = keywords;
+    }
+
+    public Article(String name, String url, String created, String lastCollection, String keywords) {
         this.name = name;
         this.url = url;
         this.created = created;
@@ -24,7 +39,8 @@ public class ArticleEntity {
 
     @Override
     public String toString() {
-        return "ArticleEntity{" +
+        return "\nArticle{" +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", created=" + created +

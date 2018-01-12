@@ -1,6 +1,6 @@
 import com.kment.jsoup.Application
-import com.kment.jsoup.idnes.Article.ArticleEntity
-import com.kment.jsoup.idnes.Article.IArticleJpaRepository
+import com.kment.jsoup.entity.Article
+import com.kment.jsoup.springdata.IArticleSpringDataRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -12,15 +12,15 @@ import spock.lang.Specification
 class ArticleTest extends Specification {
 
     @Autowired
-    IArticleJpaRepository repository
+    IArticleSpringDataRepository repository
 
     @Transactional
     def "save article to database"() {
         when:
-        def articleEntity = new ArticleEntity("name", "String url", "String created", "String lastCollection", "String keywords")
+        def articleEntity = new Article("name", "String url", "String created", "String lastCollection", "String keywords")
         println articleEntity.toString()
         repository.save(articleEntity)
-        List<ArticleEntity> articleEntityList = repository.findAll()
+        List<Article> articleEntityList = repository.findAll()
         then:
         articleEntityList.size() != null
     }

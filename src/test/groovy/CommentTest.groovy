@@ -32,7 +32,7 @@ class CommentTest extends Specification {
     def "number of comments"() {
         when:
 
-        List<CommentEntity> commentEntityList = new ArrayList<>()
+        List<Comment> commentEntityList = new ArrayList<>()
         commentEntityList = comment.findComments()
 
         then:
@@ -42,7 +42,7 @@ class CommentTest extends Specification {
 
     def "first and last comment"() {
         when:
-        List<CommentEntity> commentEntityList = new ArrayList<>()
+        List<Comment> commentEntityList = new ArrayList<>()
         commentEntityList = comment.findComments()
 
         String firstComment = "Tak tohle by opravdu mohlo pomoci i v Avghánistánu a přilehlých regionech. Pokud by se šafrán uchytil v západních zemích, má opravdu šanci částečně vytlačit produkci drog pěstovaných na poli. Kdo jednou ochutnal třeba Indické cukrovinky s šafránem, tak mu naše připadají mdlé. Dá se to přidávat třeba do mléčné rýže, jogurtového nápoje, zmrzliny, mandlové hmoty, ale dává se i do slaných jídel. "
@@ -69,7 +69,7 @@ class CommentTest extends Specification {
 
     def "number of pages"() {
         when:
-        List<CommentEntity> commentEntityList = new ArrayList<>()
+        List<Comment> commentEntityList = new ArrayList<>()
         commentEntityList = comment.findComments()
 
         then:

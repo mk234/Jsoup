@@ -1,5 +1,6 @@
 package com.kment.jsoup.idnes.Comment;
 
+import com.kment.jsoup.entity.Comment;
 import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
 import org.jsoup.Jsoup;
@@ -17,8 +18,8 @@ import java.util.List;
 @Component
 public class ExtractComment {
 
-    public List<CommentEntity> findComments(String url) throws IOException, ParseException {
-        List<CommentEntity> commentList = new ArrayList<>();
+    public List<Comment> findComments(String url) throws IOException, ParseException {
+        List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
@@ -54,8 +55,8 @@ public class ExtractComment {
     }
 
 
-    private List<CommentEntity> getComments(Elements selectedDivs) throws ParseException {
-        List<CommentEntity> commentList = new ArrayList<>();
+    private List<Comment> getComments(Elements selectedDivs) throws ParseException {
+        List<Comment> commentList = new ArrayList<>();
         String selectorName = "h4.name";
         String selectorDate = "div.date.hover";
         String selectorContent = "div.user-text";
@@ -68,7 +69,7 @@ public class ExtractComment {
             Element link = linkDoc.select("a").first();
             String linkHref = link.attr("href");
             name = parseName.regex(name);
-            commentList.add(new CommentEntity(name, linkHref, date.text(), content.text()));
+            commentList.add(new Comment(name, linkHref, date.text(), content.text()));
         }
         return commentList;
 

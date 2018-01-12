@@ -1,13 +1,12 @@
 package com.kment.jsoup.idnes.Article;
 
+import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -17,8 +16,8 @@ import java.util.List;
 @Component
 public class ExtractArticle {
 
-    public List<ArticleEntity> findArticle(String url) throws IOException, ParseException {
-        List<ArticleEntity> commentList = new ArrayList<>();
+    public List<Article> findArticle(String url) throws IOException, ParseException {
+        List<Article> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
@@ -31,14 +30,14 @@ public class ExtractArticle {
 
         Element contributions = document.select(selectorContributions).first();
         Elements selectedDivs = contributions.select(selectorContribution);
-        commentList.addAll(getComments(selectedDivs));
+        commentList.addAll(getArticles(selectedDivs));
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
             document = parseUrl.parse(urlForNextPage);
             contributions = document.select(selectorContributions).first();
             selectedDivs = contributions.select(selectorContribution);
-            commentList.addAll(getComments(selectedDivs));
+            commentList.addAll(getArticles(selectedDivs));
         }
 
 
@@ -50,8 +49,8 @@ public class ExtractArticle {
         return url + "&strana=" + i;
     }
 
-    private List<ArticleEntity> getComments(Elements selectedDivs) throws ParseException {
-        List<ArticleEntity> commentList = new ArrayList<>();
+    private List<Article> getArticles(Elements selectedDivs) throws ParseException {
+        List<Article> commentList = new ArrayList<>();
         String selectorName = "div.cell";
         String selectorDate = "span.time-date";
         for (Element div : selectedDivs) {
@@ -60,7 +59,7 @@ public class ExtractArticle {
             Element date = div.select(selectorDate).first();
             Element link = name.select("a").first();
             String absHref = link.attr("abs:href");
-            commentList.add(new ArticleEntity(name.text(), absHref, date.text(), date.text(), "key"));
+            commentList.add(new Article(name.text(), absHref, date.text(), date.text(), "key"));
         }
         return commentList;
     }
@@ -101,19 +100,5 @@ public class ExtractArticle {
         return Integer.parseInt(builder.toString());
     }
 
-
-    @Autowired
-    IArticleJpaRepository repository;
-
-    @Transactional
-    public void saveArticle() {
-        ArticleEntity articleEntity = new ArticleEntity("name", "String url", "String created", "String lastCollection", "String keywords");
-        System.out.println(articleEntity.toString());
-        repository.save(articleEntity);
-        List<ArticleEntity> articleEntityList = repository.findAll();
-        if (articleEntityList.size() != 0) {
-            System.out.println("save");
-        }
-    }
 
 }
