@@ -1,11 +1,14 @@
 package com.kment.jsoup.idnes;
 
 import org.joda.time.DateTime;
+import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.Date;
 
+@Component
 public class PrepareUrlForArchives {
+
     public String prepareUrl(Date date) {
         String prefix = "https://zpravy.idnes.cz/archiv.aspx?datum=";
         String postfix = "&idostrova=zpravodaj";

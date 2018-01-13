@@ -1,5 +1,8 @@
 package com.kment.jsoup.idnes.Comment;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PrepareUrlForCommentary {
     public String prepareUrl(String articleUrl) {
         String articleId = articleUrl.replaceAll(".*=", "");

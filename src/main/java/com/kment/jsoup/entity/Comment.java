@@ -16,7 +16,7 @@ public class Comment {
     private int id;
     @Column(name = "author")
     private String name;
-    @Column(name = "text")
+    @Column(name = "text", columnDefinition = "TEXT")
     private String content;
     @Column(name = "author_url")
     private String linkHref;
@@ -25,6 +25,16 @@ public class Comment {
     @Column(name = "created")
     private Date date;
 
+    public long getIdArticle() {
+        return idArticle;
+    }
+
+    public Comment() {
+    }
+
+    public void setIdArticle(long idArticle) {
+        this.idArticle = idArticle;
+    }
 
     public Comment(String name, String linkHref, String date, String content) throws ParseException {
         this.name = name;

@@ -11,6 +11,14 @@ import spock.lang.Specification
 @ContextConfiguration(classes = Application)
 class ArticleTest extends Specification {
 
+/*
+     def ""() {
+        when:
+
+        then:
+
+    }
+    */
     @Autowired
     IArticleSpringDataRepository repository
 

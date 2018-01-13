@@ -1,6 +1,5 @@
 package com.kment.jsoup;
 
-import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.idnes.IdnesRun;
 import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import org.slf4j.Logger;
@@ -38,9 +37,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        logger.info("All article -> {}", repository.save(new Article("name", "url", "created", "kastCollection", "keywords")));
-        logger.info("All article -> {}", repository.save(new Article("name2", "url", "created", "kastCollection", "keywords")));
-        logger.info("All article -> {}", repository.findAll());
+           logger.info("All Article -> {}", repository.findAll());
 
     }
 }

@@ -1,31 +1,33 @@
+import com.kment.jsoup.Application
+import com.kment.jsoup.entity.Comment
+import com.kment.jsoup.idnes.Comment.ExtractComment
 import com.kment.jsoup.idnes.Comment.ParseName
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 @SpringBootTest
+@ContextConfiguration(classes = Application)
 class CommentTest extends Specification {
-   // Comment comment = new Comment()
-    ParseName parseName = new ParseName()
+    // Comment Comment = new Comment()
+    // ParseName parseName = new ParseName()
 // 117 artiklu v https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes
 // zadny komentar  https://rungo.idnes.cz/sto-kliku-denne-a-zavody-na-100-metru-zvlada-american-ve-100-letech-pbn-/behani.aspx?c=A150801_204413_behani_Pil
     // pro testovani https://ekonomika.idnes.cz/diskuse.aspx?iddiskuse=A150731_2180917_ekonomika_nio&razeni=vlakno&strana=8 je tam prazdne jmeno
     // zakazane komentare https://zpravy.idnes.cz/soud-nenavistne-vyroky-rasismus-xenofobie-banga-podmineny-trest-vyhruzky-1bt-/krimi.aspx?c=A180109_172752_domaci_bja
-    def "test parse"() {
+
+    @Autowired
+    ParseName parseName
+    @Autowired
+    ExtractComment comment
+
+    def "regex for name"() {
         when:
         String result = parseName.regex("<!--googleoff: all--> <a href=\\\"http://muj.idnes.cz/Profil.aspx?id=1184186\\\">P<i>97</i>e<i>91</i>t<i>81</i>r <i>34</i>H<i>35</i>a<i>81</i>r<i>26</i>i<i>24</i>p<i>92</i>r<i>11</i>a<i>46</i>s<i>55</i>a<i>64</i>d <i>28</i>H<i>50</i>a<i>97</i>j<i>97</i>i<i>53</i>č</a> <sup title=\\\"Rozlišovací značka diskutujících se stejným jménem\\\">8<i>49</i>3<i>31</i>0<i>77</i>4<i>50</i>7</sup> \\n\" +\n" +
                 "                \"<!--googleon: all-->\"")
         then:
         result == "Petr Hariprasad Hajič 83047 \\n\" +"
-    }
-/*
-    def "regex for name"() {
-        when:
-
-        String result = comment.regex("<!--googleoff: all--> <a href=\"http://muj.idnes.cz/Profil.aspx?id=1184186\">P<i>97</i>e<i>91</i>t<i>81</i>r <i>34</i>H<i>35</i>a<i>81</i>r<i>26</i>i<i>24</i>p<i>92</i>r<i>11</i>a<i>46</i>s<i>55</i>a<i>64</i>d <i>28</i>H<i>50</i>a<i>97</i>j<i>97</i>i<i>53</i>č</a> <sup title=\"Rozlišovací značka diskutujících se stejným jménem\">8<i>49</i>3<i>31</i>0<i>77</i>4<i>50</i>7</sup> \n" +
-                "<!--googleon: all-->")
-
-        then:
-        result == "Petr Hariprasad Hajič"
     }
 
 
@@ -61,7 +63,7 @@ class CommentTest extends Specification {
                 "Tabulky, normy a standardy jsou fajn možná papírově a na oko.... "
         then:
         commentEntityList.get(0).content.compareTo(firstComment)
-        commentEntityList.get(commentEntityList.size()-1).content.compareTo(lastComment)
+        commentEntityList.get(commentEntityList.size() - 1).content.compareTo(lastComment)
 
 
     }
@@ -75,6 +77,6 @@ class CommentTest extends Specification {
         then:
         comment.getNumberOfPages() == 3
 
-    }*/
+    }
 
 }

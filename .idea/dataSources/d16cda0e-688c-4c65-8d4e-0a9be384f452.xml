@@ -16795,137 +16795,228 @@
     <database id="5598" parent="1" name="decld8tce58plq">
       <ObjectId>11878090</ObjectId>
     </database>
-    <schema id="5599" parent="2" name="public">
+    <database id="5599" parent="1" name="d90moq06jk4tvk">
+      <ObjectId>11878306</ObjectId>
+    </database>
+    <database id="5600" parent="1" name="dbfsjng61vmie9">
+      <ObjectId>11878310</ObjectId>
+    </database>
+    <database id="5601" parent="1" name="db5n5ns63lpgkm">
+      <ObjectId>11878312</ObjectId>
+    </database>
+    <database id="5602" parent="1" name="dftirfameioojj">
+      <ObjectId>11890621</ObjectId>
+    </database>
+    <database id="5603" parent="1" name="d3hhv3e4988lpp">
+      <ObjectId>11890624</ObjectId>
+    </database>
+    <database id="5604" parent="1" name="d99c39g0q8crie">
+      <ObjectId>11890626</ObjectId>
+    </database>
+    <database id="5605" parent="1" name="dpdgrqp3op58e">
+      <ObjectId>11890629</ObjectId>
+    </database>
+    <database id="5606" parent="1" name="d1tn4dmcfq36du">
+      <ObjectId>11890632</ObjectId>
+    </database>
+    <database id="5607" parent="1" name="dcsvq04kc9ibjn">
+      <ObjectId>11893501</ObjectId>
+    </database>
+    <database id="5608" parent="1" name="d9phpr6lnaicm2">
+      <ObjectId>11893503</ObjectId>
+    </database>
+    <database id="5609" parent="1" name="dfqakajei0dcgu">
+      <ObjectId>11893505</ObjectId>
+    </database>
+    <database id="5610" parent="1" name="d7i1kgeip67m82">
+      <ObjectId>11896307</ObjectId>
+    </database>
+    <database id="5611" parent="1" name="d85543lo44jj26">
+      <ObjectId>11896332</ObjectId>
+    </database>
+    <database id="5612" parent="1" name="dd68tubpv86ln1">
+      <ObjectId>11896338</ObjectId>
+    </database>
+    <database id="5613" parent="1" name="dc1hfal3pajprk">
+      <ObjectId>11896614</ObjectId>
+    </database>
+    <database id="5614" parent="1" name="d8kceg0iqavguf">
+      <ObjectId>11896616</ObjectId>
+    </database>
+    <database id="5615" parent="1" name="dvins46262kjv">
+      <ObjectId>11928058</ObjectId>
+    </database>
+    <database id="5616" parent="1" name="d2100ibgv9q1o0">
+      <ObjectId>11928060</ObjectId>
+    </database>
+    <database id="5617" parent="1" name="d9gv34bg7fbod5">
+      <ObjectId>11928064</ObjectId>
+    </database>
+    <database id="5618" parent="1" name="d8cdq5hj7tuafe">
+      <ObjectId>11931190</ObjectId>
+    </database>
+    <database id="5619" parent="1" name="db1ji8rhhhlr2s">
+      <ObjectId>11931613</ObjectId>
+    </database>
+    <database id="5620" parent="1" name="dasdrst72f6iif">
+      <ObjectId>11931620</ObjectId>
+    </database>
+    <schema id="5621" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2018-01-12.21:56:18.982</IntrospectionTimestamp>
-      <IntrospectionStateNumber>9055270</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-01-13.18:02:42.656</IntrospectionTimestamp>
+      <IntrospectionStateNumber>17838459</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <schema id="5600" parent="2" name="pg_catalog">
+    <schema id="5622" parent="2" name="pg_catalog">
       <ObjectId>11</ObjectId>
     </schema>
-    <schema id="5601" parent="2" name="pg_toast">
+    <schema id="5623" parent="2" name="pg_toast">
       <ObjectId>99</ObjectId>
     </schema>
-    <schema id="5602" parent="2" name="pg_temp_1">
+    <schema id="5624" parent="2" name="pg_temp_1">
       <ObjectId>11736</ObjectId>
     </schema>
-    <schema id="5603" parent="2" name="pg_toast_temp_1">
+    <schema id="5625" parent="2" name="pg_toast_temp_1">
       <ObjectId>11737</ObjectId>
     </schema>
-    <schema id="5604" parent="2" name="information_schema">
+    <schema id="5626" parent="2" name="information_schema">
       <ObjectId>13532</ObjectId>
     </schema>
-    <sequence id="5605" parent="5599" name="hibernate_sequence">
-      <ObjectId>11878236</ObjectId>
-      <StateNumber>9054313</StateNumber>
+    <sequence id="5627" parent="5621" name="hibernate_sequence">
+      <ObjectId>11932960</ObjectId>
+      <StateNumber>17838456</StateNumber>
     </sequence>
-    <table id="5606" parent="5599" name="article">
-      <ObjectId>11878238</ObjectId>
-      <StateNumber>9054617</StateNumber>
+    <table id="5628" parent="5621" name="article">
+      <ObjectId>11932962</ObjectId>
+      <StateNumber>17838457</StateNumber>
     </table>
-    <table id="5607" parent="5599" name="comment">
-      <ObjectId>11878246</ObjectId>
-      <StateNumber>9054897</StateNumber>
+    <table id="5629" parent="5621" name="comment">
+      <ObjectId>11932970</ObjectId>
+      <StateNumber>17838458</StateNumber>
     </table>
-    <table id="5608" parent="5599" name="portal">
-      <ObjectId>11878254</ObjectId>
-      <StateNumber>9055270</StateNumber>
+    <table id="5630" parent="5621" name="portal">
+      <ObjectId>11932978</ObjectId>
+      <StateNumber>17838459</StateNumber>
     </table>
-    <column id="5609" parent="5606" name="id">
+    <column id="5631" parent="5628" name="id_article">
       <Position>1</Position>
       <DataType>bigint|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>9054617</StateNumber>
+      <StateNumber>17838457</StateNumber>
     </column>
-    <column id="5610" parent="5606" name="last_collection">
+    <column id="5632" parent="5628" name="created">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054617</StateNumber>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>17838457</StateNumber>
     </column>
-    <column id="5611" parent="5606" name="created">
+    <column id="5633" parent="5628" name="id_portal_pkey">
       <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054617</StateNumber>
+      <DataType>bigint|0</DataType>
+      <StateNumber>17838457</StateNumber>
     </column>
-    <column id="5612" parent="5606" name="keywords">
+    <column id="5634" parent="5628" name="keywords">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054617</StateNumber>
+      <StateNumber>17838457</StateNumber>
     </column>
-    <column id="5613" parent="5606" name="name">
+    <column id="5635" parent="5628" name="last_collection">
       <Position>5</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054617</StateNumber>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>17838457</StateNumber>
     </column>
-    <column id="5614" parent="5606" name="url">
+    <column id="5636" parent="5628" name="name">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054617</StateNumber>
+      <StateNumber>17838457</StateNumber>
     </column>
-    <index id="5615" parent="5606" name="article_pkey">
-      <ObjectId>11878244</ObjectId>
-      <ColNames>id</ColNames>
+    <column id="5637" parent="5628" name="url">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>17838457</StateNumber>
+    </column>
+    <index id="5638" parent="5628" name="article_pkey">
+      <ObjectId>11932968</ObjectId>
+      <ColNames>id_article</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="5616" parent="5606" name="article_pkey">
-      <ObjectId>11878245</ObjectId>
-      <ColNames>id</ColNames>
+    <key id="5639" parent="5628" name="article_pkey">
+      <ObjectId>11932969</ObjectId>
+      <ColNames>id_article</ColNames>
       <UnderlyingIndexName>article_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="5617" parent="5607" name="id">
+    <column id="5640" parent="5629" name="id_comment">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>9054897</StateNumber>
+      <StateNumber>17838458</StateNumber>
     </column>
-    <column id="5618" parent="5607" name="content">
+    <column id="5641" parent="5629" name="text">
       <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054897</StateNumber>
+      <DataType>text|0</DataType>
+      <StateNumber>17838458</StateNumber>
     </column>
-    <column id="5619" parent="5607" name="date">
+    <column id="5642" parent="5629" name="created">
       <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054897</StateNumber>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>17838458</StateNumber>
     </column>
-    <column id="5620" parent="5607" name="link_href">
+    <column id="5643" parent="5629" name="id_article_article">
       <Position>4</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054897</StateNumber>
+      <DataType>bigint|0</DataType>
+      <StateNumber>17838458</StateNumber>
     </column>
-    <column id="5621" parent="5607" name="name">
+    <column id="5644" parent="5629" name="author_url">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
-      <StateNumber>9054897</StateNumber>
+      <StateNumber>17838458</StateNumber>
     </column>
-    <index id="5622" parent="5607" name="comment_pkey">
-      <ObjectId>11878252</ObjectId>
-      <ColNames>id</ColNames>
+    <column id="5645" parent="5629" name="author">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>17838458</StateNumber>
+    </column>
+    <index id="5646" parent="5629" name="comment_pkey">
+      <ObjectId>11932976</ObjectId>
+      <ColNames>id_comment</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="5623" parent="5607" name="comment_pkey">
-      <ObjectId>11878253</ObjectId>
-      <ColNames>id</ColNames>
+    <key id="5647" parent="5629" name="comment_pkey">
+      <ObjectId>11932977</ObjectId>
+      <ColNames>id_comment</ColNames>
       <UnderlyingIndexName>comment_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="5624" parent="5608" name="id">
+    <column id="5648" parent="5630" name="id_portal">
       <Position>1</Position>
-      <DataType>integer|0</DataType>
+      <DataType>bigint|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>9055270</StateNumber>
+      <StateNumber>17838459</StateNumber>
     </column>
-    <index id="5625" parent="5608" name="portal_pkey">
-      <ObjectId>11878257</ObjectId>
-      <ColNames>id</ColNames>
+    <column id="5649" parent="5630" name="last_collection">
+      <Position>2</Position>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>17838459</StateNumber>
+    </column>
+    <column id="5650" parent="5630" name="name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>17838459</StateNumber>
+    </column>
+    <column id="5651" parent="5630" name="url_portal">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>17838459</StateNumber>
+    </column>
+    <index id="5652" parent="5630" name="portal_pkey">
+      <ObjectId>11932984</ObjectId>
+      <ColNames>id_portal</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="5626" parent="5608" name="portal_pkey">
-      <ObjectId>11878258</ObjectId>
-      <ColNames>id</ColNames>
+    <key id="5653" parent="5630" name="portal_pkey">
+      <ObjectId>11932985</ObjectId>
+      <ColNames>id_portal</ColNames>
       <UnderlyingIndexName>portal_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>

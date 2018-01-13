@@ -50,6 +50,18 @@ public class Article {
                 '}';
     }
 
+    public void setLastCollection(Date lastCollection) {
+        this.lastCollection = lastCollection;
+    }
+
+    public long getIdPortal() {
+        return idPortal;
+    }
+
+    public void setIdPortal(long idPortal) {
+        this.idPortal = idPortal;
+    }
+
     public long getId() {
         return id;
     }
