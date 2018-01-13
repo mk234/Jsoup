@@ -18,7 +18,15 @@ class PrepareUrlForArchives extends Specification {
         Date date = new Date(2016, 1, 1)
         String url = prepareUrlForArchives.prepareUrl(date)
         then:
-       // url == "https://zpravy.idnes.cz/archiv.aspx?datum=1.+1.+2016&idostrova=zpravodaj"
-        url == "lala"
+        url == "https://zpravy.idnes.cz/archiv.aspx?datum=1.+1.+2016&idostrova=zpravodaj"
+    }
+
+    def "get url for date 16"() {
+        when:
+        Date date = new Date(2016, 1, 1)
+        String url = prepareUrlForArchives.prepareUrl(date)
+        int i = 1
+        then:
+        i == 2
     }
 }
