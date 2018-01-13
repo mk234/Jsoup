@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,6 +27,11 @@ public class Application implements CommandLineRunner {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
         IdnesRun idnesRun = applicationContext.getBean(IdnesRun.class);
         idnesRun.run();
+    }
+
+    @RequestMapping("/")
+    String index() {
+        return "index";
     }
 
     @Override
