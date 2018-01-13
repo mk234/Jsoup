@@ -18,6 +18,7 @@ class PrepareUrlForArchives extends Specification {
         Date date = new Date(2016, 1, 1)
         String url = prepareUrlForArchives.prepareUrl(date)
         then:
-        url == "https://zpravy.idnes.cz/archiv.aspx?datum=1.+1.+2016&idostrova=zpravodaj"
+       // url == "https://zpravy.idnes.cz/archiv.aspx?datum=1.+1.+2016&idostrova=zpravodaj"
+        url == "lala"
     }
 }
