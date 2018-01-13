@@ -1,8 +1,6 @@
 package com.kment.jsoup.entity;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,13 +12,21 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_comment")
     private int id;
+    @Column(name = "author")
     private String name;
-    private String linkHref;
-    private String date;
+    @Column(name = "text")
     private String content;
+    @Column(name = "author_url")
+    private String linkHref;
+    @Column(name = "id_article_article")
+    private long idArticle;
+    @Column(name = "created")
+    private Date date;
 
-     public Comment(String name, String linkHref, String date, String content) throws ParseException {
+
+    public Comment(String name, String linkHref, String date, String content) throws ParseException {
         this.name = name;
         this.linkHref = linkHref;
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
@@ -28,6 +34,14 @@ public class Comment {
         long time = dates.getTime();
         new Timestamp(time);
         this.content = content;
+    }
+
+    public Comment(String name, String content, String linkHref, long idArticle, Date date) {
+        this.name = name;
+        this.content = content;
+        this.linkHref = linkHref;
+        this.idArticle = idArticle;
+        this.date = date;
     }
 
     @Override
@@ -64,11 +78,11 @@ public class Comment {
         this.linkHref = linkHref;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

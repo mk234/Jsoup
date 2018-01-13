@@ -1,40 +1,41 @@
 package com.kment.jsoup.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Article {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_article")
     private long id;
     private String name;
     private String url;
-    private String created;
-    private String LastCollection;
+    private Date created;
+    private Date lastCollection;
     private String keywords;
+    @Column(name = "id_portal_pkey")
+    private long idPortal;
 
     public Article() {
     }
 
-    public Article(long id, String name, String url, String created, String lastCollection, String keywords) {
-        this.id = id;
+    public Article(String name, String url, Date created, Date lastCollection, String keywords, long idPortal) {
         this.name = name;
         this.url = url;
         this.created = created;
-        LastCollection = lastCollection;
+        this.lastCollection = lastCollection;
         this.keywords = keywords;
+        this.idPortal = idPortal;
     }
 
-    public Article(String name, String url, String created, String lastCollection, String keywords) {
+    public Article(String name, String url, String created, String kastCollection, String keywords) {
         this.name = name;
         this.url = url;
-        this.created = created;
-        LastCollection = lastCollection;
+        this.lastCollection = lastCollection;
         this.keywords = keywords;
+        this.idPortal = idPortal;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class Article {
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", created=" + created +
-                ", LastCollection=" + LastCollection +
+                ", lastCollection=" + lastCollection +
                 ", keywords='" + keywords + '\'' +
                 '}';
     }
@@ -73,20 +74,20 @@ public class Article {
         this.url = url;
     }
 
-    public String getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public String getLastCollection() {
-        return LastCollection;
+    public Date getLastCollection() {
+        return lastCollection;
     }
 
-    public void setLastCollection(String lastCollection) {
-        LastCollection = lastCollection;
+    public void setLastCollection(java.sql.Date lastCollection) {
+        this.lastCollection = lastCollection;
     }
 
     public String getKeywords() {
