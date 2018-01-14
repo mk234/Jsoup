@@ -44,8 +44,7 @@ public class IdnesRun {
         String commentUrl = "";
         List<Article> articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrlForYesterday());
         portalSpringDataRepository.save(new Portal());
-        System.out.println(articleEntities.size());
-        for (Article articleEntity : articleEntities) {
+         for (Article articleEntity : articleEntities) {
             articleEntity.setIdPortal(1);
             articleSpringDataRepository.save(articleEntity);
               commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
@@ -54,7 +53,6 @@ public class IdnesRun {
         for (Comment commentEntity : commentEntities) {
              commentSpringDataRepository.save(commentEntity);
         }
-
 
 
     }

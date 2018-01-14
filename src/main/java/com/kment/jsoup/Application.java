@@ -2,6 +2,7 @@ package com.kment.jsoup;
 
 import com.kment.jsoup.idnes.IdnesRun;
 import com.kment.jsoup.springdata.IArticleSpringDataRepository;
+import com.kment.jsoup.springdata.ICommentSpringDataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,14 @@ public class Application implements CommandLineRunner {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    IArticleSpringDataRepository repository;
+    IdnesRun idnesRun;
+    @Autowired
+    IArticleSpringDataRepository articleSpringDataRepository;
+    @Autowired
+    ICommentSpringDataRepository commentSpringDataRepository;
 
     public static void main(String[] args) throws IOException, ParseException {
-        ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
-        IdnesRun idnesRun = applicationContext.getBean(IdnesRun.class);
-        idnesRun.run();
+         SpringApplication.run(Application.class, args);
     }
 
     @RequestMapping("/")
@@ -37,7 +40,9 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-           logger.info("All Article -> {}", repository.findAll());
+    //    idnesRun.run();
+     //   logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
+      //  logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
 
     }
 }
