@@ -32,20 +32,6 @@ public class Comment {
     public Comment() {
     }
 
-    public void setIdArticle(long idArticle) {
-        this.idArticle = idArticle;
-    }
-
-    public Comment(String name, String linkHref, String date, String content) throws ParseException {
-        this.name = name;
-        this.linkHref = linkHref;
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-        Date dates = dateFormat.parse(date);
-        long time = dates.getTime();
-        new Timestamp(time);
-        this.content = content;
-    }
-
     public Comment(String name, String content, String linkHref, long idArticle, Date date) {
         this.name = name;
         this.content = content;
@@ -53,6 +39,11 @@ public class Comment {
         this.idArticle = idArticle;
         this.date = date;
     }
+
+    public void setIdArticle(long idArticle) {
+        this.idArticle = idArticle;
+    }
+
 
     @Override
     public String toString() {

@@ -14,7 +14,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -43,17 +45,90 @@ public class IdnesRun {
         List<Comment> commentEntities = new ArrayList<>();
         String commentUrl = "";
         List<Article> articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrlForYesterday());
-        portalSpringDataRepository.save(new Portal());
-         for (Article articleEntity : articleEntities) {
-            articleEntity.setIdPortal(1);
+        portalSpringDataRepository.save(new Portal("iDNES", "www.idnes.cz/", new Date()));
+        for (Article articleEntity : articleEntities) {
             articleSpringDataRepository.save(articleEntity);
-              commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
+            commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
             commentEntities.addAll(extractComment.findComments(commentUrl));
         }
         for (Comment commentEntity : commentEntities) {
-             commentSpringDataRepository.save(commentEntity);
+            commentSpringDataRepository.save(commentEntity);
         }
-
+        Date datum;
+        String day;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+//-------------------
+        day = "14.01.2018";
+        datum = simpleDateFormat.parse(day);
+        articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrl(datum));
+        for (Article articleEntity : articleEntities) {
+            articleSpringDataRepository.save(articleEntity);
+            commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
+            commentEntities.addAll(extractComment.findComments(commentUrl));
+        }
+        for (Comment commentEntity : commentEntities) {
+            commentSpringDataRepository.save(commentEntity);
+        }
+//-------------------
+        day = "13.01.2018";
+        datum = simpleDateFormat.parse(day);
+        articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrl(datum));
+        for (Article articleEntity : articleEntities) {
+            articleSpringDataRepository.save(articleEntity);
+            commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
+            commentEntities.addAll(extractComment.findComments(commentUrl));
+        }
+        for (Comment commentEntity : commentEntities) {
+            commentSpringDataRepository.save(commentEntity);
+        }
+        //-------------------
+        day = "12.01.2018";
+        datum = simpleDateFormat.parse(day);
+        articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrl(datum));
+        for (Article articleEntity : articleEntities) {
+            articleSpringDataRepository.save(articleEntity);
+            commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
+            commentEntities.addAll(extractComment.findComments(commentUrl));
+        }
+        for (Comment commentEntity : commentEntities) {
+            commentSpringDataRepository.save(commentEntity);
+        }
+        //-------------------
+        day = "11.01.2018";
+        datum = simpleDateFormat.parse(day);
+        articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrl(datum));
+        for (Article articleEntity : articleEntities) {
+            articleSpringDataRepository.save(articleEntity);
+            commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
+            commentEntities.addAll(extractComment.findComments(commentUrl));
+        }
+        for (Comment commentEntity : commentEntities) {
+            commentSpringDataRepository.save(commentEntity);
+        }
+        //-------------------
+        day = "10.01.2018";
+        datum = simpleDateFormat.parse(day);
+        articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrl(datum));
+        for (Article articleEntity : articleEntities) {
+            articleSpringDataRepository.save(articleEntity);
+            commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
+            commentEntities.addAll(extractComment.findComments(commentUrl));
+        }
+        for (Comment commentEntity : commentEntities) {
+            commentSpringDataRepository.save(commentEntity);
+        }
+        //-------------------
+        day = "09.01.2018";
+        datum = simpleDateFormat.parse(day);
+        articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrl(datum));
+        for (Article articleEntity : articleEntities) {
+            articleSpringDataRepository.save(articleEntity);
+            commentUrl = prepareUrlForCommentary.prepareUrl(articleEntity.getUrl());
+            commentEntities.addAll(extractComment.findComments(commentUrl));
+        }
+        for (Comment commentEntity : commentEntities) {
+            commentSpringDataRepository.save(commentEntity);
+        }
 
     }
 }

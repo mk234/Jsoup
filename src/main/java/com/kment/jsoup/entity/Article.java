@@ -14,28 +14,52 @@ public class Article {
     private String url;
     private Date created;
     private Date lastCollection;
+    @Column(columnDefinition = "TEXT")
     private String keywords;
+    @Column(columnDefinition = "TEXT")
+    private String description;
     @Column(name = "id_portal_pkey")
     private long idPortal;
+    private int numberOfComments;
+    private String author;
 
     public Article() {
     }
 
-    public Article(String name, String url, Date created, Date lastCollection, String keywords, long idPortal) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getNumberOfComments() {
+        return numberOfComments;
+    }
+
+    public void setNumberOfComments(int numberOfComments) {
+        this.numberOfComments = numberOfComments;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Article(String name, String url, Date created, Date lastCollection, String keywords, String description, long idPortal, int numberOfComments, String author) {
         this.name = name;
         this.url = url;
         this.created = created;
         this.lastCollection = lastCollection;
         this.keywords = keywords;
+        this.description = description;
         this.idPortal = idPortal;
-    }
-
-    public Article(String name, String url, String created, String kastCollection, String keywords) {
-        this.name = name;
-        this.url = url;
-        this.lastCollection = lastCollection;
-        this.keywords = keywords;
-        this.idPortal = idPortal;
+        this.numberOfComments = numberOfComments;
+        this.author = author;
     }
 
     @Override
@@ -109,4 +133,6 @@ public class Article {
     public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
+
+
 }

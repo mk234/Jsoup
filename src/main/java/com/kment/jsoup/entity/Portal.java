@@ -13,8 +13,7 @@ public class Portal {
     private String name;
     private String urlPortal;
     private Date lastCollection;
-
-    public Portal() {
+       public Portal() {
     }
 
     public Portal(String name, String urlPortal, Date lastCollection) {

@@ -3,6 +3,8 @@ package com.kment.jsoup.idnes.Comment;
 import com.kment.jsoup.entity.Comment;
 import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -26,11 +30,10 @@ public class ExtractComment {
         NumberOfPages numberOfPage = new NumberOfPages();
 
 
-
         String selectorContributions = "div#disc-list";
         int numberOfPages = numberOfPage.numberOfPages(document, selectorContributions);
-        if (numberOfPages == 0){
-            return  commentList;
+        if (numberOfPages == 0) {
+            return commentList;
         }
         String selectorContribution = "div.contribution";
 
@@ -69,11 +72,18 @@ public class ExtractComment {
             Element link = linkDoc.select("a").first();
             String linkHref = link.attr("href");
             name = parseName.regex(name);
-            commentList.add(new Comment(name, linkHref, date.text(), content.text()));
+               commentList.add(new Comment(name, content.text(), linkHref, 0, getCreatedDate(date)));
         }
         return commentList;
 
     }
 
+    public Date getCreatedDate(Element dateElement) throws ParseException {
+        String data = dateElement.text();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Date date = sdf.parse(data);
+        return date;
+
+    }
 
 }
