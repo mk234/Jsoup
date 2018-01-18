@@ -56,6 +56,7 @@ public class Application implements CommandLineRunner {
       idnesRun.run();
         logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
         logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
+
     }
 
 

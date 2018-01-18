@@ -21,4 +21,46 @@ public class Portal {
         this.urlPortal = urlPortal;
         this.lastCollection = lastCollection;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrlPortal() {
+        return urlPortal;
+    }
+
+    public void setUrlPortal(String urlPortal) {
+        this.urlPortal = urlPortal;
+    }
+
+    public Date getLastCollection() {
+        return lastCollection;
+    }
+
+    public void setLastCollection(Date lastCollection) {
+        this.lastCollection = lastCollection;
+    }
+
+    @Override
+    public String toString() {
+        return "\nPortal{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", urlPortal='" + urlPortal + '\'' +
+                ", lastCollection=" + lastCollection +
+                '}';
+    }
 }

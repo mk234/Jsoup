@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="d80bt3bbq4ob9e@ec2-54-227-250-33.compute-1.amazonaws.com" uuid="d16cda0e-688c-4c65-8d4e-0a9be384f452">
+    <data-source source="LOCAL" name="test database" uuid="d16cda0e-688c-4c65-8d4e-0a9be384f452">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
@@ -10,7 +10,7 @@
         <property name="ApplicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="df2umfko9rq7cq@ec2-23-21-101-249.compute-1.amazonaws.com" uuid="ae8bc88b-4665-4754-82af-0f4656ac328c">
+    <data-source source="LOCAL" name="production database" uuid="ae8bc88b-4665-4754-82af-0f4656ac328c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

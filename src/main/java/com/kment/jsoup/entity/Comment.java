@@ -1,19 +1,16 @@
 package com.kment.jsoup.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+     @SequenceGenerator(name = "SQ_ID_COMMENT", sequenceName = "SQ_ID_COMMENT", allocationSize = 250)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_ID_COMMENT")
     @Column(name = "id_comment")
-    private int id;
+    private long id;
     @Column(name = "author")
     private String name;
     @Column(name = "text", columnDefinition = "TEXT")
@@ -47,19 +44,21 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "name='" + name + '\'' +
-                ", linkHref='" + linkHref + '\'' +
-                ", date='" + date + '\'' +
+        return "\nComment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", content='" + content + '\'' +
-                '}' + "\n";
+                ", linkHref='" + linkHref + '\'' +
+                ", idArticle=" + idArticle +
+                ", date=" + date +
+                '}';
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

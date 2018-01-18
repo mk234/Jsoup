@@ -22,7 +22,7 @@ import java.util.List;
 @Component
 public class ExtractComment {
 
-    public List<Comment> findComments(String url) throws IOException, ParseException {
+    public List<Comment> findComments(String url, long idArticle) throws IOException, ParseException {
         List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
@@ -39,14 +39,14 @@ public class ExtractComment {
 
         Element contributions = document.select(selectorContributions).first();
         Elements selectedDivs = contributions.select(selectorContribution);
-        commentList.addAll(getComments(selectedDivs));
+        commentList.addAll(getComments(selectedDivs, idArticle));
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
             document = parseUrl.parse(urlForNextPage);
             contributions = document.select(selectorContributions).first();
             selectedDivs = contributions.select(selectorContribution);
-            commentList.addAll(getComments(selectedDivs));
+            commentList.addAll(getComments(selectedDivs, idArticle));
         }
 
 
@@ -58,7 +58,7 @@ public class ExtractComment {
     }
 
 
-    private List<Comment> getComments(Elements selectedDivs) throws ParseException {
+    private List<Comment> getComments(Elements selectedDivs, long idArticle) throws ParseException {
         List<Comment> commentList = new ArrayList<>();
         String selectorName = "h4.name";
         String selectorDate = "div.date.hover";
@@ -72,7 +72,7 @@ public class ExtractComment {
             Element link = linkDoc.select("a").first();
             String linkHref = link.attr("href");
             name = parseName.regex(name);
-               commentList.add(new Comment(name, content.text(), linkHref, 0, getCreatedDate(date)));
+               commentList.add(new Comment(name, content.text(), linkHref, idArticle, getCreatedDate(date)));
         }
         return commentList;
 

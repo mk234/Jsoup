@@ -65,12 +65,16 @@ public class Article {
     @Override
     public String toString() {
         return "\nArticle{" +
-                ", id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", created=" + created +
                 ", lastCollection=" + lastCollection +
                 ", keywords='" + keywords + '\'' +
+                ", description='" + description + '\'' +
+                ", idPortal=" + idPortal +
+                ", numberOfComments=" + numberOfComments +
+                ", author='" + author + '\'' +
                 '}';
     }
 
