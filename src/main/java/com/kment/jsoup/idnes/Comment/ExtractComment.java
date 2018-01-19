@@ -3,8 +3,6 @@ package com.kment.jsoup.idnes.Comment;
 import com.kment.jsoup.entity.Comment;
 import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -39,14 +37,14 @@ public class ExtractComment {
 
         Element contributions = document.select(selectorContributions).first();
         Elements selectedDivs = contributions.select(selectorContribution);
-        commentList.addAll(getComments(selectedDivs, idArticle));
+        commentList.addAll(getCommentsFromElements(selectedDivs, idArticle));
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
             document = parseUrl.parse(urlForNextPage);
             contributions = document.select(selectorContributions).first();
             selectedDivs = contributions.select(selectorContribution);
-            commentList.addAll(getComments(selectedDivs, idArticle));
+            commentList.addAll(getCommentsFromElements(selectedDivs, idArticle));
         }
 
 
@@ -58,7 +56,7 @@ public class ExtractComment {
     }
 
 
-    private List<Comment> getComments(Elements selectedDivs, long idArticle) throws ParseException {
+    private List<Comment> getCommentsFromElements(Elements selectedDivs, long idArticle) throws ParseException {
         List<Comment> commentList = new ArrayList<>();
         String selectorName = "h4.name";
         String selectorDate = "div.date.hover";

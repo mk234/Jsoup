@@ -1,6 +1,7 @@
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Article
 import com.kment.jsoup.idnes.Article.ExtractArticle
+import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle
 import com.kment.jsoup.idnes.ParseUrl
 import org.jsoup.nodes.Document
 import org.springframework.beans.factory.annotation.Autowired

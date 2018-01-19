@@ -3,11 +3,10 @@ package com.kment.jsoup.idnes.Article;
 import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.idnes.NumberOfPages;
 import com.kment.jsoup.idnes.ParseUrl;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,32 +18,33 @@ import java.util.List;
 @Component
 public class ExtractArticle {
 
-    public List<Article> findArticle(String url) throws IOException, ParseException {
-        List<Article> commentList = new ArrayList<>();
+    @Autowired
+    ExtractMetaFromArticle extractMetaFromArticle;
+
+    public List<Article> findArticles(String url) throws IOException, ParseException {
+        List<Article> articleList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         NumberOfPages numberOfPage = new NumberOfPages();
 
 
-        String selectorContributions = "div#content";
-        int numberOfPages = numberOfPage.numberOfPages(document, selectorContributions);
-        String selectorContribution = "div.art";
+        String selectorContent = "div#content";
+        int numberOfPages = numberOfPage.numberOfPages(document, selectorContent);
+        String selectorArticle = "div.art";
 
-        Element contributions = document.select(selectorContributions).first();
-        Elements selectedDivs = contributions.select(selectorContribution);
-        commentList.addAll(getArticles(selectedDivs, document));
+        Element contens = document.select(selectorContent).first();
+        Elements selectedDivs = contens.select(selectorArticle);
+        articleList.addAll(getArticles(selectedDivs, document));
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
             document = parseUrl.parse(urlForNextPage);
-            contributions = document.select(selectorContributions).first();
-            selectedDivs = contributions.select(selectorContribution);
-            commentList.addAll(getArticles(selectedDivs, document));
+            contens = document.select(selectorContent).first();
+            selectedDivs = contens.select(selectorArticle);
+            articleList.addAll(getArticles(selectedDivs, document));
         }
-
-
-        return commentList;
+        return articleList;
     }
 
 
@@ -53,90 +53,24 @@ public class ExtractArticle {
     }
 
     private List<Article> getArticles(Elements selectedDivs, Document document) throws ParseException, IOException {
-        List<Article> commentList = new ArrayList<>();
+        List<Article> articleList = new ArrayList<>();
         String selectorName = "div.cell";
-        String selectorDate = "span.time-date";
+      //  String selectorDate = "span.time-date";
         ParseUrl parseUrl = new ParseUrl();
         for (Element div : selectedDivs) {
             Element cell = div.select(selectorName).first();
             Elements name = cell.select("h3");
-            Element date = div.select(selectorDate).first();
+           // Element date = div.select(selectorDate).first();
             Element link = name.select("a").first();
             String absHref = link.attr("abs:href");
             Document documentArticle = parseUrl.parse(absHref);
-             commentList.add(new Article(name.text(), absHref,
-                    getCreatedDate(documentArticle), new Date(),
-                    getKeywors(documentArticle), getDescription(documentArticle),
-                    1, getNumburOfComment(documentArticle),
-                    getAuthor(documentArticle)));
+            articleList.add(new Article(name.text(), absHref,
+                    extractMetaFromArticle.getCreatedDate(documentArticle), new Date(),
+                    extractMetaFromArticle.getKeywors(documentArticle), extractMetaFromArticle.getDescription(documentArticle),
+                    1, extractMetaFromArticle.getNumburOfComment(documentArticle),
+                    extractMetaFromArticle.getAuthor(documentArticle)));
         }
-        return commentList;
-    }
-
-
-    public Date getCreatedDate(Document document) throws ParseException {
-        if (document.select("meta[property=article:published_time]").first() == null)
-            return new Date();
-        String stringDate = document.select("meta[property=article:published_time]").first()
-                .attr("content");
-        DateTimeZone zone = DateTimeZone.forID("America/Montreal");
-        DateTime dateTime_Utc = new DateTime(stringDate + "Z", zone);
-        Date date = dateTime_Utc.toDate();
-        return date;
-    }
-
-    public String getKeywors(Document document) throws IOException {
-        if (document.select("meta[name=keywords]").first() == null)
-            return "";
-        else
-            return
-                    document.select("meta[name=keywords]").first()
-                            .attr("content");
-    }
-
-    public String getDescription(Document document) throws IOException {
-        if (document.select("meta[name=description]").get(0) == null)
-            return "";
-        String description =
-                document.select("meta[name=description]").get(0)
-                        .attr("content");
-        return description;
-    }
-
-
-    public String getAuthor(Document document) throws IOException {
-        String selectorName = "div.authors";
-        if (document.select(selectorName).first() == null)
-            return "";
-        else
-            return document.select(selectorName).first().select("span").first().text();
-    }
-
-    public int getNumburOfComment(Document document) {
-        Element element = document.select("li.community-discusion").first();
-        if (element == null)
-            return 0;
-        else {
-            Elements numberOfComment = document.select("li.community-discusion").first().select("a#moot-linkin").first().select("span");
-
-            return extractDigits(numberOfComment.text());
-        }
-    }
-
-
-    public int extractDigits(String src) {
-        if (src.equals("")) {
-            return 0;
-        } else {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < src.length(); i++) {
-                char c = src.charAt(i);
-                if (Character.isDigit(c)) {
-                    builder.append(c);
-                }
-            }
-            return Integer.parseInt(builder.toString());
-        }
+        return articleList;
     }
 
 

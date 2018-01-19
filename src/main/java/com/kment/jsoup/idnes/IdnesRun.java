@@ -4,6 +4,7 @@ import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.entity.Comment;
 import com.kment.jsoup.entity.Portal;
 import com.kment.jsoup.idnes.Article.ExtractArticle;
+import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle;
 import com.kment.jsoup.idnes.Comment.ExtractComment;
 import com.kment.jsoup.idnes.Comment.PrepareUrlForCommentary;
 import com.kment.jsoup.springdata.IArticleSpringDataRepository;
@@ -28,6 +29,8 @@ public class IdnesRun {
     @Autowired
     ExtractArticle extractArticle;
     @Autowired
+    ExtractComment extractComment;
+    @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
     @Autowired
     IPortalSpringDataRepository portalSpringDataRepository;
@@ -43,12 +46,10 @@ public class IdnesRun {
 
 
         PrepareUrlForArchives prepareUrlForArchives = new PrepareUrlForArchives();
-        ExtractComment extractComment = new ExtractComment();
-        ExtractArticle extractArticle = new ExtractArticle();
         PrepareUrlForCommentary prepareUrlForCommentary = new PrepareUrlForCommentary();
         List<Comment> commentEntities = new ArrayList<>();
         String commentUrl = "";
-        List<Article> articleEntities = extractArticle.findArticle(prepareUrlForArchives.prepareUrlForYesterday());
+        List<Article> articleEntities = extractArticle.findArticles(prepareUrlForArchives.prepareUrlForYesterday());
         portalSpringDataRepository.save(new Portal("iDNES", "www.idnes.cz/", new Date()));
         long idArticle;
         for (Article articleEntity : articleEntities) {
