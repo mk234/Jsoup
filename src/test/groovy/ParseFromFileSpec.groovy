@@ -7,7 +7,7 @@ class ParseFromFileSpec extends Specification {
 
     def "get document from local html page"() {
         when:
-        Document document = parseFromFile.getDocumentFromFile("html/archiv_source/test.txt")
+        Document document = parseFromFile.getDocumentFromFile("html/archiv_source/archiv_2.8.2015_strana1.htm")
         then:
         document != null
     }
