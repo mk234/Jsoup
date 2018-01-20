@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest(classes = Application.class)
-class CommentTest extends Specification {
+class CommentTestSpec extends Specification {
 // zadny komentar  https://rungo.idnes.cz/sto-kliku-denne-a-zavody-na-100-metru-zvlada-american-ve-100-letech-pbn-/behani.aspx?c=A150801_204413_behani_Pil
     // pro testovani https://ekonomika.idnes.cz/diskuse.aspx?iddiskuse=A150731_2180917_ekonomika_nio&razeni=vlakno&strana=8 je tam prazdne jmeno
     // zakazane komentare https://zpravy.idnes.cz/soud-nenavistne-vyroky-rasismus-xenofobie-banga-podmineny-trest-vyhruzky-1bt-/krimi.aspx?c=A180109_172752_domaci_bja

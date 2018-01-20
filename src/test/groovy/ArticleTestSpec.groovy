@@ -10,7 +10,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest(classes = Application.class)
-class ArticleTest extends Specification {
+class ArticleTestSpec extends Specification {
 // 117 artiklu v https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes
 
     @Autowired
