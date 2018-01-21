@@ -41,9 +41,9 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-     // idnesRun.run();
-       // logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
-       // logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
+    //  idnesRun.run();
+   //     logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
+  //      logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
 
     }
 
