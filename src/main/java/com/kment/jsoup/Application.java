@@ -28,10 +28,11 @@ public class Application implements CommandLineRunner {
     IArticleSpringDataRepository articleSpringDataRepository;
     @Autowired
     ICommentSpringDataRepository commentSpringDataRepository;
-@Autowired
+    @Autowired
     ExtractComment extractComment;
+
     public static void main(String[] args) throws IOException, ParseException {
-         SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @RequestMapping("/")
@@ -41,9 +42,9 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-    //  idnesRun.run();
-   //     logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
-  //      logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
+        //  idnesRun.run();
+        //     logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
+        //      logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
 
     }
 

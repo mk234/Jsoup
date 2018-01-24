@@ -12,7 +12,36 @@ import spock.lang.Specification
 @SpringBootTest(classes = Application.class)
 class ArticleTestSpec extends Specification {
 // 117 artiklu v https://zpravy.idnes.cz/archiv.aspx?datum=2.%208.%202015&idostrova=idnes
+/*
+vseobecne
+parse name a url, url for next page, create url, datum tvorba, vcerejsi datum
 
+archiv
+nacist vsechny stranky archivu
+pocet clanku na prvni a na posledni strance archivu
+pocet stranek v archivu
+
+clanek
+nacist clanek
+klicova slova, popis, autor, pocet clanku, datum
+
+
+komentare
+nacist vsechny stranky komentaru
+pocet na prvni a posledni strane komentaru
+
+komentar
+vyselektovat spravne datum, autora, text
+
+
+
+updatovani
+ulozeni testovaciho dne do db
+nacteni do dokumentu ulozeny archiv ze dne
+
+ */
+    @Autowired
+    ExtractMetaFromArticle extractMetaFromArticle
     @Autowired
     ExtractArticle extractArticle
     @Shared
@@ -33,35 +62,35 @@ class ArticleTestSpec extends Specification {
 
     def "number of article in one day"() {
         when:
-        List<Article> articleList = extractArticle.findArticle(url)
+        List<Article> articleList = extractArticle.findArticles(url)
         then:
         articleList.size() == 117
     }
 
     def "get keywords from page"() {
         when:
-        String keywords = extractArticle.getKeywors(documentArticle)
+        String keywords = extractMetaFromArticle.getKeywors(documentArticle)
         then:
         keywords.equals("Írán")
     }
 
     def "get author from article"() {
         when:
-        String author = extractArticle.getAuthor(documentArticle)
+        String author = extractMetaFromArticle.getAuthor(documentArticle)
         then:
         author.equals("Anna Barochová")
     }
 
     def "get description from article"() {
         when:
-        String description = extractArticle.getDescription(documentArticle)
+        String description = extractMetaFromArticle.getDescription(documentArticle)
         then:
         description.equals("Íránské ekonomice zatím stále přidušené sankcemi může pomoci netradiční surovina - šafrán. Vzácnému koření se v místním podnebí daří a íránská pole plodí ročně 90 procent jeho světové produkce. Červené tyčinky z drobných květin jsou nadějí i pro sousední Afghánistán, kde by šafrán mohl vymýtit nelegální opium.")
     }
 
     def "get number of comment page to one specific article"() {
         when:
-        int number = extractArticle.getNumburOfComment(documentArticle)
+        int number = extractMetaFromArticle.getNumburOfComment(documentArticle)
         then:
         number == 131
     }

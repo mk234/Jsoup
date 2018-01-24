@@ -5,6 +5,7 @@ import com.kment.jsoup.idnes.Comment.ParseName
 import com.kment.jsoup.idnes.PrepareUrlForArchives
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest(classes = Application.class)
@@ -15,14 +16,14 @@ class CommentTestSpec extends Specification {
 // vice nez devet stranek komentaru, nefunguje posun na desatou view-source:https://zpravy.idnes.cz/diskuse.aspx?iddiskuse=A180116_073204_domaci_bja&razeni=vlakno
 
 
-
     @Autowired
     ParseName parseName
     @Autowired
-    ExtractComment comment
+    ExtractComment extractComment
     @Autowired
     PrepareUrlForArchives urlForArchives
-    String url = "https://zpravy.idnes.cz/safran-produkce-iran-afghanistan-d44-/zahranicni.aspx?c=A150730_143206_zahranicni_aba"
+    @Shared
+    String url = "https://zpravy.idnes.cz/diskuse.aspx?iddiskuse=A150730_143206_zahranicni_aba"
 
 
     def "regex for name"() {
@@ -36,16 +37,15 @@ class CommentTestSpec extends Specification {
 
     def "number of comments"() {
         when:
-        List<Comment> commentEntityList = comment.findComments(url)
-         then:
-        commentEntityList.size() == 50
+        List<Comment> commentEntityList = extractComment.findComments(url, 0)
+        then:
+        commentEntityList.size() == 131
     }
 
 
     def "first and last comment"() {
         when:
-        List<Comment> commentEntityList = new ArrayList<>()
-        commentEntityList = comment.findComments(url)
+        List<Comment> commentEntityList = extractComment.findComments(url, 0)
 
         String firstComment = "Tak tohle by opravdu mohlo pomoci i v Avghánistánu a přilehlých regionech. Pokud by se šafrán uchytil v západních zemích, má opravdu šanci částečně vytlačit produkci drog pěstovaných na poli. Kdo jednou ochutnal třeba Indické cukrovinky s šafránem, tak mu naše připadají mdlé. Dá se to přidávat třeba do mléčné rýže, jogurtového nápoje, zmrzliny, mandlové hmoty, ale dává se i do slaných jídel. "
         String lastComment = "\n" +
@@ -65,16 +65,6 @@ class CommentTestSpec extends Specification {
         commentEntityList.get(0).content.compareTo(firstComment)
         commentEntityList.get(commentEntityList.size() - 1).content.compareTo(lastComment)
 
-
-    }
-
-
-    def "number of pages"() {
-        when:
-        List<Comment> commentEntityList = new ArrayList<>()
-        commentEntityList = comment.findComments(url)
-      then:
-        commentEntityList.size()/50 == 3
 
     }
 

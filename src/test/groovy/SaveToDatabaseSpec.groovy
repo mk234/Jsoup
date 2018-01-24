@@ -9,7 +9,7 @@ import spock.lang.Specification
 
 @Transactional
 @SpringBootTest(classes = Application.class)
-class SaveToDatabase extends Specification {
+class SaveToDatabaseSpec extends Specification {
 
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository
@@ -17,11 +17,13 @@ class SaveToDatabase extends Specification {
     @Rollback
     def "save article to db and read it"() {
         when:
-        String  expectArticleName = "test article"
-        Article article = articleSpringDataRepository.save(new Article(name: expectArticleName))
+        String expectedArticleName = "test article"
+        Article article = articleSpringDataRepository.save(new Article(name: expectedArticleName))
         String realArticleName = article.getName()
         then:
         println realArticleName
-       expectArticleName.equals(realArticleName)
+        expectedArticleName == realArticleName
     }
+
+
 }
