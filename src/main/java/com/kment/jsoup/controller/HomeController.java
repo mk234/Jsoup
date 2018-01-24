@@ -26,7 +26,7 @@ public class HomeController {
       //  model.addAttribute("allComments", (List<Comment>)commentRepository.findAll());
         return "index";
     }
-
+/*
     @PostMapping(value = {"/", "/index"})
     public String addComment(@ModelAttribute("comment") Comment comment
             , Model model) {
@@ -35,6 +35,6 @@ public class HomeController {
 
         model.addAttribute("allComments", (List<Comment>)commentRepository.findAll());
         return "redirect:/index"; // redirects
-    }
+    }*/
 
 }
