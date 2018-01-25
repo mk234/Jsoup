@@ -34,17 +34,12 @@ public class Application implements CommandLineRunner {
     public static void main(String[] args) throws IOException, ParseException {
         SpringApplication.run(Application.class, args);
     }
-/*
-    @RequestMapping("/")
-    String index() {
-        return "index";
-    }
-*/
+
     @Override
     public void run(String... strings) throws Exception {
-        //  idnesRun.run();
-        //     logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
-        //      logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
+          idnesRun.run();
+             logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
+              logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
 
     }
 
