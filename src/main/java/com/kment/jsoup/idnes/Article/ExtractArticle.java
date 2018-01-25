@@ -22,11 +22,16 @@ public class ExtractArticle {
     ExtractMetaFromArticle extractMetaFromArticle;
 
     public List<Article> findArticles(String url) throws IOException, ParseException {
+        ParseUrl parseUrl = new ParseUrl();
+        Document document = parseUrl.parse(url);
+       return findArticles(url, document);
+    }
+
+    public List<Article> findArticles(String url, Document document) throws IOException, ParseException {
         List<Article> articleList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
-        Document document = parseUrl.parse(url);
-        NumberOfPages numberOfPage = new NumberOfPages();
+           NumberOfPages numberOfPage = new NumberOfPages();
 
 
         String selectorContent = "div#content";

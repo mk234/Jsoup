@@ -19,13 +19,17 @@ import java.util.List;
 
 @Component
 public class ExtractComment {
-
     public List<Comment> findComments(String url, long idArticle) throws IOException, ParseException {
+        ParseUrl parseUrl = new ParseUrl();
+        Document document = parseUrl.parse(url);
+        return findComments(url, idArticle, document);
+    }
+
+    public List<Comment> findComments(String url, long idArticle, Document document) throws IOException, ParseException {
         List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
-        Document document = parseUrl.parse(url);
-        NumberOfPages numberOfPage = new NumberOfPages();
+         NumberOfPages numberOfPage = new NumberOfPages();
 
 
         String selectorContributions = "div#disc-list";

@@ -9,8 +9,6 @@ class ParseFromFile {
         ClassLoader classLoader = getClass().getClassLoader()
         File file = new File(classLoader.getResource(path).getFile())
         document = Jsoup.parse(file, "windows-1250")
-
-        println document
         return document
     }
 }
