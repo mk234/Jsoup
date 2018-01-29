@@ -53,7 +53,7 @@ public class IdnesRun {
 
     public void run() throws IOException, ParseException {
         extractAndSaveYesterday();
-   //     extractAndSaveMultipleDaysBefereYesterday(3);
+        extractAndSaveMultipleDaysBefereYesterday(7);
     }
 
     public void extractAndSaveYesterday() throws IOException, ParseException {

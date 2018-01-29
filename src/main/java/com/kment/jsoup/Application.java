@@ -2,6 +2,7 @@ package com.kment.jsoup;
 
 import com.kment.jsoup.idnes.Comment.ExtractComment;
 import com.kment.jsoup.idnes.IdnesRun;
+import com.kment.jsoup.idnes.IdnesUpdate;
 import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import com.kment.jsoup.springdata.ICommentSpringDataRepository;
 import org.slf4j.Logger;
@@ -11,10 +12,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.io.IOException;
-import java.text.ParseException;
 
 @Controller
 @SpringBootApplication
@@ -30,16 +27,21 @@ public class Application implements CommandLineRunner {
     ICommentSpringDataRepository commentSpringDataRepository;
     @Autowired
     ExtractComment extractComment;
+    @Autowired
+    IdnesUpdate idnesUpdate;
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
     @Override
     public void run(String... strings) throws Exception {
-          //idnesRun.run();
-          //logger.info("All Articles -> {}", articleSpringDataRepository.findAll());
-          //   logger.info("All Comments -> {}", commentSpringDataRepository.findAll());
+        //  idnesRun.run();
+        logger.info("All Articles -> {}", articleSpringDataRepository.findAll().size());
+        logger.info("All Comments -> {}", commentSpringDataRepository.findAll().size());
+        idnesUpdate.updateIdnes(7);
+        logger.info("All Articles -> {}", articleSpringDataRepository.findAll().size());
+        logger.info("All Comments -> {}", commentSpringDataRepository.findAll().size());
 
     }
 
