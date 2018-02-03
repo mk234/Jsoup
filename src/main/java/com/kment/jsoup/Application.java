@@ -36,12 +36,16 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        //  idnesRun.run();
-        logger.info("All Articles -> {}", articleSpringDataRepository.findAll().size());
-        logger.info("All Comments -> {}", commentSpringDataRepository.findAll().size());
-        idnesUpdate.updateIdnes(7);
-        logger.info("All Articles -> {}", articleSpringDataRepository.findAll().size());
-        logger.info("All Comments -> {}", commentSpringDataRepository.findAll().size());
+        //   idnesRun.run();
+        // logger.info("All Articles -> {}", articleSpringDataRepository.findAll().size());
+        // logger.info("All Comments -> {}", commentSpringDataRepository.findAll().size());
+        //   idnesRun.saveOneArticleWithComments("https://volby.idnes.cz/milos-zeman-jiri-drahos-prezidentske-volby-praha-volici-pkp-/prezidentske-volby-2018.aspx?c=A180129_204012_prezidentske-volby-2018_amu");
+        //  idnesRun.saveOneArticleWithComments("https://zpravy.idnes.cz/reporteri-bez-hranic-pauline-ades-mevel-rozhovor-cesko-zeman-novinari-utok-volby-gip-/zahranicni.aspx?c=A180129_173256_zahranicni_kha");
+        double a = 0.0 / 50.0;
+        System.out.println((int) Math.ceil(a));
+        idnesUpdate.updateIdnes(5);
+        //  logger.info("All Articles -> {}", articleSpringDataRepository.findAll().size());
+        //  logger.info("All Comments -> {}", commentSpringDataRepository.findAll().size());
 
     }
 

@@ -19,21 +19,19 @@ import java.util.List;
 
 @Component
 public class ExtractComment {
-    public List<Comment> findComments(String url, long idArticle) throws IOException, ParseException {
+    public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
-        Document document = parseUrl.parse(url);
-        return findComments(url, idArticle, document);
+        Document document = parseUrl.parse(urlComment);
+        return findComments(urlComment, idArticle, document);
     }
 
     public List<Comment> findComments(String url, long idArticle, Document document) throws IOException, ParseException {
         List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
-         NumberOfPages numberOfPage = new NumberOfPages();
-
-
+        NumberOfPages numberOfPage = new NumberOfPages();
         String selectorContributions = "div#disc-list";
-        int numberOfPages = numberOfPage.numberOfPages(document, selectorContributions);
+        int numberOfPages = numberOfPage.numberOfPagesComment(document);
         if (numberOfPages == 0) {
             return commentList;
         }
@@ -45,6 +43,7 @@ public class ExtractComment {
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
+            System.out.println(urlForNextPage);
             document = parseUrl.parse(urlForNextPage);
             contributions = document.select(selectorContributions).first();
             selectedDivs = contributions.select(selectorContribution);
@@ -56,7 +55,7 @@ public class ExtractComment {
     }
 
     private String getDocumentForNextPage(String url, int i) {
-        return url + "&razeni=vlakno&strana=" + i;
+        return url + "&strana=" + i;
     }
 
 
@@ -74,7 +73,7 @@ public class ExtractComment {
             Element link = linkDoc.select("a").first();
             String linkHref = link.attr("href");
             name = parseName.regex(name);
-               commentList.add(new Comment(name, content.text(), linkHref, idArticle, getCreatedDate(date)));
+            commentList.add(new Comment(name, content.text(), linkHref, idArticle, getCreatedDate(date)));
         }
         return commentList;
 

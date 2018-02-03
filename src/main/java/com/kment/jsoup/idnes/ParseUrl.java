@@ -12,4 +12,6 @@ public class ParseUrl {
     public Document parse(String urlString) throws IOException {
         return Jsoup.connect(urlString).get();
     }
+
+
 }

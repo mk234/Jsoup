@@ -24,18 +24,18 @@ public class ExtractArticle {
     public List<Article> findArticles(String url) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
-       return findArticles(url, document);
+        return findArticles(url, document);
     }
 
     public List<Article> findArticles(String url, Document document) throws IOException, ParseException {
         List<Article> articleList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
-           NumberOfPages numberOfPage = new NumberOfPages();
+        NumberOfPages numberOfPage = new NumberOfPages();
 
 
         String selectorContent = "div#content";
-        int numberOfPages = numberOfPage.numberOfPages(document, selectorContent);
+        int numberOfPages = numberOfPage.numberOfPagesArchive(document, selectorContent);
         String selectorArticle = "div.art";
 
         Element contens = document.select(selectorContent).first();
@@ -60,12 +60,10 @@ public class ExtractArticle {
     private List<Article> getArticles(Elements selectedDivs, Document document) throws ParseException, IOException {
         List<Article> articleList = new ArrayList<>();
         String selectorName = "div.cell";
-      //  String selectorDate = "span.time-date";
         ParseUrl parseUrl = new ParseUrl();
         for (Element div : selectedDivs) {
             Element cell = div.select(selectorName).first();
             Elements name = cell.select("h3");
-           // Element date = div.select(selectorDate).first();
             Element link = name.select("a").first();
             String absHref = link.attr("abs:href");
             Document documentArticle = parseUrl.parse(absHref);

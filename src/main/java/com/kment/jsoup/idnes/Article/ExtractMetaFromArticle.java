@@ -19,8 +19,8 @@ public class ExtractMetaFromArticle {
             return new Date();
         String stringDate = document.select("meta[property=article:published_time]").first()
                 .attr("content");
-        DateTimeZone zone = DateTimeZone.forID("America/Montreal");
-        DateTime dateTime_Utc = new DateTime(stringDate + "Z", zone);
+        DateTimeZone zone = DateTimeZone.getDefault();
+        DateTime dateTime_Utc = new DateTime(stringDate, zone);
         Date date = dateTime_Utc.toDate();
         return date;
     }
@@ -49,7 +49,7 @@ public class ExtractMetaFromArticle {
         if (document.select(selectorName).first() == null)
             return "";
         else
-            return document.select(selectorName).first().select("span").first().text();
+            return document.select(selectorName).first().select("span.h").first().text();
     }
 
     public int getNumburOfComment(Document document) {
