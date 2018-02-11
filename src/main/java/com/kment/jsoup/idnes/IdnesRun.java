@@ -97,7 +97,7 @@ public class IdnesRun {
         System.out.println(commentEntities.size());
         for (int i = 0; i < commentEntities.size(); i++) {
             Comment comment = commentEntities.get(i);
-            entityManager.persist(comment);
+        //    entityManager.persist(comment);
             if (i % batchSize == 0) {
                 flushAndClearEntityManager();
             }

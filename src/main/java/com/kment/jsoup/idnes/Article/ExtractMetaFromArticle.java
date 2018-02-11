@@ -48,7 +48,10 @@ public class ExtractMetaFromArticle {
         String selectorName = "div.authors";
         if (document.select(selectorName).first() == null)
             return "";
+        if (document.select(selectorName).first().select("span.h").first() == null)
+            return "";
         else
+            System.out.println(document.select(selectorName).first().select("span.h").first().text());
             return document.select(selectorName).first().select("span.h").first().text();
     }
 
@@ -58,7 +61,6 @@ public class ExtractMetaFromArticle {
             return 0;
         else {
             Elements numberOfComment = document.select("li.community-discusion").first().select("a#moot-linkin").first().select("span");
-
             return extractDigits(numberOfComment.text());
         }
     }

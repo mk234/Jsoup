@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat
 
 @Transactional
 @SpringBootTest(classes = Application.class)
-class SaveToDatabaseSpec extends Specification {
+class DatabaseSpec extends Specification {
 
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository

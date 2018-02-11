@@ -1,12 +1,13 @@
+package idnes
+
 import com.kment.jsoup.Application
-import com.kment.jsoup.entity.Article
 import com.kment.jsoup.entity.Comment
 import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle
 import com.kment.jsoup.idnes.Comment.ExtractComment
+import idnes.source.ParseFromFile
 import org.jsoup.nodes.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import spock.lang.Shared
 import spock.lang.Specification
 
 @SpringBootTest(classes = Application.class)

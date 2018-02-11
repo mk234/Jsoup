@@ -1,3 +1,5 @@
+package idnes
+
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Article
 import com.kment.jsoup.idnes.Article.ExtractArticle
@@ -15,11 +17,6 @@ class ArticleTestSpec extends Specification {
 /*
 vseobecne
 parse name a url, url for next page, create url, datum tvorba, vcerejsi datum
-
-archiv
-nacist vsechny stranky archivu
-pocet clanku na prvni a na posledni strance archivu
-pocet stranek v archivu
 
 clanek
 nacist clanek

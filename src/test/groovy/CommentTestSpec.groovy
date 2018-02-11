@@ -1,3 +1,5 @@
+package idnes
+
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Comment
 import com.kment.jsoup.idnes.Comment.ExtractComment

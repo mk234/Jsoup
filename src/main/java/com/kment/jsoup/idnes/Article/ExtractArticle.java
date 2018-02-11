@@ -37,7 +37,6 @@ public class ExtractArticle {
         String selectorContent = "div#content";
         int numberOfPages = numberOfPage.numberOfPagesArchive(document, selectorContent);
         String selectorArticle = "div.art";
-
         Element contens = document.select(selectorContent).first();
         Elements selectedDivs = contens.select(selectorArticle);
         articleList.addAll(getArticles(selectedDivs, document));

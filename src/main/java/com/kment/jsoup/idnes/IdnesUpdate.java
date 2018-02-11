@@ -61,15 +61,15 @@ public class IdnesUpdate {
                 for (int i = 0; i < commentList.size(); i++) {
                     if (commentList.get(i).getDate().after((dateLastCollection)))
                         System.out.println("save");
-                    //                  commentListToSave.add(commentList.get(i));
+                                      commentListToSave.add(commentList.get(i));
                 }
                 System.out.println(commentListToSave.size());
-                //        iCommentSpringDataRepository.save(commentListToSave);
+                        iCommentSpringDataRepository.save(commentListToSave);
                 article.setNumberOfComments(numberOfComment);
-                //      articleSpringDataRepository.save(article);
+                      articleSpringDataRepository.save(article);
             }
             article.setLastCollection(new Date());
-            //   articleSpringDataRepository.save(article);
+               articleSpringDataRepository.save(article);
         }
     }
 
