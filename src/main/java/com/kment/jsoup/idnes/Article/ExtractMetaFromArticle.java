@@ -49,10 +49,10 @@ public class ExtractMetaFromArticle {
         if (document.select(selectorName).first() == null)
             return "";
         if (document.select(selectorName).first().select("span.h").first() == null)
-            return "";
+            return document.select(selectorName).first().select("span").first().text();
         else
             System.out.println(document.select(selectorName).first().select("span.h").first().text());
-            return document.select(selectorName).first().select("span.h").first().text();
+        return document.select(selectorName).first().select("span.h").first().text();
     }
 
     public int getNumburOfComment(Document document) {
