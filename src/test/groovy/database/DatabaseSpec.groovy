@@ -1,3 +1,5 @@
+package database
+
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Article
 import com.kment.jsoup.springdata.IArticleSpringDataRepository
