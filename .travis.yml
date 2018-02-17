@@ -1,5 +1,5 @@
 jobs:
   include:
-    - stage: unit tests
-      script: "Running unit tests (1)"
-   
+    - stage: test
+      script: ./test 1
+  
