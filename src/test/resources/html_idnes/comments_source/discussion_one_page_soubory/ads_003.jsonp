@@ -1,0 +1,2 @@
+rp_ad_response={"status":"ok","account_id":10900,"site_id":92918,"zone_id":693884,"size_id":15,"tracking":"","inventory":{"domain":"pardubice.idnes.cz","api":"jsonp"},"ads":[{"status":"no-ads","reason":"floor-not-met","error_code":"10","impression_id":"7ac5c2af-1748-4b69-8a84-deeb49448cf2"}]};
+try{rp_onAdResponseLoaded(rp_ad_response);}catch(ignore){}

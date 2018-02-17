@@ -1,0 +1,39 @@
+.klikaci-body {cursor:pointer}
+.klikaci-body .m-bg-4, .klikaci-body .foot-in, .klikaci-body .ahead, .klikaci-body #pE_pageBody, .klikaci-body #pageEnvelope_bottom, .klikaci-body #main-np {cursor:default}
+.klikaci-body .m-bg-4 > *, .klikaci-body .foot-in > *, .klikaci-body .ahead > * {cursor:auto}
+.klikaci-body .m-bg-4, .klikaci-body .foot-in, .klikaci-body .ahead {background:url('/u/free.gif')}
+.klikaci-body .m-bg-4 {background-color:#FFF}
+.klikaci-body-siroke .m-bg-4 {padding-left:15px; padding-right:15px}
+.klikaci-body-siroke #foot2 .f-in {padding-left:25px; padding-right:25px}
+.bez-stinu .m-bg-1, .bez-stinu .m-bg-2, .bez-stinu .m-bg-3, .bez-stinu #f-foot, .bez-stinu #foot2, .bez-stinu #f-lachtan, .bez-stinu #f-seo {background:0}
+.bez-stinu .m-bg-4 {border-top:1px solid #D8D8D8}
+
+.wr-box, #onenka-hp {display:none !important}
+
+@media print {
+.klikaci-body-siroke .m-bg-4, .klikaci-body-siroke #foot2 .f-in {padding:0}
+}
+
+@media screen and (min-width:1440px) {
+  body:before, body:after, #main:before, #main:after {position:absolute; left:0; top:0; right:0; height:100%; border:0}
+  body:before, #main:before {border-right-width:200px; padding-right:50%}
+  body:after, #main:after {border-left-width:200px; padding-left:50%}
+  #main:after {z-index:1}
+  html.klikaci-body.klikaci-body body:before, html.klikaci-body.klikaci-body body:after, html.klikaci-body.klikaci-body #main:before, html.klikaci-body.klikaci-body #main:after {background-clip:content-box}
+}
+
+#reklama-flash-body {overflow:hidden; position:absolute; z-index:0; top:0; width:100%; height:600px}
+#reklama-flash-body .rf-left, #reklama-flash-body .rf-right {overflow:hidden; z-index:6; position:absolute; min-width:120px; height:100%}
+#reklama-flash-body .rf-left {right:50%; margin-right:515px}
+#reklama-flash-body .rf-right {left:50%; margin-left:515px}
+
+/*hack metro*/
+.body-metro .m-bg-1 {margin:0; padding:20px 0 0; background:none}
+.body-metro .m-bg-2 {margin:0; padding:0; background:none}
+.body-metro .m-bg-3 {background:url("/o/metro/bg/body-mid.gif") repeat-y top center}
+.body-metro .m-bg-4 {min-height:400px; padding: 0; background:#FFF}
+.body-metro #foot {padding:10px 15px 0; cursor:default}
+.body-metro #foot #f-iservis li {background:none}
+.body-metro #foot #f-emblem a {background:url("/o/metro/logo-footer-black.png")}
+.body-metro #f-searcher-box .inp {background-image:url("/o/metro/bg/b-bbox-input.gif")}
+.body-metro #f-searcher-box span {background-image:url("/o/metro/bg/bttn-green.png")}

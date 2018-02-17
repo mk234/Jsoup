@@ -1,0 +1,23 @@
+
+sklikCallback88343(
+    [ 
+        
+        {
+            adType        : "ETA",
+            targetingType : "contextual", 
+            adUrl         : "http:\/\/www.rentaznemovitosti.cz\/",
+            clickUrl      : "\/\/c.imedia.cz\/click?adurl=http:\/\/www.rentaznemovitosti.cz\/%3Futm_source%3Dseznam%26utm_medium%3Dcpc%26utm_campaign%3DRenta%2Bz%2Bnemovitosti%2B-%2BOS%2B-%2B5299202574%26utm_content%3DUm%25c3%25adst%25c4%259bn%25c3%25ad%2B-%2Btext%26utm_term%3D&c=IJ84QVAZFJK78T98HIZAGCH9VDD2FKREZ9USXGQGPWGCY74AP6TW3GTN2EGRM9HVG7DI4GWVMM4SKA6GYFQQIGZ8MV62EVI5NU8SWHU4X4QVBHXEZPYANEJW9KRXHG2KU9VV7SHWNFECY7PWEV3JVSWDNF7VR2X5MYR7C5RVG3UMFUMN36J6MQX75MVIV3QESMWAQ5V9F9XA4PV6XS",
+            visibleUrl    : "rentaznemovitosti.cz",
+            headline1     : "Život začíná po šedesátce",
+            headline2     : "",
+            description   : "Potřebujete peníze navíc? Renta z nemovitosti je určena Vám!",
+            adImageUrl    : ""
+        }   
+      
+    ],
+    {
+        confirmImpUrl: "\/\/c-ng.imedia.cz\/impression?d=HJDMBEJYQBYYHR5SMPTSEICMU2CT5KD7HRZT4GZSZXD34UNYY2YY9Y6GS6"
+    }
+
+);
+

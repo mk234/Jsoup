@@ -80,9 +80,11 @@ public class ExtractComment {
     }
 
     public Date getCreatedDate(Element dateElement) throws ParseException {
+        System.out.println(dateElement.text());
         String data = dateElement.text();
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date date = sdf.parse(data);
+        System.out.println(date);
         return date;
 
     }

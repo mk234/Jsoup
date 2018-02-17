@@ -1,0 +1,9 @@
+Adform=window.Adform||{};
+Adform.host="https://track.adform.net";
+Adform.shost="https://s1.adform.net";
+Adform.scriptBase=Adform.shost+"/banners/scripts/";
+Adform.cache="607";
+Adform.ADFBannerData={"URL":"https://track.adform.net/adfserve/?bn=20883253;oobclicktrack=https%3a%2f%2ftrack.adform.net%2fC%2f%3fbn%3d20916831%3bcrtbwp%3dF5C40D55B7339969%3bcrtbdata%3dl_WY8uYXihR1ujO4Q6yqaUH4UX7sthr4YxtA039care3ZWoXNrJoo8ez3UjVI4iTGtngymrX7VthcSkw8yiHWpsm7F29fuKVLTGtMFOLRg3p5t6UVHXcvgQmiaPA_Gw5awkoeYpTtSKEkwQJU4vz-S8r3KLVxab5K2gF8bu_N9ETsec-S3s_xU5sWNDL9RIDG-fJpQdbXM8YPxgCAQ5phNaegBHE1XYLuDJ-q0iBGidkzkEl3M4mxcRXr26rfvo6LCtrsCcIsz_pA1Xyda00G0zt0LCoNuaTk5XJB559Wrai5woakhN79NyJjG5jjdPGmJiEG_sM6ov0U5jPUpJYERNDV_0NJA71zt6HdwgNvArxjEFIZbOFQo_BsPPTF-i-0%3badfibeg%3d0%3bcdata%3dVB4UK0mIdFLrhCHbBPCyOwwRZGuFuL6pEx14g_hcwfpYBRXMc3-0AkKr1ztCzqhe5h7aUYr_6JXKVNh8knNBtpU7jdGH966s4Gt08SKyJ7ktk9YC5fXZIL9eQOczS_SIsEV8-0-6EjkwRrN6CBbzOPj9ZjgpUgap4HZUMocRf_HDXgARGFiQ1QfY4mihXdJjdujHhrPhshiZ36nd-28N-xt2krCtK7015P30eGArQGiuFqwhPKLxp9ZaqdCtyQR10%3b%3bCREFURL%3dhttps%253a%252f%252fpardubice.idnes.cz%252fdiskuse.aspx%253fiddiskuse%253dA160908_100606_pardubice-zpravy_jah%2526razeni%253dtime%3bC%3d1","CREFURL":"https%3a%2f%2fpardubice.idnes.cz%2fdiskuse.aspx%3fiddiskuse%3dA160908_100606_pardubice-zpravy_jah%26razeni%3dtime","BN":20883253};
+if(!Adform.ADFBannerParams)Adform.ADFBannerParams=[];
+Adform.ADFBannerParams.push(Adform.ADFBannerData);
+typeof Adform.ADFUtilInstance=="undefined"?document.write('<scr'+'ipt type="text/javascript" src="https://s1.adform.net/stoat/607/s1.adform.net/bootstrap.js"></scr'+'ipt>'):new Adform.ADFBanner();

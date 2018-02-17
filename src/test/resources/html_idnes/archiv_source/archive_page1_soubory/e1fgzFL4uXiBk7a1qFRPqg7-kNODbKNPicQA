@@ -1,0 +1,130 @@
+Ads.occidendum = [18856127, 18856129, 19141958, 19159511, 19326768, 19326779, 19353803, 19354894, 19405930, 19547269, 19553423, 19604154, 19608572, 19608573, 19620557, 19620581, 19620813, 18914946, 18914947, 19712870, 19712879];
+
+if(!/(emimino|modnipeklo|arome|labuznik|vitalion)\.cz$|localhost$/.test(location.hostname))
+{
+document.write("<script src=\"//zpravy.idnes.cz/QAV9vZc6TbkMy03ntJdwN3h_GuLm3xIE1QC1u/tNT1BXdFqUpqH-yBfBqx9ReLYypWkC_/R31qfYQA?v=201801251411\"><\/script>");
+document.write("<script src=\"//bbcdn.go.idnes.bbelements.com/bb/?v=201708301302\"><\/script>");
+}
+else if(location.hostname.endsWith("expres.cz") || (location.hostname.endsWith("pocasi.idnes.cz") && Unidata.verze == "B"))
+{
+  (function()
+  {
+    var s = document.createElement("script");
+    s.async = s.defer = true;
+    s.onload = function()
+    {
+      var param = Ads.bmone2Param;
+      var list = [];
+      for(var n in param)
+      {
+        var id = param[n].replace(/^@/, "");
+        Ads.positions[n] = {
+          placeholder: param[n] != id,
+          id: id,
+          refresh: function() { ibbAds.tag.requestAndPlaceAds("neac99b1b6999b5787189059218d5d859-" + this.id); }
+        };
+        list.push(Ads.positions[n]);
+      }
+
+      var adserver = ibbAds.tag.useAdProvider("BbmIdnes");
+      for(var n in param)
+      {
+        var id = param[n].replace(/^@/, "");
+        adserver.manageAdSlot("neac99b1b6999b5787189059218d5d859-" + id, id);
+      }
+      ibbAds.tag.on("ADS_WRITTEN_TO_AD_SLOT", function(event)
+      {
+        var id = event.getData().slotId.replace(/bmone2n\-/, "");
+        var r = element("r" + id);
+        var newClassName = r.className.replace(/^h(?:id)?\s+|\s+h(?:id)?(\s+)|\s+h(?:id)?$/, "$1");
+        if(newClassName != r.className)
+          r.className = newClassName;
+        else if(r.tagName == "TABLE")
+          r.style.display = "inline";
+      });
+      
+      ibbAds.tag.requestAndPlaceAds();
+    };
+    s.src = "https://zpravy.idnes.cz/QAIXHe2nVDutaYeuEiXFyN4dGr6MMOmQKRwjhz_NCDCg/tSqPMMg8cvxuvfQpDu5GI1TMLNi0Kp4oJ40rJmbxOUQA";
+    document.body.insertBefore(s, document.body.firstChild);
+    
+  })();
+  window.bmone2n = { makeAd: Number, moveAd: Number };
+  Ads.bmone2 = function(param)
+  {
+    Ads.bmone2Param = param;
+  };
+}
+else
+{
+  document.write("<script src=\"https://zpravy.idnes.cz/QAIXHe2nVDutaYeuEiXFyN4dGr6MMOmQKRwjhz_NCDCg/tSqPMMg8cvxuvfQpDu5GI1TMLNi0Kp4oJ40rJmbxOUQA\"></script>");
+  Ads.bmone2 = function(param)
+  {
+    if(!("textContent" in document.createElement("script"))) reload = function(){};
+    var list = [];
+    for(var n in param)
+    {
+      var id = param[n].replace(/^@/, "");
+      Ads.positions[n] = {
+        placeholder: param[n] != id,
+        id: id,
+        refresh: reload
+      };
+      list.push(Ads.positions[n]);
+    }
+
+    var adserver = ibbAds.tag.useAdProvider("BbmIdnes");
+    for(var n in param)
+    {
+      var id = param[n].replace(/^@/, "");
+      adserver.manageAdSlot("neac99b1b6999b5787189059218d5d859-" + id, id);
+    }
+    ibbAds.tag.on("ADS_WRITTEN_TO_AD_SLOT", function(event)
+    {
+      var id = event.getData().slotId.replace(/bmone2n\-/, "");
+      var r = element("r" + id);
+      var newClassName = r.className.replace(/^h(?:id)?\s+|\s+h(?:id)?(\s+)|\s+h(?:id)?$/, "$1");
+      if(newClassName != r.className)
+        r.className = newClassName;
+      else if(r.tagName == "TABLE")
+        r.style.display = "inline";
+    });
+
+    window.bmone2n = { makeAd: Number, moveAd: function()
+      {
+        ibbAds.tag.requestAndPlaceAds();
+      }
+    };
+    function reload()
+    {
+      ibbAds.tag.requestAndPlaceAds("neac99b1b6999b5787189059218d5d859-" + this.id);
+    }
+  };
+}
+
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?"":e(parseInt(c/a)))+((c=c%a)>35?''.constructor['fr' + 'omoharoode'.replace(/o([ho])/g, 'C$1')](c+29):c['toS' + 'tring'](36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1;};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p;}('p U={"2x":"//4Q.E.G/3q/3r.2F?q={l}&3o={L}","1X":c(J){p 2c="\\3p\\3s\\3v\\3w\\3t\\3u\\3h\\3i\\3f\\3g\\3j\\3m\\3n\\3k\\3l\\3x\\3J\\3K\\3H\\3I\\3L";J=J.3O();1Y(p i=0,1N="";i<J.14;i++)1N+=(2c.1G(J.18(i))>-1)?"3P".18(2c.1G(J.18(i))):(("3M ".1G(J.18(i))==-1)?\' \':J.18(i));z 1N.1K(/[\\"\\\',\\.]/g," ").3N()},"2o":c(L,H,Q){U[L]=3A(c(L){p w=9;9.j=9;p s;9.f;9.k;9.11=F;9.A=0;p T=[];9.N="";9.t=[];9.2h=c(){1Y(p i=0;i<H.14;i++){p e=R(H[i][1]);b(!e)z F;b(!e.y){e.u.31=10;e.y=R(r.27(r.3B?"3y":"2j"));e.y.3z(0);e.y.Y="3C:3F";e.y.u.1v="2b";e.y.u.16="1p";e.y.u.3G="1p";e.y.u.31=0;e.2H.24(e.y)}b(i!=Q-1)9.1F(H[i][0],H[i][1])}b(Q){9.N=R(H[Q-1][0]).19;9.1M(H[Q-1][0],H[Q-1][1]);9.f.Q()}z 1k};9.1M=c(1d,1b){9.f=R(1d);9.f.j=9;9.f.2w=1k;9.f.2A=c(){w.1i()};9.f.2e=9.2L;9.f.3D=c(h){1Z(c(){w.X()},3E)};b(1L.2s)9.f.2i=9.29;12 9.f.2k=9.29;9.k=R(1b);9.k.2v=9.1h};9.1F=c(1d,1b){b(1d)9.f=R(1d);b(1b)9.k=R(1b);9.f.j=9;9.k.j=9;9.X();9.f.2A=17;9.f.2e=17;9.f.2i=17;9.f.2k=17;9.k.2v=17;9.f.1H=9.f.1H||9.f.2u||c(){};9.f.2u=c(){9.1H();b(9.2w){z}w.1F();w.1M(w.f.2z,w.k.2z);w.N=B.P();w.1i()};9.N=B.P()};9.2m=c(l){r.2E(U.2x.1K("{l}",l).1K("{L}",L))};9.1i=c(){p l=U.1X(9.f.19);b(9.N==l||9.11)z;9.N=l;b(T[l]){b(T[l]=="-")9.X(l);12 9.2q(l,T[l])}12{b(l)9.2m(l);12 9.X(l)}};9.X=c(l){b(l)T[l]="-";9.t=[];b(9.k){9.k.u.16="1p";9.k.y.u.16="1p"}};9.2q=c(l,t){T[l]=t;b(l!=U.1X(9.f.19))z;9.A=0;9.k.28="";1Y(p i=0;i<t.14;i++)(c(i){p d=r.27("2j");w.k.24(d);d.j=w;d.28=(t[i][1]==35?"":"<2C>"+t[i][1]+"\\3c 3b\\3a</2C>")+t[i][0];d.3d=c(){w.1h(i+1)};d.2R=c(){w.2n(i)};w.t[i]=t[i][0]})(i);p a=r.27("a");9.k.24(a);a.2y="/";a.28="- 3e\\37 -";a.2R=c(){w.2K();z F};9.k.u.16="2r";9.k.y.u.1x=9.k.36+"1D";9.k.y.u.1z=9.k.34+"1D";9.k.y.u.1A=9.k.3Q+"1D";9.k.y.u.1w=9.k.4z+"1D";b(!1L.2s)9.k.y.u.16="2r"};9.1h=c(n){b(!9.j)z F;b(9.j.A)9.j.k.2l[9.j.A-1].S="";9.j.A=(n?n+9.j.t.14+1:0)%(9.j.t.14+1);b(9.j.A)9.j.k.2l[9.j.A-1].S="A"};9.2n=c(n){9.j.f.19=9.j.t[n];p o=9.j.f;4y(o.4x!="4D")o=o.2H;b(!o.2B||o.2B())o.4B()};9.2K=c(){9.X();9.11=1k};9.2L=c(){b(!9.11)z;9.11=F;9.N=B.P();9.1i()};9.29=c(e){b(9.j.11)z;p W=(e?e:4r).4p;b(W==13){b(9.j.A)9.j.f.19=9.j.t[9.j.A-1]}b(W==38||W==40){b(9.j.t.14==0){1L.4v(0,(W-39)*20);z F}9.j.1h(9.j.A+W-39);z F}};9.2h()})(L)}};b(I.1I!="4E.E.G"&&(!I.1I.V(/M|4N|4P|4H/))){4G{U.2o("h",[[\'4I\',\'t\']],0)}4L(4K){Z.30(I.2y,"4J")}}(c(){c 1W(v){b(I.1t=="4A.E.G"){Z.1l(r.1j.S.V(/q-(1o|1m|1n|1q|1U)|$/)[1],"4O\\1u"+["1T","1r","1e","1g","1f","1V","1S","1P"][C.D.O-1]);b(C.D.O>4&&4M 2t=="c")2t()}b(m.2d&&!B.1B(B.P()*10)){Z.1l(r.1j.S.V(/q-(1o|1m|1n|1q|1U)|$/)[1],"43"+(I.1t.26("M.E.G")?"M":"")+"3Z\\1u"+["1T","1r","1e","1g","1f","1V","1S","1P"][C.D.O-1])}b(!B.1B(B.P()*1C))Z.1l(r.1j.S.V(/q-(1o|1m|1n|1q|1U)|$/)[1],"O"+(I.1t.26("M.E.G")?"M":"")+"2P\\1u"+["1T","1r","1e","1g","1f","1V","1S","1P"][C.D.O-1])}b(C.D.O)1W();12{p 1R=F;p 1Q=41.47.V(/48\\/(\\d+)/);b(1Q&&1Q[1]>=45)1R=1k;m.K=1;m.3T=c(){m.K=2;r.1a("<2a Y=\\"//2U.E.2V.2W//2S/2Y/2X/1/1/33/?32=2a\\" 2M=\\"m.K = 3\\" 2J=\\"m.K = (9.1A == 3U && 9.1w == 3R) ? 5 : 4\\" u=\\"1v: 2b; 1x: -1y; 1z: -1y;\\">")};22.2Q(c(){1Z(c(){b(m.K==5)m.K=1c?(1R?8:(m.1s?7:5)):6;C.D.O=m.K;1W();C.2N()},2O)});r.1a("<1E Y=\\"//2U.E.2V.2W//2S/2Y/2X/1/1/33/?32=1O&\\3Y=1\\"><\\/1E>");p 1c=(1J.3V("1c")[0]>8);b(1c){m.1s=c(){3W m.1s};r.1a("<4j Y=\\"//2T.G/2G/4k.2G?4h=m.1s\\" 4i=\\"4n/x-4m-1c\\" 4b=\\"4c\\" u=\\"1v: 49; 1x: -4a; 1z: 0; 1A: 2D; 1w: 2D\\">")}}c 23(){b(!B.1B(B.P()*1C))Z.1l(r.1j.S.V(/q-(1o|1m|1n|1q)|$/)[1],"4g"+(I.1t.26("M.E.G")?"M":"")+"2P\\1u"+["1r","1e","1g","1f"][C.D.25-1])}b(C.D.25)23();12{m.15=1;r.1a("<2a Y=\\"//4d.4e.15.4f/4l.4o\\" 2M=\\"m.15 = 2\\" 2J=\\"m.15 = (9.1A == 1C && 9.1w == 21) ? 4 : 3\\" u=\\"1v: 2b; 1x: -1y; 1z: -1y;\\">");22.2Q(c(){1Z(c(){C.D.25=m.15;23();C.2N()},2O)})}})();22.3X();b(r.2g.2f("2I")==1)r.2E("//3S.E.G/46/2I.2F");b(1J.2Z){1J.2Z=F;r.1a("<1E Y=\\"//2T.G/1O/44/42.1O?4F=8\\"></1E>")}b(!B.1B(B.P()*1C))Z.30(I.1I.4t(".").2p().4u(0,3).2p().4s("."),"4q\\4w");m.2d=(r.2g.2f("4C")==1);',62,301,'|||||||||this||if|function|||inputElement||||object|wordsElement|word|Ads|||var||document||words|style||that||windowedIframe|return|selected|Math|Storage|data|idnes|false|cz|instances|location|vstup|bbmedia|db|rajce|lastWord|bbmediapokus3|random|focus|element|className|cache|Helper|match|key|clear|src|Log||muted|else||length|gemius|display|null|charAt|value|write|wordsId|flash|inputId|errimg|ok|badimg|select|hear|documentElement|true|ping2|ie|wk|moz|none|op|noimg|flashTest|hostname|x5F|position|height|left|10000px|top|width|floor|100|px|script|disconnect|indexOf|originalOnfocus|host|Misc|replace|window|connect|vystup|js|pausedflash|chromej|flashPaused|blockedflash|nojs|eg|noflash|pingPokus|removeUnsafe|for|setTimeout|||Starter|pingGemPokus|appendChild|gemiuspokus|endsWith|createElement|innerHTML|keypressed|img|absolute|unsafe|proxy|ondblclick|read|cookies|init|onkeypress|div|onkeydown|childNodes|request|clickWord|attach|reverse|say|block|opera|gemius_pokus|onfocus|onmouseout|nofocus|path|href|id|onkeyup|onsubmit|span|1px|loadScript|aspx|swf|parentNode|beruska|onload|mute|unmute|onerror|update|2000|x100|add|onclick|please|1gr|go|bbelements|com|84|showit|pinnedMeta|ping|zIndex|typkodu||offsetTop|123456789|offsetLeft|u00FDt|||u00E1no|hled|u00D7|onmouseover|skr|u00EB|u00ED|u00E9|u011B|u0148|u0159|u0161|u00F3|u00F6|kde|u0105|searchhelper|HelpMeMore|u00E1|u00E7|u010F|u00E4|u010D|u0165|iframe|setOpacity|new|all|about|onblur|250|blank|border|u00FC|u00FD|u00FA|u016F|u017E|abcdefghijklmnopqrstuvwxyz0123456789|trim|toLowerCase|aaaccdeeeinoorstuuuyz|offsetWidth|439|servix|pokus|640|verze|delete|ready|x5Fplain|x10||navigator|pinned|bbmediapokus5|uni||korektura|userAgent|Chrome|fixed|1000px|allowscriptaccess|always|gacz|hit|pl|gemiuspokus1|nazev|type|embed|flashtest|logo|shockwave|application|gif|keyCode|zobrazeni|event|join|split|slice|scrollBy|x5Fx100|tagName|while|offsetHeight|tvprogram|submit|adb|FORM|klikni|rnd|try|automodul|slovo|uniuklid_naseptavacCatch|exc|catch|typeof|oris|bbmediapokus4|5plus2|tools2'.split('|'),0,{}));
+
+
+(function()
+{
+  function trackAdtrack()
+  {
+    var link = element("@a[href*='napoveda.sklik.cz']");
+    if(!link) return;
+    Log.ping(location.href, "wagbender_" + Unidata.ostrov + "_" + (Unidata.zobrazeni || "neznamo") + "_zobrazeni");
+    
+    var container = link.parentNode.parentNode;
+    if(!container) return;
+    container.onmousedown = function(e)
+    {
+      var event = e || window.event;
+      var target = event.target || event.srcElement;
+      while(target && target.tagName != "A") target = target.parentNode;
+      if(!target) return;
+      Log.ping(location.href, "wagbender_" + Unidata.ostrov + "_" + (Unidata.zobrazeni || "neznamo") + "_klik");
+    };
+  }
+  if(Unidata.ostrov == "hobby")
+    setTimeout(trackAdtrack, 5000);
+})();
+; var adbFixBgInt=setInterval(function(){var css=document.querySelector("#branding-stylesheet"); if(css) {css.innerHTML=css.innerHTML.replace("undefined",""); clearInterval(adbFixBgInt);} }, 1000); 

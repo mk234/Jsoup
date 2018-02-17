@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParseName {
     public String regex(String name) {
-        name = name.replaceAll("(?<=<i>).*?(?=</i>)", "");
+       name = name.replaceAll("(?<=<i>).*?(?=</i>)", "");
         name = Jsoup.parse(name).text();
         if (StringUtils.containsWhitespace(name)){
             return name.substring(0, name.lastIndexOf(" "));}
