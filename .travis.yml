@@ -1,5 +1,4 @@
-jobs:
-  include:
-    - stage: test
-      script: ./test 1
-  
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+  - openjdk7
