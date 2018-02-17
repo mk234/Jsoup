@@ -8,7 +8,7 @@ class ExtractArticlesIdnesPreparedData {
     }
 
     int getNumberOfArticlesInArchive() {
-        return 117
+        return 1170
     }
 
 
