@@ -60,6 +60,7 @@ public class IdnesRun {
         //     extractAndSaveMultipleDaysBefereYesterday(7);
     }
 
+
     public void extractAndSaveYesterday() throws IOException, ParseException {
         clearLists();
         portalSpringDataRepository.save(new Portal("iDNES", "www.idnes.cz/", new Date()));
