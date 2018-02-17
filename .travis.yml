@@ -1,5 +1,5 @@
-language: java
-stages:
-  - compile
-  - test
-  - deploy
+jobs:
+  include:
+    - stage: unit tests
+      script: "Running unit tests (1)"
+   
