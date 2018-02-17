@@ -1,2 +1,1 @@
 language: java
-mvn install -DskipTests=false -Dmaven.javadoc.skip=true -B -V
