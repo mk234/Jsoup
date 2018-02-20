@@ -43,7 +43,6 @@ public class ExtractComment {
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
-            System.out.println(urlForNextPage);
             document = parseUrl.parse(urlForNextPage);
             contributions = document.select(selectorContributions).first();
             selectedDivs = contributions.select(selectorContribution);
@@ -82,11 +81,15 @@ public class ExtractComment {
     public Date getCreatedDate(Element dateElement) throws ParseException {
         System.out.println(dateElement.text());
         String data = dateElement.text();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-        Date date = sdf.parse(data);
-        System.out.println(date);
-        return date;
-
+        if (data.contains(":")) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+            Date date = sdf.parse(data);
+            return date;
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+            Date date = sdf.parse(data);
+            return date;
+        }
     }
 
 }
