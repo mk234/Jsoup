@@ -2,7 +2,9 @@ package database
 
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Article
+import com.kment.jsoup.entity.Portal
 import com.kment.jsoup.springdata.IArticleSpringDataRepository
+import com.kment.jsoup.springdata.IPortalSpringDataRepository
 import org.joda.time.DateTime
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -18,6 +20,8 @@ class DatabaseSpec extends Specification {
 
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository
+    @Autowired
+    IPortalSpringDataRepository portalSpringDataRepository
 
     @Rollback
     def "save article to db and read it"() {
@@ -48,9 +52,24 @@ class DatabaseSpec extends Specification {
         println updateArticle.getLastCollection()
         then:
         oldDateFromArticle.before(updateArticle.getLastCollection())
-
-
     }
 
 
+    @Rollback
+    def "find portal by name"() {
+        given:
+        Portal portal = portalSpringDataRepository.save(new Portal("iDNES", "www.idnes.cz/", new Date()))
+        when:
+        List<Portal> portalList = portalSpringDataRepository.findByName("iDNES")
+        then:
+        portalList.contains(portal)
+    }
+
+
+    def "find yesterday articles"() {
+        when:
+        List<Article> articleList = articleSpringDataRepository.findByNumberOfDayBeforeToday(1)
+        then:
+        articleList.size() != 0
+    }
 }

@@ -2,7 +2,6 @@ package com.kment.jsoup.idnes;
 
 import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.entity.Comment;
-import com.kment.jsoup.entity.Portal;
 import com.kment.jsoup.idnes.Article.ExtractArticle;
 import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle;
 import com.kment.jsoup.idnes.Comment.ExtractComment;
@@ -57,13 +56,12 @@ public class IdnesRun {
 
     public void run() throws IOException, ParseException {
         extractAndSaveYesterday();
-        //     extractAndSaveMultipleDaysBefereYesterday(7);
+        extractAndSaveMultipleDaysBefereYesterday(7);
     }
 
 
     public void extractAndSaveYesterday() throws IOException, ParseException {
         clearLists();
-        portalSpringDataRepository.save(new Portal("iDNES", "www.idnes.cz/", new Date()));
         articleEntities = extractArticle.findArticles(prepareUrlForArchives.prepareUrlForYesterday());
         saveArticle();
         saveComments();
@@ -122,7 +120,7 @@ public class IdnesRun {
 
     public void saveOneArticleWithComments(String articleUrl) throws IOException, ParseException {
         clearLists();
-        portalSpringDataRepository.save(new Portal("iDNES", "www.idnes.cz/", new Date()));
+
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(articleUrl);
         articleEntities.add(new Article("Jmeno", articleUrl, extractMetaFromArticle.getCreatedDate(document), new Date(), extractMetaFromArticle.getKeywors(document),
@@ -130,6 +128,5 @@ public class IdnesRun {
         saveArticle();
         saveComments();
         flushAndClearEntityManager();
-
     }
 }

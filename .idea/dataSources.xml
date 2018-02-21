@@ -10,14 +10,11 @@
         <property name="ApplicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="production database" uuid="ae8bc88b-4665-4754-82af-0f4656ac328c">
+    <data-source source="LOCAL" name="de2m0i21jd19nj@ec2-107-22-175-33.compute-1.amazonaws.com" uuid="ca261422-fc04-4e62-829e-60705462d3e4">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-23-21-101-249.compute-1.amazonaws.com:5432/df2umfko9rq7cq?sslmode=require&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory</jdbc-url>
-      <driver-properties>
-        <property name="ApplicationName" value="DataGrip" />
-      </driver-properties>
+      <jdbc-url>jdbc:postgresql://ec2-107-22-175-33.compute-1.amazonaws.com:5432/de2m0i21jd19nj?sslmode=require&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory</jdbc-url>
     </data-source>
   </component>
 </project>
