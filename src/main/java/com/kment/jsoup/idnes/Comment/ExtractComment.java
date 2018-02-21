@@ -21,6 +21,7 @@ import java.util.List;
 public class ExtractComment {
     public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
+        System.out.println(urlComment);
         Document document = parseUrl.parse(urlComment);
         return findComments(urlComment, idArticle, document);
     }
@@ -79,7 +80,6 @@ public class ExtractComment {
     }
 
     public Date getCreatedDate(Element dateElement) throws ParseException {
-        System.out.println(dateElement.text());
         String data = dateElement.text();
         if (data.contains(":")) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");

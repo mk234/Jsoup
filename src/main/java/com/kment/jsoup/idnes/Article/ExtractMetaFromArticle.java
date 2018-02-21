@@ -7,14 +7,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.Date;
 
 @Component
 public class ExtractMetaFromArticle {
 
-    public Date getCreatedDate(Document document) throws ParseException {
+    public Date getCreatedDate(Document document) {
         if (document.select("meta[property=article:published_time]").first() == null)
             return new Date();
         String stringDate = document.select("meta[property=article:published_time]").first()
@@ -25,7 +23,7 @@ public class ExtractMetaFromArticle {
         return date;
     }
 
-    public String getKeywors(Document document) throws IOException {
+    public String getKeywors(Document document) {
         if (document.select("meta[name=keywords]").first() == null)
             return "";
         else
@@ -34,7 +32,7 @@ public class ExtractMetaFromArticle {
                             .attr("content");
     }
 
-    public String getDescription(Document document) throws IOException {
+    public String getDescription(Document document) {
         if (document.select("meta[name=description]").get(0) == null)
             return "";
         String description =
@@ -44,15 +42,14 @@ public class ExtractMetaFromArticle {
     }
 
 
-    public String getAuthor(Document document) throws IOException {
+    public String getAuthor(Document document) {
         String selectorName = "div.authors";
         if (document.select(selectorName).first() == null)
             return "";
         if (document.select(selectorName).first().select("span.h").first() == null)
             return document.select(selectorName).first().select("span").first().text();
         else
-            System.out.println(document.select(selectorName).first().select("span.h").first().text());
-        return document.select(selectorName).first().select("span.h").first().text();
+            return document.select(selectorName).first().select("span.h").first().text();
     }
 
     public int getNumburOfComment(Document document) {
