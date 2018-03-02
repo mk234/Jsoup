@@ -32,6 +32,7 @@ public class ScheduledTasks {
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
     static int NUMBER_OF_DAYS = 30;
+    static int NUMBER_OF_DAYS_FOR_UPDATE = 7;
 
     @Scheduled(cron = "0 30 1 * * *", zone = "Europe/Prague")
     public void scheduledRun() throws IOException, ParseException {
@@ -42,9 +43,11 @@ public class ScheduledTasks {
             idnesRun.extractAndSaveMultipleDaysBefereYesterday(NUMBER_OF_DAYS);
         }
         if (articleSpringDataRepository.findByNumberOfDayBeforeToday(1).size() == 0) {
+            System.out.println("saving");
             idnesRun.extractAndSaveYesterday();
-            idnesUpdate.updateIdnes(NUMBER_OF_DAYS);
+            idnesUpdate.updateIdnes(NUMBER_OF_DAYS_FOR_UPDATE);
         }
+        System.out.println("done");
     }
 
     public void init() throws IOException, ParseException {

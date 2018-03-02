@@ -66,6 +66,7 @@ public class IdnesRun {
         saveArticle();
         saveComments();
         flushAndClearEntityManager();
+        System.out.println("yesterday done");
     }
 
     public void extractAndSaveMultipleDaysBefereYesterday(int numbebOfDaysBeforeYesterday) throws ParseException, IOException {
@@ -85,6 +86,7 @@ public class IdnesRun {
             saveComments();
             flushAndClearEntityManager();
         }
+        System.out.println(numbebOfDaysBeforeYesterday + " done");
     }
 
     private void flushAndClearEntityManager() {
@@ -96,7 +98,7 @@ public class IdnesRun {
         System.out.println(commentEntities.size());
         for (int i = 0; i < commentEntities.size(); i++) {
             Comment comment = commentEntities.get(i);
-        //    entityManager.persist(comment);
+            entityManager.persist(comment);
             if (i % batchSize == 0) {
                 flushAndClearEntityManager();
             }

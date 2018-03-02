@@ -40,7 +40,8 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        scheduledTasks.init();
+        // scheduledTasks.init();
+        scheduledTasks.scheduledRun();
     }
 
 

@@ -36,6 +36,7 @@ public class IdnesUpdate {
     public void updateIdnes(int numberOfDayToUpdate) throws IOException, ParseException {
         List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate);
         findArticleWithNewComments(articleList);
+        System.out.println("update done");
     }
 
     public List<Article> fetchArticleForDays(int days) {
@@ -50,6 +51,8 @@ public class IdnesUpdate {
             dateLastCollection = article.getLastCollection();
             Document document = parseUrl.parse(article.getUrl());
             int numberOfComment = extractMetaFromArticle.getNumburOfComment(document);
+            System.out.println(article.getCreated());
+            System.out.println(numberOfComment);
             if (numberOfComment > article.getNumberOfComments()) {
                 commentList = extractComment.findComments(prepareUrlForCommentary.prepareUrlForCommentPage(article.getUrl()), article.getId());
                 for (int i = 0; i < commentList.size(); i++) {
@@ -61,6 +64,8 @@ public class IdnesUpdate {
                 articleSpringDataRepository.save(article);
             }
             article.setLastCollection(new Date());
+            System.out.println(article.getNumberOfComments());
+            System.out.println(article.getNumberOfComments() - numberOfComment + " new comments");
             articleSpringDataRepository.save(article);
         }
     }

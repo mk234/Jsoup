@@ -55,7 +55,7 @@ public class NumberOfPages {
         Document linkDoc = Jsoup.parse(name);
         Element link = linkDoc.select("a").first();
         String linkHref = link.attr("href");
-        System.out.println("link je " + linkHref);
+        // System.out.println("link je " + linkHref);
         Document document1 = parseUrl.parse(linkHref);
         double numberOfComment = extractMetaFromArticle.getNumburOfComment(document1);
         double numbertOfPages = numberOfComment / 50.0;

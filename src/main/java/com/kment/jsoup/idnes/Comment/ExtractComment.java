@@ -21,7 +21,7 @@ import java.util.List;
 public class ExtractComment {
     public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
-        System.out.println(urlComment);
+        // System.out.println(urlComment);
         Document document = parseUrl.parse(urlComment);
         return findComments(urlComment, idArticle, document);
     }
