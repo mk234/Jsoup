@@ -1,5 +1,7 @@
 package com.kment.jsoup.entity;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -56,11 +58,6 @@ public class Portal {
 
     @Override
     public String toString() {
-        return "\nPortal{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", urlPortal='" + urlPortal + '\'' +
-                ", lastCollection=" + lastCollection +
-                '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 }

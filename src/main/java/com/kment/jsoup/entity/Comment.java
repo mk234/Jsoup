@@ -1,5 +1,7 @@
 package com.kment.jsoup.entity;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -44,14 +46,7 @@ public class Comment {
 
     @Override
     public String toString() {
-        return "\nComment{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", content='" + content + '\'' +
-                ", linkHref='" + linkHref + '\'' +
-                ", idArticle=" + idArticle +
-                ", date=" + date +
-                '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 
     public long getId() {

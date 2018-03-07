@@ -2,8 +2,10 @@ package com.kment.jsoup.extractor;
 
 import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.entity.Comment;
+import com.kment.jsoup.entity.Portal;
 import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import com.kment.jsoup.springdata.ICommentSpringDataRepository;
+import com.kment.jsoup.springdata.IPortalSpringDataRepository;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +22,24 @@ import java.util.Map;
 
 @Component
 public class Update implements ApplicationContextAware {
+    @Autowired
     private ApplicationContext applicationContext;
-
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
     @Autowired
     ICommentSpringDataRepository iCommentSpringDataRepository;
+    @Autowired
+    IPortalSpringDataRepository iPortalSpringDataRepository;
 
-    public void updateIdnes(int numberOfDayToUpdate) throws IOException, ParseException {
+    public void updateIdnes(int numberOfDayToUpdate) {
         Map<String, IPortalExtractor> extractors = applicationContext.getBeansOfType(IPortalExtractor.class);
         for (IPortalExtractor portalExtractor : extractors.values()) {
             try {
-                List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate, portalExtractor.getPortalName());
+                List<Portal> portals = iPortalSpringDataRepository.findByName(portalExtractor.getPortalName());
+                List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate, portals.get(0).getId());
+                System.out.println("-----------");
+                System.out.println(articleList.toString());
+                System.out.println("-----------");
                 findArticleWithNewComments(articleList, portalExtractor);
                 System.out.println("update done");
             } catch (Exception e) {
@@ -40,8 +48,8 @@ public class Update implements ApplicationContextAware {
         }
     }
 
-    public List<Article> fetchArticleForDays(int days, String portalName) {
-        return articleSpringDataRepository.findByNumberOfDayBeforeToday(days, portalName);
+    public List<Article> fetchArticleForDays(int days, long portalId) {
+        return articleSpringDataRepository.findByNumberOfDayBeforeToday(days, portalId);
     }
 
     public void findArticleWithNewComments(List<Article> articleList, IPortalExtractor portalExtractor) throws

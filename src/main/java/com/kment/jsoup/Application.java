@@ -1,10 +1,7 @@
 package com.kment.jsoup;
 
-import com.kment.jsoup.idnes.Comment.ExtractComment;
-import com.kment.jsoup.idnes.IdnesRun;
-import com.kment.jsoup.idnes.IdnesUpdate;
-import com.kment.jsoup.springdata.IArticleSpringDataRepository;
-import com.kment.jsoup.springdata.ICommentSpringDataRepository;
+import com.kment.jsoup.extractor.Run;
+import com.kment.jsoup.extractor.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,26 +19,22 @@ public class Application implements CommandLineRunner {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    IdnesRun idnesRun;
-    @Autowired
-    IArticleSpringDataRepository articleSpringDataRepository;
-    @Autowired
-    ICommentSpringDataRepository commentSpringDataRepository;
-    @Autowired
-    ExtractComment extractComment;
-    @Autowired
-    IdnesUpdate idnesUpdate;
-    @Autowired
     ScheduledTasks scheduledTasks;
+    @Autowired
+    Run run;
+    @Autowired
+    Update update;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
     @Override
-    public void run(String... strings) throws Exception {
+    public void run(String... strings) {
         // scheduledTasks.init();
-        scheduledTasks.scheduledRun();
+//        scheduledTasks.scheduledRun();
+        //     run.extractAndSaveYesterday();
+//        update.updateIdnes(3);
     }
 
 

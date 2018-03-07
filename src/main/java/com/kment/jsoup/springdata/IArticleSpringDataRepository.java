@@ -10,6 +10,11 @@ import java.util.List;
 
 public interface IArticleSpringDataRepository extends JpaRepository<Article, Integer> {
 
+    @Query("select a from Article a where a.created > CURRENT_DATE-:days and a.idPortal=:id")
+    List<Article> findByNumberOfDayBeforeToday(@Param("days") int days, @Param("id") long id);
+
+
+
     @Query("select a from Article a where a.created > CURRENT_DATE-:days")
-    List<Article> findByNumberOfDayBeforeToday(@Param("days") int days);
+    List<Article> findByNumberOfDayBeforeToday(int days);
 }

@@ -1,5 +1,7 @@
 package com.kment.jsoup.entity;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -22,6 +24,7 @@ public class Article {
     private long idPortal;
     private int numberOfComments;
     private String author;
+
 
     public Article() {
     }
@@ -64,18 +67,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "\nArticle{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", created=" + created +
-                ", lastCollection=" + lastCollection +
-                ", keywords='" + keywords + '\'' +
-                ", description='" + description + '\'' +
-                ", idPortal=" + idPortal +
-                ", numberOfComments=" + numberOfComments +
-                ", author='" + author + '\'' +
-                '}';
+        return ReflectionToStringBuilder.toString(this);
     }
 
     public void setLastCollection(Date lastCollection) {

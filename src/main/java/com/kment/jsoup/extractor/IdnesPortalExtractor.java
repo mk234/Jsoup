@@ -38,7 +38,7 @@ public class IdnesPortalExtractor implements IPortalExtractor {
 
     @Override
     public String getPortalName() {
-        return "iDnes";
+        return "iDNES";
     }
 
 
