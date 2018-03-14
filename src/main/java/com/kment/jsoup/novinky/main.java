@@ -1,6 +1,5 @@
 package com.kment.jsoup.novinky;
 
-import com.kment.jsoup.entity.Comment;
 import com.kment.jsoup.novinky.Article.ExtractMetaFromArticleNovinky;
 import com.kment.jsoup.novinky.Comment.ExtractCommentNovinky;
 import com.kment.jsoup.novinky.Comment.PrepareUrlForCommentaryNovinky;
@@ -10,7 +9,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class main {
     public static void main(String[] args) throws IOException, ParseException {
@@ -46,6 +46,7 @@ public class main {
 //         System.out.println(prepareUrlForCommentaryNovinky.prepareUrlForCommentPage("https://www.novinky.cz/zahranicni/blizky-a-stredni-vychod/465920-valka-v-syrii-ma-uz-pul-milionu-obeti.html"));
 
         Document newDocument = parseUrlNovinky.parse("https://www.novinky.cz/diskuse?id=518772&articleId=/ekonomika/465992-japonci-pred-zamestnavanim-cizincu-uprednostnuji-roboty.html&sectionId=5");
+        Document newDocument2 = parseUrlNovinky.parse("https://www.novinky.cz/ekonomika/465992-japonci-pred-zamestnavanim-cizincu-uprednostnuji-roboty.html");
         Elements element1;// = newDocument.select("div#head");
 
 
@@ -55,31 +56,43 @@ public class main {
 
         Element element2 = html.select("h4.name").first();
         String name = element2.select("span").text();
-        System.out.println(name);
+//        System.out.println(name);
 
 
         Element date = html.select("div.infoDate").first();
 
         date = date.select("span").first();
-        System.out.println(date.text());
+//        System.out.println(date.text());
 
 
         String content = html.select("div.content").first().text();
-        System.out.println(content);
-        System.out.println("------------------");
+//        System.out.println(content);
+//        System.out.println("------------------");
 
 
         ExtractCommentNovinky extractCommentNovinky = new ExtractCommentNovinky();
 
         String datum = date.text();
-        System.out.println(datum.indexOf(","));
-        System.out.println(datum.substring(datum.indexOf(",") + 2, datum.length()));
+//        System.out.println(datum.indexOf(","));
+//        System.out.println(datum.substring(datum.indexOf(",") + 2, datum.length()));
 
 
-        System.out.println(extractCommentNovinky.getCreatedDate(date));
+//        System.out.println(extractCommentNovinky.getCreatedDate(date));
 
-        List<Comment> commentList = extractCommentNovinky.findComments("https://www.novinky.cz/diskuse?id=518772&articleId=/ekonomika/465992-japonci-pred-zamestnavanim-cizincu-uprednostnuji-roboty.html&sectionId=5", 1);
-        System.out.println(commentList.toString());
+//             List<Comment> commentList = extractCommentNovinky.findComments("https://www.novinky.cz/diskuse?id=518772&articleId=/ekonomika/465992-japonci-pred-zamestnavanim-cizincu-uprednostnuji-roboty.html&sectionId=5", 1);
+//        System.out.println(commentList.toString());
+
+        System.out.println(extractMetaFromArticleNovinky.getCreatedDate(documentArticle));
+        System.out.println(extractMetaFromArticleNovinky.getKeywors(documentArticle));
+        System.out.println(extractMetaFromArticleNovinky.getDescription(documentArticle));
+        System.out.println(extractMetaFromArticleNovinky.getAuthor(documentArticle));
+        System.out.println(extractMetaFromArticleNovinky.getNumburOfComment(documentArticle));
+        String dat = documentArticle.select("p#articleDate").text();
+        dat = dat.substring(0, dat.indexOf("-") - 1);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
+        Date datum1 = sdf.parse(dat);
+        System.out.println(datum1);
     }
+
 
 }
