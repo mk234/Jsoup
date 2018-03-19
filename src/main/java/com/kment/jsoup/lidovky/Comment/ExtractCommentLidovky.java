@@ -1,8 +1,8 @@
 package com.kment.jsoup.lidovky.Comment;
 
 import com.kment.jsoup.entity.Comment;
+import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.lidovky.NumberOfPagesLidovky;
-import com.kment.jsoup.lidovky.ParseUrlLidovky;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -19,9 +19,9 @@ import java.util.List;
 @Component
 public class ExtractCommentLidovky {
     public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
-        ParseUrlLidovky parseUrlLidovky = new ParseUrlLidovky();
+        ParseUrl parseUrl = new ParseUrl();
         // System.out.println(urlComment);
-        Document document = parseUrlLidovky.parse(urlComment);
+        Document document = parseUrl.parse(urlComment);
         return findComments(urlComment, idArticle, document);
     }
 
@@ -29,7 +29,7 @@ public class ExtractCommentLidovky {
     public List<Comment> findComments(String url, long idArticle, Document document) throws IOException, ParseException {
         List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
-        ParseUrlLidovky parseUrlLidovky = new ParseUrlLidovky();
+        ParseUrl parseUrl = new ParseUrl();
         NumberOfPagesLidovky numberOfPage = new NumberOfPagesLidovky();
         String selectorContributions = "div#disc-list";
         int numberOfPages = numberOfPage.numberOfPagesComment(document);
@@ -44,7 +44,7 @@ public class ExtractCommentLidovky {
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
-            document = parseUrlLidovky.parse(urlForNextPage);
+            document = parseUrl.parse(urlForNextPage);
             contributions = document.select(selectorContributions).first();
             selectedDivs = contributions.select(selectorContribution);
             commentList.addAll(getCommentsFromElements(selectedDivs, idArticle));
@@ -63,8 +63,8 @@ public class ExtractCommentLidovky {
         List<Comment> commentList = new ArrayList<>();
         for (Element div : selectedDivs) {
             System.out.println("jmeno " + div.select("span.name").first().text());
-            System.out.println("second span " + div.select("span").set(1, div).text());
-            System.out.println(div.select("td.right").first().select("p").set(1, div));
+//            System.out.println("second span " + div.select("span").set(1, div).text());
+            System.out.println(div.select("td.right").first().select("p").set(1, div).text());
             System.out.println(getCreatedDate(div.select("span").set(1, div)));
             String name = div.select("span.name").first().text();
             Date date = getCreatedDate(div.select("span").set(1, div));

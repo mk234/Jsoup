@@ -2,10 +2,11 @@ package com.kment.jsoup.idnes;
 
 import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.entity.Comment;
-import com.kment.jsoup.idnes.Article.ExtractArticle;
-import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle;
-import com.kment.jsoup.idnes.Comment.ExtractComment;
-import com.kment.jsoup.idnes.Comment.PrepareUrlForCommentary;
+import com.kment.jsoup.extractor.ParseUrl;
+import com.kment.jsoup.idnes.Article.ExtractArticleIdnes;
+import com.kment.jsoup.idnes.Article.ExtractMetaFromArticleIdnes;
+import com.kment.jsoup.idnes.Comment.ExtractCommentIdnes;
+import com.kment.jsoup.idnes.Comment.PrepareUrlForCommentaryIdnes;
 import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import com.kment.jsoup.springdata.ICommentSpringDataRepository;
 import com.kment.jsoup.springdata.IPortalSpringDataRepository;
@@ -30,9 +31,9 @@ import java.util.List;
 public class IdnesRun {
 
     @Autowired
-    ExtractArticle extractArticle;
+    ExtractArticleIdnes extractArticleIdnes;
     @Autowired
-    ExtractComment extractComment;
+    ExtractCommentIdnes extractCommentIdnes;
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
     @Autowired
@@ -40,13 +41,13 @@ public class IdnesRun {
     @Autowired
     ICommentSpringDataRepository commentSpringDataRepository;
     @Autowired
-    PrepareUrlForArchives prepareUrlForArchives;
+    PrepareUrlForArchivesIdnes prepareUrlForArchivesIdnes;
     @Autowired
-    PrepareUrlForCommentary prepareUrlForCommentary;
+    PrepareUrlForCommentaryIdnes prepareUrlForCommentaryIdnes;
     @PersistenceContext
     EntityManager entityManager;
     @Autowired
-    ExtractMetaFromArticle extractMetaFromArticle;
+    ExtractMetaFromArticleIdnes extractMetaFromArticleIdnes;
 
     final static int batchSize = 250;
     List<Comment> commentEntities = new ArrayList<>();
@@ -62,7 +63,7 @@ public class IdnesRun {
 
     public void extractAndSaveYesterday() throws IOException, ParseException {
         clearLists();
-        articleEntities = extractArticle.findArticles(prepareUrlForArchives.prepareUrlForYesterday());
+        articleEntities = extractArticleIdnes.findArticles(prepareUrlForArchivesIdnes.prepareUrlForYesterday());
         saveArticle();
         saveComments();
         flushAndClearEntityManager();
@@ -81,12 +82,21 @@ public class IdnesRun {
             Date yesterday = calendar.getTime();
             day = new DateTime(yesterday).toString("dd.MM.yyyy");
             datum = simpleDateFormat.parse(day);
-            articleEntities = extractArticle.findArticles(prepareUrlForArchives.prepareUrl(datum));
+            articleEntities = extractArticleIdnes.findArticles(prepareUrlForArchivesIdnes.prepareUrl(datum));
             saveArticle();
             saveComments();
             flushAndClearEntityManager();
         }
         System.out.println(numbebOfDaysBeforeYesterday + " done");
+    }
+
+    public void extractAndSaveOneDay(String date) throws IOException, ParseException {
+        clearLists();
+        articleEntities = extractArticleIdnes.findArticles(prepareUrlForArchivesIdnes.prepareUrlFromString(date));
+        saveArticle();
+        saveComments();
+        flushAndClearEntityManager();
+        System.out.println(date + " done");
     }
 
     private void flushAndClearEntityManager() {
@@ -98,7 +108,7 @@ public class IdnesRun {
         System.out.println(commentEntities.size());
         for (int i = 0; i < commentEntities.size(); i++) {
             Comment comment = commentEntities.get(i);
-            entityManager.persist(comment);
+            //     entityManager.persist(comment);
             if (i % batchSize == 0) {
                 flushAndClearEntityManager();
             }
@@ -109,8 +119,8 @@ public class IdnesRun {
         for (Article articleEntity : articleEntities) {
             Article savedArticle = articleSpringDataRepository.save(articleEntity);
             idArticle = savedArticle.getId();
-            commentUrl = prepareUrlForCommentary.prepareUrlForCommentPage(articleEntity.getUrl());
-            commentEntities.addAll(extractComment.findComments(commentUrl, idArticle));
+            commentUrl = prepareUrlForCommentaryIdnes.prepareUrlForCommentPage(articleEntity.getUrl());
+            commentEntities.addAll(extractCommentIdnes.findComments(commentUrl, idArticle));
         }
     }
 
@@ -125,8 +135,8 @@ public class IdnesRun {
 
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(articleUrl);
-        articleEntities.add(new Article("Jmeno", articleUrl, extractMetaFromArticle.getCreatedDate(document), new Date(), extractMetaFromArticle.getKeywors(document),
-                extractMetaFromArticle.getDescription(document), 1, extractMetaFromArticle.getNumburOfComment(document), extractMetaFromArticle.getAuthor(document)));
+        articleEntities.add(new Article("Jmeno", articleUrl, extractMetaFromArticleIdnes.getCreatedDate(document), new Date(), extractMetaFromArticleIdnes.getKeywors(document),
+                extractMetaFromArticleIdnes.getDescription(document), 1, extractMetaFromArticleIdnes.getNumburOfComment(document), extractMetaFromArticleIdnes.getAuthor(document)));
         saveArticle();
         saveComments();
         flushAndClearEntityManager();

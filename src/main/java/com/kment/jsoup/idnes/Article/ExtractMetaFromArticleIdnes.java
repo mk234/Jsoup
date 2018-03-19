@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class ExtractMetaFromArticle {
+public class ExtractMetaFromArticleIdnes {
 
     public Date getCreatedDate(Document document) {
         if (document.select("meta[property=article:published_time]").first() == null)

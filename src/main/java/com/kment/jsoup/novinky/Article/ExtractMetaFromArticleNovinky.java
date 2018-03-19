@@ -19,6 +19,10 @@ public class ExtractMetaFromArticleNovinky {
             System.out.println("removew sub");
             dateString = dateString.substring(0, dateString.indexOf("-") - 1);
         }
+        if (dateString.contains("Aktualizováno")) {
+            System.out.println("remove aktualizovano");
+            dateString = dateString = dateString.substring(0, dateString.indexOf("(") - 1);
+        }
         if (dateString.contains("Dnes")) {
             dateString = dateString.replaceAll("Dnes", "");
             System.out.println(dateString);

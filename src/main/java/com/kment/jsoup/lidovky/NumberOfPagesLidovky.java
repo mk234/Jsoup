@@ -1,5 +1,6 @@
 package com.kment.jsoup.lidovky;
 
+import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.lidovky.Article.ExtractMetaFromArticleLidovky;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,7 +19,7 @@ public class NumberOfPagesLidovky {
     @Autowired
     ExtractMetaFromArticleLidovky extractMetaFromArticleLidovky = new ExtractMetaFromArticleLidovky();
     @Autowired
-    ParseUrlLidovky parseUrlLidovky = new ParseUrlLidovky();
+    ParseUrl parseUrl = new ParseUrl();
 
     //predelano, odstraneny elementy, zustalo   vse od ifu
     public int numberOfPagesArchive(Document document, String selectorContributions) {

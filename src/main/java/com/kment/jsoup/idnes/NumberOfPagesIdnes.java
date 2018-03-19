@@ -1,6 +1,7 @@
 package com.kment.jsoup.idnes;
 
-import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle;
+import com.kment.jsoup.extractor.ParseUrl;
+import com.kment.jsoup.idnes.Article.ExtractMetaFromArticleIdnes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,10 +16,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class NumberOfPages {
+public class NumberOfPagesIdnes {
 
     @Autowired
-    ExtractMetaFromArticle extractMetaFromArticle = new ExtractMetaFromArticle();
+    ExtractMetaFromArticleIdnes extractMetaFromArticleIdnes = new ExtractMetaFromArticleIdnes();
     @Autowired
     ParseUrl parseUrl = new ParseUrl();
 
@@ -57,7 +58,7 @@ public class NumberOfPages {
         String linkHref = link.attr("href");
         // System.out.println("link je " + linkHref);
         Document document1 = parseUrl.parse(linkHref);
-        double numberOfComment = extractMetaFromArticle.getNumburOfComment(document1);
+        double numberOfComment = extractMetaFromArticleIdnes.getNumburOfComment(document1);
         double numbertOfPages = numberOfComment / 50.0;
         return (int) Math.ceil(numbertOfPages);
 

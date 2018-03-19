@@ -20,7 +20,7 @@ public interface IPortalExtractor {
 
     List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException;
 
-    Date getCreatedDate(Document document);
+    Date getCreatedDate(Document document) throws ParseException;
 
     String getKeywors(Document document);
 
@@ -32,5 +32,5 @@ public interface IPortalExtractor {
 
     Document parse(String urlString) throws IOException;
 
-    String prepareUrlForCommentPage(String articleUrl);
+    String prepareUrlForCommentPage(String articleUrl) throws IOException;
 }

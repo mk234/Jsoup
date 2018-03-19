@@ -10,7 +10,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -41,7 +40,7 @@ public class Run implements ApplicationContextAware {
     String commentUrl = "";
     long idArticle;
 
-    public void extractAndSaveYesterday() throws IOException, ParseException {
+    public void extractAndSaveYesterday() {
         Map<String, IPortalExtractor> extractors = applicationContext.getBeansOfType(IPortalExtractor.class);
        for (IPortalExtractor portalExtractor : extractors.values()) {
             System.out.println(portalExtractor.getPortalName());
@@ -58,7 +57,7 @@ public class Run implements ApplicationContextAware {
         }
     }
 
-    public void extractAndSaveMultipleDaysBefereYesterday(int numbebOfDaysBeforeYesterday) throws ParseException, IOException {
+    public void extractAndSaveMultipleDaysBefereYesterday(int numbebOfDaysBeforeYesterday) {
         Map<String, IPortalExtractor> extractors = applicationContext.getBeansOfType(IPortalExtractor.class);
         for (IPortalExtractor portalExtractor : extractors.values()) {
             try {
@@ -94,7 +93,7 @@ public class Run implements ApplicationContextAware {
         System.out.println(commentEntities.size());
         for (int i = 0; i < commentEntities.size(); i++) {
             Comment comment = commentEntities.get(i);
-                   entityManager.persist(comment);
+            //             entityManager.persist(comment);
             if (i % batchSize == 0) {
                 flushAndClearEntityManager();
             }

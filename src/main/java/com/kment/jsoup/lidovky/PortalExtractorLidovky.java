@@ -1,15 +1,13 @@
-package com.kment.jsoup.extractor;
+package com.kment.jsoup.lidovky;
 
 import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.entity.Comment;
-import com.kment.jsoup.idnes.Comment.PrepareUrlForCommentary;
+import com.kment.jsoup.extractor.IPortalExtractor;
+import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.lidovky.Article.ExtractArticleLidovky;
 import com.kment.jsoup.lidovky.Article.ExtractMetaFromArticleLidovky;
 import com.kment.jsoup.lidovky.Comment.ExtractCommentLidovky;
 import com.kment.jsoup.lidovky.Comment.PrepareUrlForCommentaryLidovky;
-import com.kment.jsoup.lidovky.NumberOfPagesLidovky;
-import com.kment.jsoup.lidovky.ParseUrlLidovky;
-import com.kment.jsoup.lidovky.PrepareUrlForArchivesLidovky;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class LidovkyPortalExtractor implements IPortalExtractor {
+public class PortalExtractorLidovky implements IPortalExtractor {
     @Autowired
     ExtractArticleLidovky extractArticle;
     @Autowired
@@ -32,7 +30,7 @@ public class LidovkyPortalExtractor implements IPortalExtractor {
     @Autowired
     NumberOfPagesLidovky numberOfPages;
     @Autowired
-    ParseUrlLidovky parseUrl;
+    ParseUrl parseUrl;
     @Autowired
     PrepareUrlForArchivesLidovky prepareUrlForArchives;
 
@@ -44,7 +42,7 @@ public class LidovkyPortalExtractor implements IPortalExtractor {
 
 
     @Override
-    public List<Article> findArticles(String url) throws IOException, ParseException {
+    public List<Article> findArticles(String url) throws IOException {
         return extractArticle.findArticles(url);
     }
 
@@ -95,6 +93,6 @@ public class LidovkyPortalExtractor implements IPortalExtractor {
 
     @Override
     public String prepareUrlForCommentPage(String articleUrl) {
-       return prepareUrlForCommentary.prepareUrlForCommentPage(articleUrl);
+        return prepareUrlForCommentary.prepareUrlForCommentPage(articleUrl);
     }
 }

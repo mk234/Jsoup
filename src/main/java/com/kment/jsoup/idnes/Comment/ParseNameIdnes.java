@@ -5,7 +5,7 @@ import org.jsoup.Jsoup;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ParseName {
+public class ParseNameIdnes {
     public String regex(String name) {
        name = name.replaceAll("(?<=<i>).*?(?=</i>)", "");
         name = Jsoup.parse(name).text();

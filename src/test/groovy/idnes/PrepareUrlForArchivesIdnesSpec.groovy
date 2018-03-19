@@ -1,7 +1,7 @@
 package idnes
 
 import com.kment.jsoup.Application
-import com.kment.jsoup.idnes.PrepareUrlForArchives
+import com.kment.jsoup.idnes.PrepareUrlForArchivesIdnes
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
@@ -10,10 +10,10 @@ import spock.lang.Unroll
 import java.text.SimpleDateFormat
 
 @SpringBootTest(classes = Application.class)
-class PrepareUrlForArchivesSpec extends Specification {
+class PrepareUrlForArchivesIdnesSpec extends Specification {
 
     @Autowired
-    PrepareUrlForArchives prepareUrlForArchives
+    PrepareUrlForArchivesIdnes prepareUrlForArchives
 
     @Unroll
     def "get url for date 1.1.2016"() {

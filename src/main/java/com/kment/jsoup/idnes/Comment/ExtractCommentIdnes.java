@@ -1,8 +1,8 @@
 package com.kment.jsoup.idnes.Comment;
 
 import com.kment.jsoup.entity.Comment;
-import com.kment.jsoup.idnes.NumberOfPages;
-import com.kment.jsoup.idnes.ParseUrl;
+import com.kment.jsoup.extractor.ParseUrl;
+import com.kment.jsoup.idnes.NumberOfPagesIdnes;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Component
-public class ExtractComment {
+public class ExtractCommentIdnes {
     public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
         // System.out.println(urlComment);
@@ -30,7 +30,7 @@ public class ExtractComment {
         List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
-        NumberOfPages numberOfPage = new NumberOfPages();
+        NumberOfPagesIdnes numberOfPage = new NumberOfPagesIdnes();
         String selectorContributions = "div#disc-list";
         int numberOfPages = numberOfPage.numberOfPagesComment(document);
         if (numberOfPages == 0) {
@@ -64,7 +64,7 @@ public class ExtractComment {
         String selectorName = "h4.name";
         String selectorDate = "div.date.hover";
         String selectorContent = "div.user-text";
-        ParseName parseName = new ParseName();
+        ParseNameIdnes parseNameIdnes = new ParseNameIdnes();
         for (Element div : selectedDivs) {
             Element date = div.select(selectorDate).first();
             Element content = div.select(selectorContent).first();
@@ -72,7 +72,7 @@ public class ExtractComment {
             Document linkDoc = Jsoup.parse(name);
             Element link = linkDoc.select("a").first();
             String linkHref = link.attr("href");
-            name = parseName.regex(name);
+            name = parseNameIdnes.regex(name);
             commentList.add(new Comment(name, content.text(), linkHref, idArticle, getCreatedDate(date)));
         }
         return commentList;

@@ -2,17 +2,17 @@ package idnes
 
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Comment
-import com.kment.jsoup.idnes.Comment.ExtractComment
+import com.kment.jsoup.idnes.Comment.ExtractCommentIdnes
 import idnes.source.ExtractCommentIdnesPreparedData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest(classes = Application.class)
-class ExtractCommentSpec extends Specification {
+class ExtractCommentIdnesSpec extends Specification {
 
     @Autowired
-    ExtractComment extractComment
+    ExtractCommentIdnes extractComment
     ExtractCommentIdnesPreparedData preparedData = new ExtractCommentIdnesPreparedData()
 
     def "number of comments"() {

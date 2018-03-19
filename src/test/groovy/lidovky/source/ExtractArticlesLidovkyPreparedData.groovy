@@ -8,7 +8,7 @@ class ExtractArticlesLidovkyPreparedData {
     }
 
     int getNumberOfArticlesInArchive() {
-        return 1170
+        return 35
     }
 
 

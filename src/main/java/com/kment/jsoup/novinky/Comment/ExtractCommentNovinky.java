@@ -1,8 +1,8 @@
 package com.kment.jsoup.novinky.Comment;
 
 import com.kment.jsoup.entity.Comment;
+import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.novinky.NumberOfPagesNovinky;
-import com.kment.jsoup.novinky.ParseUrlNovinky;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -19,9 +19,9 @@ import java.util.List;
 @Component
 public class ExtractCommentNovinky {
     public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
-        ParseUrlNovinky parseUrlNovinky = new ParseUrlNovinky();
+        ParseUrl parseUrl = new ParseUrl();
         System.out.println(urlComment);
-        Document document = parseUrlNovinky.parse(urlComment);
+        Document document = parseUrl.parse(urlComment);
         return findComments(urlComment, idArticle, document);
     }
 
@@ -29,7 +29,7 @@ public class ExtractCommentNovinky {
     public List<Comment> findComments(String url, long idArticle, Document document) throws IOException, ParseException {
         List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
-        ParseUrlNovinky parseUrlNovinky = new ParseUrlNovinky();
+        ParseUrl parseUrl = new ParseUrl();
         NumberOfPagesNovinky numberOfPage = new NumberOfPagesNovinky();
         String selectorContributions = "div#contributions";
         int numberOfPages = numberOfPage.numberOfPagesComment(document);
@@ -45,7 +45,7 @@ public class ExtractCommentNovinky {
 
         for (int i = 2; i <= numberOfPages; i++) {
             urlForNextPage = getDocumentForNextPage(url, i);
-            document = parseUrlNovinky.parse(urlForNextPage);
+            document = parseUrl.parse(urlForNextPage);
             contributions = document.select(selectorContributions).first();
             selectedDivs = contributions.select(selectorContribution);
             msgBox = selectedDivs.select("div.msgBoxOut");
@@ -81,6 +81,7 @@ public class ExtractCommentNovinky {
     public Date getCreatedDate(Element dateElement) throws ParseException {
         String data = dateElement.text();
         if (data.contains(":")) {
+            System.out.println(data);
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd. MMM yyyy, HH:mm:ss");
             Date date = sdf.parse(data);
             return date;

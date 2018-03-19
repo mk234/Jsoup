@@ -3,7 +3,6 @@ package lidovky
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Article
 import com.kment.jsoup.entity.Comment
-import com.kment.jsoup.lidovky.LidovkyRun
 import com.kment.jsoup.springdata.IArticleSpringDataRepository
 import com.kment.jsoup.springdata.ICommentSpringDataRepository
 import org.springframework.beans.factory.annotation.Autowired

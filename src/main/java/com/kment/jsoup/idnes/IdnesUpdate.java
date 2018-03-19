@@ -3,9 +3,10 @@ package com.kment.jsoup.idnes;
 
 import com.kment.jsoup.entity.Article;
 import com.kment.jsoup.entity.Comment;
-import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle;
-import com.kment.jsoup.idnes.Comment.ExtractComment;
-import com.kment.jsoup.idnes.Comment.PrepareUrlForCommentary;
+import com.kment.jsoup.extractor.ParseUrl;
+import com.kment.jsoup.idnes.Article.ExtractMetaFromArticleIdnes;
+import com.kment.jsoup.idnes.Comment.ExtractCommentIdnes;
+import com.kment.jsoup.idnes.Comment.PrepareUrlForCommentaryIdnes;
 import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import com.kment.jsoup.springdata.ICommentSpringDataRepository;
 import org.jsoup.nodes.Document;
@@ -23,15 +24,15 @@ public class IdnesUpdate {
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
     @Autowired
-    ExtractComment extractComment;
+    ExtractCommentIdnes extractCommentIdnes;
     @Autowired
     ICommentSpringDataRepository iCommentSpringDataRepository;
     @Autowired
-    ExtractMetaFromArticle extractMetaFromArticle;
+    ExtractMetaFromArticleIdnes extractMetaFromArticleIdnes;
     @Autowired
     ParseUrl parseUrl;
     @Autowired
-    PrepareUrlForCommentary prepareUrlForCommentary;
+    PrepareUrlForCommentaryIdnes prepareUrlForCommentaryIdnes;
 
     public void updateIdnes(int numberOfDayToUpdate) throws IOException, ParseException {
         List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate);
@@ -40,7 +41,7 @@ public class IdnesUpdate {
     }
 
     public List<Article> fetchArticleForDays(int days) {
-        return articleSpringDataRepository.findByNumberOfDayBeforeToday(days);
+        return articleSpringDataRepository.findByNumberOfDayBeforeToday(days, 1);
     }
 
     public void findArticleWithNewComments(List<Article> articleList) throws IOException, ParseException {
@@ -50,11 +51,11 @@ public class IdnesUpdate {
         for (Article article : articleList) {
             dateLastCollection = article.getLastCollection();
             Document document = parseUrl.parse(article.getUrl());
-            int numberOfComment = extractMetaFromArticle.getNumburOfComment(document);
+            int numberOfComment = extractMetaFromArticleIdnes.getNumburOfComment(document);
             System.out.println(article.getCreated());
-            System.out.println(numberOfComment);
+//            System.out.println(numberOfComment);
             if (numberOfComment > article.getNumberOfComments()) {
-                commentList = extractComment.findComments(prepareUrlForCommentary.prepareUrlForCommentPage(article.getUrl()), article.getId());
+                commentList = extractCommentIdnes.findComments(prepareUrlForCommentaryIdnes.prepareUrlForCommentPage(article.getUrl()), article.getId());
                 for (int i = 0; i < commentList.size(); i++) {
                     if (commentList.get(i).getDate().after((dateLastCollection)))
                         commentListToSave.add(commentList.get(i));
@@ -64,8 +65,10 @@ public class IdnesUpdate {
                 articleSpringDataRepository.save(article);
             }
             article.setLastCollection(new Date());
-            System.out.println(article.getNumberOfComments());
-            System.out.println(article.getNumberOfComments() - numberOfComment + " new comments");
+//            System.out.println(article.getNumberOfComments());
+            if ((article.getNumberOfComments() - numberOfComment) > 0) {
+                System.out.println(article.getNumberOfComments() - numberOfComment + " new comments --------------------------");
+            }
             articleSpringDataRepository.save(article);
         }
     }

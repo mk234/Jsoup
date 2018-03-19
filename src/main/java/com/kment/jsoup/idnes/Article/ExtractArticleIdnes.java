@@ -1,8 +1,8 @@
 package com.kment.jsoup.idnes.Article;
 
 import com.kment.jsoup.entity.Article;
-import com.kment.jsoup.idnes.NumberOfPages;
-import com.kment.jsoup.idnes.ParseUrl;
+import com.kment.jsoup.extractor.ParseUrl;
+import com.kment.jsoup.idnes.NumberOfPagesIdnes;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -16,10 +16,10 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class ExtractArticle {
+public class ExtractArticleIdnes {
 
     @Autowired
-    ExtractMetaFromArticle extractMetaFromArticle;
+    ExtractMetaFromArticleIdnes extractMetaFromArticleIdnes;
 
     public List<Article> findArticles(String url) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
@@ -27,11 +27,11 @@ public class ExtractArticle {
         return findArticles(url, document);
     }
 
-    public List<Article> findArticles(String url, Document document) throws IOException, ParseException {
+    public List<Article> findArticles(String url, Document document) throws IOException {
         List<Article> articleList = new ArrayList<>();
         String urlForNextPage;
         ParseUrl parseUrl = new ParseUrl();
-        NumberOfPages numberOfPage = new NumberOfPages();
+        NumberOfPagesIdnes numberOfPage = new NumberOfPagesIdnes();
 
 
         String selectorContent = "div#content";
@@ -56,7 +56,7 @@ public class ExtractArticle {
         return url + "&strana=" + i;
     }
 
-    private List<Article> getArticles(Elements selectedDivs, Document document) throws ParseException, IOException {
+    private List<Article> getArticles(Elements selectedDivs, Document document) throws IOException {
         List<Article> articleList = new ArrayList<>();
         String selectorName = "div.cell";
         ParseUrl parseUrl = new ParseUrl();
@@ -67,10 +67,10 @@ public class ExtractArticle {
             String absHref = link.attr("abs:href");
             Document documentArticle = parseUrl.parse(absHref);
             articleList.add(new Article(name.text(), absHref,
-                    extractMetaFromArticle.getCreatedDate(documentArticle), new Date(),
-                    extractMetaFromArticle.getKeywors(documentArticle), extractMetaFromArticle.getDescription(documentArticle),
-                    1, extractMetaFromArticle.getNumburOfComment(documentArticle),
-                    extractMetaFromArticle.getAuthor(documentArticle)));
+                    extractMetaFromArticleIdnes.getCreatedDate(documentArticle), new Date(),
+                    extractMetaFromArticleIdnes.getKeywors(documentArticle), extractMetaFromArticleIdnes.getDescription(documentArticle),
+                    1, extractMetaFromArticleIdnes.getNumburOfComment(documentArticle),
+                    extractMetaFromArticleIdnes.getAuthor(documentArticle)));
         }
         return articleList;
     }

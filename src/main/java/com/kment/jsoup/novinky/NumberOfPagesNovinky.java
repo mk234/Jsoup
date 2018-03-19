@@ -1,5 +1,6 @@
 package com.kment.jsoup.novinky;
 
+import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.novinky.Article.ExtractMetaFromArticleNovinky;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ public class NumberOfPagesNovinky {
     @Autowired
     ExtractMetaFromArticleNovinky extractMetaFromArticleNovinky = new ExtractMetaFromArticleNovinky();
     @Autowired
-    ParseUrlNovinky parseUrlNovinky = new ParseUrlNovinky();
+    ParseUrl parseUrl = new ParseUrl();
 
     //predelano, odstraneny elementy, zustalo   vse od ifu
     //neni potrebne, vzdy je pouze jedna stranka
@@ -39,7 +40,7 @@ public class NumberOfPagesNovinky {
         String articleAddress = extractMetaFromArticleNovinky.getArticleAddressFromCommentPage(document);
         ExtractMetaFromArticleNovinky meta = new ExtractMetaFromArticleNovinky();
         ExtractMetaFromArticleNovinky Ex = new ExtractMetaFromArticleNovinky();
-        int number = meta.getNumburOfComment(parseUrlNovinky.parse(articleAddress));
+        int number = meta.getNumburOfComment(parseUrl.parse(articleAddress));
         double numbertOfPages = number / 30.0;
         return (int) Math.ceil(numbertOfPages);
     }

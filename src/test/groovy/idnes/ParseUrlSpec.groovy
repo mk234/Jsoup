@@ -1,7 +1,7 @@
 package idnes
 
 import com.kment.jsoup.Application
-import com.kment.jsoup.idnes.ParseUrl
+import com.kment.jsoup.extractor.ParseUrl
 import idnes.source.ExtractArticlesIdnesPreparedData
 import org.jsoup.nodes.Document
 import org.springframework.beans.factory.annotation.Autowired

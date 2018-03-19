@@ -29,12 +29,12 @@ public class Application implements CommandLineRunner {
         SpringApplication.run(Application.class, args);
     }
 
+
     @Override
     public void run(String... strings) {
         // scheduledTasks.init();
 //        scheduledTasks.scheduledRun();
-        //     run.extractAndSaveYesterday();
-//        update.updateIdnes(3);
+
     }
 
 

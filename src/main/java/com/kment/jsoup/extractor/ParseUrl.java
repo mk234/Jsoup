@@ -1,4 +1,4 @@
-package com.kment.jsoup.lidovky;
+package com.kment.jsoup.extractor;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -6,9 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-//univeryalni pro vse
 @Component
-public class ParseUrlLidovky {
+public class ParseUrl {
 
     public Document parse(String urlString) throws IOException {
         return Jsoup.connect(urlString).get();

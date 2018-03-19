@@ -14,7 +14,6 @@ public interface IArticleSpringDataRepository extends JpaRepository<Article, Int
     List<Article> findByNumberOfDayBeforeToday(@Param("days") int days, @Param("id") long id);
 
 
-
-    @Query("select a from Article a where a.created > CURRENT_DATE-:days")
-    List<Article> findByNumberOfDayBeforeToday(int days);
+    @Query("select a from Article a where a.lastCollection > CURRENT_DATE-:days")
+    List<Article> findByNumberOfDayBeforeToday(@Param("days") int days);
 }

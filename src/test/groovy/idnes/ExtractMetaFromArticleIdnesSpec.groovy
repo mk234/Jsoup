@@ -1,7 +1,7 @@
 package idnes
 
 import com.kment.jsoup.Application
-import com.kment.jsoup.idnes.Article.ExtractMetaFromArticle
+import com.kment.jsoup.idnes.Article.ExtractMetaFromArticleIdnes
 import idnes.source.ExtractMetaFromArticleIdnesPreparedData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -11,11 +11,11 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 @SpringBootTest(classes = Application.class)
-class ExtractMetaFromArticleSpec extends Specification {
+class ExtractMetaFromArticleIdnesSpec extends Specification {
 
     ExtractMetaFromArticleIdnesPreparedData preparedData = new ExtractMetaFromArticleIdnesPreparedData()
     @Autowired
-    ExtractMetaFromArticle extractMetaFromArticle = new ExtractMetaFromArticle()
+    ExtractMetaFromArticleIdnes extractMetaFromArticle = new ExtractMetaFromArticleIdnes()
 
     def "get keywords from article"() {
         when:
