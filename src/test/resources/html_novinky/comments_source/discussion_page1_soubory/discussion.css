@@ -1,0 +1,649 @@
+.discussion #sectionContainer {
+    min-height: 1px;
+    _height: 1px;
+    position: relative;
+    background: transparent url(/static/images/colummBg.gif) repeat-y;
+    border-width: 0 !important;
+    margin-top: 0px;
+    border-bottom: 1px solid #E7E7E7 !important
+}
+
+.discussion #adSky-moving #advert-box {
+    margin-bottom: 10px !important;
+    position: relative
+}
+
+.discussion #skyStopper {
+}
+
+.discussion #sectionBox {
+    padding-left: 12px;
+    width: 598px
+}
+
+.discussion .alert {
+    border: 3px solid red;
+    padding: 15px;
+    margin-top: 10px
+}
+
+.discussion .alert h3 {
+    margin: 0px 0 10px 0 !important
+}
+
+.discussion .promo {
+    font-family: Arial, sans-serif;
+    position: relative;
+    top: -3px;
+    left: -3px;
+    background: url(/static/images/promo_mynews.png) left top no-repeat;
+    width: 490px;
+    height: 438px;
+    padding: 39px 37px 35px 46px;
+    float: left;
+    clear: both
+}
+
+.discussion .promo h3 {
+    color: black !important;
+    margin: 0 0 6px !important
+}
+
+.discussion .promo p {
+    font-size: 115%;
+    margin-bottom: 8px
+}
+
+.discussion .promo img {
+    position: relative;
+    left: -5px;
+    padding-top: 22px
+}
+
+.discussion .promo a {
+    font-weight: bold;
+    text-decoration: underline
+}
+
+.discussion #navigation {
+    font-family: Arial, sans-serif;
+    font-size: 123.5%;
+    padding: 0.8em 0;
+    border-bottom: 1px solid #E7E7E7
+}
+
+.discussion #navigation ul {
+    display: inline;
+    margin-right: 3em
+}
+
+.discussion #navigation li {
+    display: inline
+}
+
+.discussion #navigation li span {
+    margin: 0 0.3em
+}
+
+.discussion #navigation p {
+    display: inline
+}
+
+.discussion #navigation p a {
+    margin-right: 0.5em
+}
+
+.discussion h1 {
+    font-size: 245% !important;
+    font-weight: normal;
+    line-height: 125%;
+    margin-bottom: 0.5em !important;
+    color: #000 !important;
+    font-family: Georgia !important
+}
+
+.discussionHeader {
+    margin: 25px 20px 0 0;
+    padding-bottom: 30px
+}
+
+.discussionHeader p.perex {
+    font-size: 123.5%;
+    line-height: 145%;
+    margin-bottom: 0.5em;
+    color: #000
+}
+
+.discussionHeader p.back {
+    font-size: 108.5%;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    text-align: right
+}
+
+.discussion .help {
+    margin-top: 15px
+}
+
+.discussion .help p {
+    margin-bottom: 10px;
+    color: #000
+}
+
+.discussion .help p.example {
+    font-family: Courier;
+    background-color: #F3F3F3;
+    padding: 15px;
+    border: 1px dotted #DDD;
+    color: #333
+}
+
+.discussion #topAdvice {
+    background-color: #fff;
+    _height: 1px;
+    position: relative;
+    left: -1px;
+    border-left: 1px solid white;
+    padding: 22px 0 20px 20px
+}
+
+.discussion #topAdvice .item {
+    position: relative;
+    left: 1px;
+    float: none;
+    clear: both;
+    padding-top: 10px
+}
+
+.discussion #topAdvice p {
+    width: 190px;
+    float: left;
+    font-family: Arial, sans-serif;
+    font-size: 93%
+}
+
+.discussion #topAdvice p a {
+    color: #000066
+}
+
+.discussion #topAdvice img {
+    width: 100px;
+    float: right
+}
+
+.discussion #topAdvice p span {
+    padding-left: 16px;
+    background-position: 0 center;
+    background-repeat: no-repeat
+}
+
+.discussion #topAdvice p span.audio {
+    background-image: url(/static/images/arrow-mm-micro.gif)
+}
+
+.discussion #topAdvice p span.video {
+    background-image: url(/static/images/arrow-mm-micro.gif)
+}
+
+.discussion #topAdvice p span.picture {
+    padding-left: 10px;
+    background-image: url(/static/images/box-picture-micro.gif)
+}
+
+.discussion #topAdvice p span em {
+    font-style: normal;
+    color: #cc0000
+}
+
+.discussion #topAdvice .moreNews {
+    float: none;
+    clear: both;
+    padding: 0.6em 0 0.3em 0;
+    font-family: Arial, sans-serif
+}
+
+.discussion #topAdvice .moreNews a {
+    font-size: 146%
+}
+
+.discussion #topAdvice .moreNews em {
+    margin-left: 0.3em;
+    font-size: 108.5%;
+    color: #666666;
+    font-style: normal
+}
+
+.discussion div.separatorLine {
+    display: block;
+    border: none;
+    height: 5px;
+    background-color: #E7E7E7;
+    color: #E7E7E7;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden
+}
+
+.discussion .infoDate form {
+    display: none
+}
+
+.discussion .infoDate .voteWrap {
+    display: inline
+}
+
+.voteButton {
+    background: none;
+    display: inline;
+    margin: 0;
+    padding: 5px;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-size: 106.5%
+}
+
+.voteVoted {
+    background: none;
+    display: inline;
+    margin: 0;
+    padding: 5px;
+    border: none;
+    font-family: Georgia, serif;
+    font-size: 106.5%
+}
+
+.bestUser span {
+    color: #666
+}
+
+.discussion #sectionBox #pagging {
+    margin: 20px 0 15px 0
+}
+
+#sectionBox h3 {
+    font-family: Arial;
+    color: #999999;
+    font-size: 155%;
+    margin: 10px 0;
+    padding: 0
+}
+
+.ordering h3 {
+    width: 20%;
+    float: left
+}
+
+.ordering p {
+    display: block;
+    width: 75%;
+    float: left;
+    margin-left: 20px;
+    padding-top: 17px;
+    color: #666666;
+    font-family: Arial;
+    font-size: 93%
+}
+
+.ordering a.actualOrder {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000
+}
+
+.newContrib {
+    border: 10px solid #f5f2e3
+}
+
+.newContrib a {
+    display: block;
+    border: 1px solid #a7a6aa;
+    padding: 13px 0;
+    text-align: center;
+    text-decoration: underline
+}
+
+#contributions {
+    margin: 20px 0
+}
+
+.contribution {
+}
+
+.contribution h4.name {
+    padding-bottom: 5px
+}
+
+.contribution .lineTop {
+    padding-bottom: 3px
+}
+
+.contribution .lineTop div.infoDate {
+    color: #666; /*border-bottom: 1px solid #F3F3F3; margin-bottom:14px;*/
+}
+
+.contribution .lineTop .plus {
+    color: #006600
+}
+
+.contribution .lineTop .minus {
+    color: #CC0000
+}
+
+.contribution .icon {
+    float: left
+}
+
+.contribution .lineTop {
+    margin-left: 60px;
+    border-bottom: 1px solid #f3f3f3;
+    padding-bottom: 3px;
+    margin-bottom: 10px
+}
+
+.contribution .line {
+    margin-left: 60px
+}
+
+.contribution .content {
+    margin-left: 60px;
+    width: 545px
+}
+
+.contribution .content span {
+    color: #919191
+}
+
+.contribution .detail {
+    color: #666
+}
+
+.contribution .votes {
+    color: #666
+}
+
+.contribution .voteAgreed {
+    color: #006600
+}
+
+.contribution .voteDisagreed {
+    color: #CC0000
+}
+
+.contribution .voteReport {
+    color: #0000AA
+}
+
+.msgBoxOut {
+    border-style: solid;
+    border-color: #e0e0e0;
+    border-width: 0 0 1px 1px;
+    margin-bottom: 18px
+}
+
+.msgBoxOut .threadBox {
+    margin-left: 60px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    font-size: 93%
+}
+
+.msgBoxOut .threadBox .icon {
+    float: left
+}
+
+.msgBoxOut .threadBox .lineTop {
+    margin-left: 45px;
+    border-bottom: 1px solid #f3f3f3;
+    padding-bottom: 3px;
+    margin-bottom: 10px
+}
+
+.msgBoxOut .threadBox .content {
+    margin-left: 45px
+}
+
+.msgBoxOut .threadBox .content span {
+    color: #919191
+}
+
+.msgBoxOut .threadBox .detail {
+    color: #666
+}
+
+.msgBoxIn .content p {
+    padding-bottom: 10px;
+    overflow: hidden
+}
+
+.msgBoxIn .content p.quote {
+    font-style: italic;
+    padding: 0 5px 10px 15px
+}
+
+.msgBoxIn .content p.quote span {
+    color: #333
+}
+
+#discussionFormDiv img.quote {
+    width: 98px !important;
+    height: 24px !important;
+    position: absolute;
+    cursor: pointer
+}
+
+#discussionFormDiv.new {
+    background-color: #f5f2e3;
+    padding-bottom: 18px
+}
+
+/*#discussionFormDiv.new img  { width:50px; }*/
+#discussionFormDiv.new p {
+    margin-left: 70px
+}
+
+#discussionFormDiv.new p.inputs {
+    text-align: right;
+    padding: 5px 7px 0 0
+}
+
+#discussionFormDiv.new textarea {
+    border: 1px solid #a7a6aa;
+    width: 500px;
+    height: 200px;
+    margin: 10px 0 0 0px
+}
+
+#discussionFormDiv.new a.banned {
+    display: inline;
+    border-width: 0;
+    padding: 0;
+    margin: 0
+}
+
+#discussionFormDiv.new #counter {
+    position: absolute;
+    left: 70px;
+    bottom: 18px;
+    width: 125px;
+    height: 20px
+}
+
+#discussionFormDiv.new #contributionCount {
+    position: absolute;
+    left: 70px;
+    bottom: -1px;
+    width: 125px;
+    height: 20px;
+    color: #CC0000
+}
+
+#discussionFormDiv.new img.quote {
+    bottom: 17px;
+    right: 210px;
+= right: 200 px
+}
+
+.reaction {
+    _background-color: #f5f2e3;
+    _padding: 10px;
+    _margin: 20px 0
+}
+
+.reaction p {
+    _margin-left: 70px
+}
+
+.reaction textarea {
+    _border: 1px solid #a7a6aa;
+    _width: 510px;
+    _height: 200px;
+    _margin: 10px 0 0 20px
+}
+
+.reaction p.inputs {
+    _text-align: right;
+    _padding: 5px 7px 0 0
+}
+
+.reaction #counter {
+    _position: relative;
+    _left: 80px;
+    _bottom: 10px;
+    _width: 125px;
+    _height: 20px;
+    _border: 1px solid red
+}
+
+.reaction img.quote {
+    _bottom: 9px;
+    _right: 150px;
+    _position: absolute
+}
+
+#discussionFormDiv.reaction {
+    background-color: #f5f2e3;
+    padding: 10px;
+    margin: 20px 0
+}
+
+#discussionFormDiv.reaction p {
+    margin-left: 70px
+}
+
+#discussionFormDiv.reaction textarea {
+    border: 1px solid #a7a6aa;
+    width: 500px;
+    height: 200px;
+    margin: 10px 0 0 0px
+}
+
+#discussionFormDiv.reaction p.inputs {
+    text-align: right;
+    padding: 5px 7px 0 0
+}
+
+#discussionFormDiv.reaction #counter {
+    position: absolute;
+    left: 80px;
+    bottom: 10px;
+    width: 125px;
+    height: 20px
+}
+
+#discussionFormDiv.reaction img.quote {
+    bottom: 9px;
+    right: 150px
+}
+
+#discussionFormDiv div.help {
+    padding-top: 10px;
+    font-style: italic
+}
+
+#discussionFormDiv div.help p {
+    color: #CC0000 !important
+}
+
+#discussionFormDiv {
+    position: relative
+}
+
+#discussionFormDiv img {
+    float: left;
+    _position: relative
+}
+
+#discussionFormDiv span#opinionType {
+    font-weight: bold
+}
+
+#discussionFormDiv p.dateP {
+    padding-top: 5px;
+    margin-left: 70px
+}
+
+#discussionFormDiv p.link {
+    margin-left: 0;
+    padding: 5px 0 0 0
+}
+
+#discussionFormDiv p.link a {
+    display: inline;
+    border: 0;
+    color: #0066cc;
+    text-align: left;
+    padding: 0
+}
+
+#discussionFormDiv.new .textMessage {
+    float: left;
+    margin: 5px 0 0 30px;
+    padding-top: 5px;
+    width: 500px
+}
+
+#discussionFormDiv.new .textMessage span {
+    font-weight: bold;
+    color: #CC0000
+}
+
+#discussionFormDiv span.date {
+    color: #666
+}
+
+#discussionFormDiv div.arrow {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: url(/static/images/formarrow.gif) top left no-repeat;
+    width: 20px;
+    height: 10px
+}
+
+.voteMessage {
+    display: block;
+    padding: 5px
+}
+
+.voteMessage.doublereported {
+    background-color: #EE7474
+}
+
+.voteMessage.doublevote {
+    background-color: #EE7474
+}
+
+.voteMessage.positivevote {
+    background-color: #74EE74
+}
+
+.voteMessage.negativevote {
+    background-color: #74EE74
+}
+
+.voteMessage.reported {
+    background-color: #74EE74
+}
