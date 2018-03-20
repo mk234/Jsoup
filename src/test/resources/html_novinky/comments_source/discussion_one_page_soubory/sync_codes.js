@@ -8,7 +8,6 @@
         iframe.src = src;
         document.body.insertBefore(iframe, document.body.firstChild);
     }
-
     /*synchronizace adformu */
     createIframe("//h.imedia.cz/html/adform_sync.html");
 

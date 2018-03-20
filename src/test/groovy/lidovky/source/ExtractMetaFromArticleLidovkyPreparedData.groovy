@@ -28,6 +28,6 @@ class ExtractMetaFromArticleLidovkyPreparedData {
     }
 
     def getDate() {
-        return "02/01/2018 21:45:00"
+        return "02/01/2018 21:45"
     }
 }

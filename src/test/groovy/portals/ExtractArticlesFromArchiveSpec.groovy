@@ -1,14 +1,16 @@
-package lidovky
+package portals
 
 import com.kment.jsoup.Application
 import com.kment.jsoup.entity.Article
 import com.kment.jsoup.idnes.Article.ExtractArticleIdnes
 import com.kment.jsoup.lidovky.Article.ExtractArticleLidovky
+import com.kment.jsoup.novinky.Article.ExtractArticleNovinky
 import com.kment.jsoup.springdata.IArticleSpringDataRepository
 import com.kment.jsoup.springdata.ICommentSpringDataRepository
 import com.kment.jsoup.springdata.IPortalSpringDataRepository
 import idnes.source.ExtractArticlesIdnesPreparedData
 import lidovky.source.ExtractArticlesLidovkyPreparedData
+import novinky.source.ExtractArticlesNovinkyPreparedData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -25,15 +27,13 @@ class ExtractArticlesFromArchiveSpec extends Specification {
     @Autowired
     ExtractArticleIdnes extractArticleIdnes
     @Autowired
+    ExtractArticleNovinky extractArticleNovinky
+    @Autowired
     IArticleSpringDataRepository articleRepository
     @Autowired
     ICommentSpringDataRepository commentRepository
     @MockBean
     IPortalSpringDataRepository portalRepository
-
-
-    ExtractArticlesLidovkyPreparedData lidovkyPreparedData = new ExtractArticlesLidovkyPreparedData()
-    ExtractArticlesIdnesPreparedData idnesPreparedData = new ExtractArticlesIdnesPreparedData()
 
     @Unroll
     def "number of articles in #portalName archive for one day"() {
@@ -48,7 +48,7 @@ class ExtractArticlesFromArchiveSpec extends Specification {
         portalName | url                                                         | result
         "Lidovky"  | new ExtractArticlesLidovkyPreparedData().getUrlForArchive() | new ExtractArticlesLidovkyPreparedData().getNumberOfArticlesInArchive()
         "Idnes"    | new ExtractArticlesIdnesPreparedData().getUrlForArchive()   | new ExtractArticlesIdnesPreparedData().getNumberOfArticlesInArchive()
-//        "Novinky" | new ExtractArticlesNovinkyPreparedData().getUrlForArchive()   | new ExtractArticlesNovinkyPreparedData().getNumberOfArticlesInArchive()
+        "Novinky"  | new ExtractArticlesNovinkyPreparedData().getUrlForArchive() | new ExtractArticlesNovinkyPreparedData().getNumberOfArticlesInArchive()
     }
 
 

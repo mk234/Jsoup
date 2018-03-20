@@ -28,6 +28,6 @@ class ExtractMetaFromArticleIdnesPreparedData {
     }
 
     def getDate(){
-        return "08/02/2015 20:49:00"
+        return "08/02/2015 20:49"
     }
 }

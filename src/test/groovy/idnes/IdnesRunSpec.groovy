@@ -1,14 +1,11 @@
 package idnes
 
 import com.kment.jsoup.Application
-import com.kment.jsoup.entity.Article
-import com.kment.jsoup.entity.Comment
 import com.kment.jsoup.idnes.IdnesRun
 import com.kment.jsoup.springdata.IArticleSpringDataRepository
 import com.kment.jsoup.springdata.ICommentSpringDataRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.Rollback
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
 
@@ -23,7 +20,7 @@ class IdnesRunSpec extends Specification {
     @Autowired
     ICommentSpringDataRepository commentSpringDataRepository
 
-
+/*
     @Rollback
     def "extract comment from one specific article and save them and read them from db"() {
         given:
@@ -41,4 +38,5 @@ class IdnesRunSpec extends Specification {
         sizeArticleList+1 == sizeArticleListAfter
         sizeCommentList < sizeCommentListAfter
      }
+*/
 }

@@ -8,7 +8,7 @@ class ExtractArticlesNovinkyPreparedData {
     }
 
     int getNumberOfArticlesInArchive() {
-        return 35
+        return 63
     }
 
 

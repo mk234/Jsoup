@@ -1,4 +1,4 @@
-/*1521537409,,JIT Construction: v3737434,cs_CZ*/
+/*1521560373,,JIT Construction: v3737592,cs_CZ*/
 
 /**
  * Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
@@ -22,13 +22,11 @@
 try {
     window.FB || (function (window, fb_fif_window) {
         var apply = Function.prototype.apply;
-
         function bindContext(fn, thisArg) {
             return function _sdkBound() {
                 return apply.call(fn, thisArg, arguments);
             };
         }
-
         var global = {__type: 'JS_SDK_SANDBOX', window: window, document: window.document};
         var sandboxWhitelist = ['setTimeout', 'setInterval', 'clearTimeout', 'clearInterval'];
         for (var i = 0; i < sandboxWhitelist.length; i++) {
@@ -37,10 +35,8 @@ try {
         (function () {
             var self = window;
             var __DEV__ = 0;
-
             function emptyFunction() {
             }
-
             var __transform_includes = {};
             var __annotator, __bodyWrapper;
             var __w, __t;
@@ -1616,8 +1612,8 @@ try {
                 __d("JSSDKRuntimeConfig", [], {
                     "locale": "cs_CZ",
                     "rtl": false,
-                    "revision": "3737434",
-                    "sdkurl": "https:\/\/connect.facebook.net\/cs_CZ\/sdk.js",
+                    "revision": "3737592",
+                    "sdkurl": "http:\/\/connect.facebook.net\/cs_CZ\/sdk.js",
                     "sdkns": "FB"
                 });
                 __d("JSSDKConfig", [], {
@@ -8297,7 +8293,7 @@ try {
                     }
 
                     f.exports = i
-                }), null);
+                }), 18);
                 __d("sdk.XFBML.Quote", ["sdk.DOM", "DOMEventListener", "IframePlugin", "UnicodeUtils", "sdk.UA", "sdk.XD", "containsNode", "sdk.feature"], (function a(b, c, d, e, f, g, h, i, j, k, l, m, n, o) {
                     "use strict";
                     __p && __p();
@@ -8686,5 +8682,5 @@ try {
         }).call(global);
     })(window.inDapIF ? parent.window : window, window);
 } catch (e) {
-    new Image().src = "https:\/\/www.facebook.com\/" + 'common/scribe_endpoint.php?c=jssdk_error&m=' + encodeURIComponent('{"error":"LOAD", "extra": {"name":"' + e.name + '","line":"' + (e.lineNumber || e.line) + '","script":"' + (e.fileName || e.sourceURL || e.script) + '","stack":"' + (e.stackTrace || e.stack) + '","revision":"3737434","namespace":"FB","message":"' + e.message + '"}}');
+    new Image().src = "http:\/\/www.facebook.com\/" + 'common/scribe_endpoint.php?c=jssdk_error&m=' + encodeURIComponent('{"error":"LOAD", "extra": {"name":"' + e.name + '","line":"' + (e.lineNumber || e.line) + '","script":"' + (e.fileName || e.sourceURL || e.script) + '","stack":"' + (e.stackTrace || e.stack) + '","revision":"3737592","namespace":"FB","message":"' + e.message + '"}}');
 }

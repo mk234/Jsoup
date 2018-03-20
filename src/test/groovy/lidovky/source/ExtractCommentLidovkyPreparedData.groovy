@@ -12,16 +12,16 @@ class ExtractCommentLidovkyPreparedData {
     }
 
     def getNumberOfComments() {
-        return 24
+        return 8
     }
 
 
     def getFirsComment() {
-        return "Tam na vozovce musela být olejová skvrna, jinak to není možné, aby se stala tato nehoda. Audi, BMW, Ferrari, Maserati, Aston Martin a jiné sportovní speciály, to jsou tak skvělé auta. Můžete řezat v 250 km/h, téměř pravoúhlé zatáčky a ta auta prostě sedí. Jak říkám, musela tam být pořádná olejová skvrna do které najel.8-o"
+        return "Pane Konvičný, zapomněl jste na Marii Terezii..."
     }
 
     def getLastComment() {
-        return "Tak hlavně že nikoho nezabil a už ani nezabije. "
+        return "Českou Poštu si strčte do análů. Je to přežitek, který nahradily soukromé firmy a jsou levnější, rychlejší a spolehlivější."
     }
 
 }

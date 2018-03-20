@@ -30,7 +30,6 @@ class DatabaseSpec extends Specification {
         Article article = articleSpringDataRepository.save(new Article(name: expectedArticleName))
         String realArticleName = article.getName()
         then:
-        println realArticleName
         expectedArticleName == realArticleName
     }
 

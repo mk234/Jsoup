@@ -11,7 +11,7 @@ class NumberOfPagesLidovkyPreparedData {
     }
 
     def getNumberOFPagesInArchive() {
-        return 4
+        return 1
     }
 
     def getSelectorContent() {
@@ -23,7 +23,7 @@ class NumberOfPagesLidovkyPreparedData {
     }
 
     def getNumberOfPagesInArticle() {
-        return 3
+        return 2
     }
 
 }

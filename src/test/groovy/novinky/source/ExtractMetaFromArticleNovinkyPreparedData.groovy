@@ -8,26 +8,26 @@ class ExtractMetaFromArticleNovinkyPreparedData {
 
 
     Document getArticleAsDocument() {
-        return parseFromFile.getDocumentFromFile("html_novinky/article_source/article.htm")
+        return parseFromFile.getDocumentFromFile("html_novinky/article_source/article.htm", "UTF-8")
     }
 
     def getKeywors() {
-        return "Zahraničí"
+        return "d6, dálnice, nehoda,, Krimi"
     }
 
     def getAuthor() {
-        return "ČTK"
+        return "ok, jap, Novinky"
     }
 
     def getDescription() {
-        return "Zpráva republikánských kongresmanů o vyšetřování údajného ruského vlivu na americké prezidentské volby bude zveřejněna v pátek. Oznámil to ve čtvrtek podle agentury Reuters zástupce Bílého domu. Podle něj se očekává, že zprávu zveřejní výbor pro kontrolu činnosti tajných služeb Sněmovny reprezentantů, který už s jejím zveřejněním dříve vyslovil souhlas."
+        return "Několik desítek minut stála v úterý ráno doprava na dálnici D6 ve směru na Karlovy Vary. Kamiónu se tam převrátil přívěs. Nikdo se nezranil. "
     }
 
     def getNumberOfComments() {
-        return 35
+        return 1
     }
 
     def getDate() {
-        return "02/01/2018 21:45:00"
+        return "03/20/2018 08:47"
     }
 }

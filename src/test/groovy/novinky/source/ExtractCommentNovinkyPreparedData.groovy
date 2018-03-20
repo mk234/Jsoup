@@ -8,20 +8,20 @@ class ExtractCommentNovinkyPreparedData {
 
 
     Document getCommentPageAsDocument() {
-        return parseFromFile.getDocumentFromFile("html_novinky/comments_source/discussion_one_page.htm")
+        return parseFromFile.getDocumentFromFile("html_novinky/comments_source/discussion_one_page.htm", "UTF-8")
     }
 
     def getNumberOfComments() {
-        return 24
+        return 3
     }
 
 
     def getFirsComment() {
-        return "Tam na vozovce musela být olejová skvrna, jinak to není možné, aby se stala tato nehoda. Audi, BMW, Ferrari, Maserati, Aston Martin a jiné sportovní speciály, to jsou tak skvělé auta. Můžete řezat v 250 km/h, téměř pravoúhlé zatáčky a ta auta prostě sedí. Jak říkám, musela tam být pořádná olejová skvrna do které najel.8-o"
+        return "To je tak, když někdo z druhé strany republiky tady dělá chytrého a přitom se nepodíval dál, než za humna."
     }
 
     def getLastComment() {
-        return "Tak hlavně že nikoho nezabil a už ani nezabije. "
+        return "Jen se podívejte na tu fotku!? Uzoulinká silnička bez možnosti úniku,strmé stoupání,žádný pruh pro velepomalá a přetížená vozidla...to nemluvím o nějakém vysoce odolném podloží (beton) aby nebyl roletovitý efekt. Prostě takhle se stavěla Autobahn za Německa. Vlastně ani se tak tehdy nestavělo.Co je nejhorší není žádná objízdná trasa,....tedy ona je již 80 let hotová ,ale žabičkáři protestují.A Sosanům s Kapšem se to náramě hodí."
     }
 
 }
