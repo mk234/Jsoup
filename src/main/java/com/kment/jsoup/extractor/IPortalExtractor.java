@@ -33,4 +33,6 @@ public interface IPortalExtractor {
     Document parse(String urlString) throws IOException;
 
     String prepareUrlForCommentPage(String articleUrl) throws IOException;
+
+    String getUrl();
 }

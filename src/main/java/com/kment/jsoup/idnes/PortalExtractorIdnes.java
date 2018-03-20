@@ -95,4 +95,9 @@ public class PortalExtractorIdnes implements IPortalExtractor {
     public String prepareUrlForCommentPage(String articleUrl) {
         return prepareUrlForCommentaryIdnes.prepareUrlForCommentPage(articleUrl);
     }
+
+    @Override
+    public String getUrl() {
+        return "www.idnes.cz";
+    }
 }

@@ -95,4 +95,9 @@ public class PortalExtractorNovinky implements IPortalExtractor {
     public String prepareUrlForCommentPage(String articleUrl) throws IOException {
         return prepareUrlForCommentaryNovinky.prepareUrlForCommentPage(articleUrl);
     }
+
+    @Override
+    public String getUrl() {
+        return "www.novinky.cz";
+    }
 }

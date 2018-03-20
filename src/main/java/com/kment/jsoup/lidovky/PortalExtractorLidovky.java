@@ -95,4 +95,9 @@ public class PortalExtractorLidovky implements IPortalExtractor {
     public String prepareUrlForCommentPage(String articleUrl) {
         return prepareUrlForCommentary.prepareUrlForCommentPage(articleUrl);
     }
+
+    @Override
+    public String getUrl() {
+        return "www.lidovky.cz";
+    }
 }

@@ -15,6 +15,7 @@ public class PrepareUrlForArchivesIdnes {
         String dateString = new DateTime(date).toString("dd.MM.yyyy");
         System.out.println(dateString);
         String url = prefix + dateString + postfix;
+        System.out.println("idnes");
         return url;
     }
 
