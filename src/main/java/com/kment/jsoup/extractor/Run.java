@@ -6,10 +6,7 @@ import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import com.kment.jsoup.springdata.ICommentSpringDataRepository;
 import com.kment.jsoup.springdata.IPortalSpringDataRepository;
 import org.joda.time.DateTime;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -18,11 +15,14 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Repository
 @Transactional
-public class Run implements ApplicationContextAware {
+public class Run {
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
     @Autowired
@@ -31,8 +31,6 @@ public class Run implements ApplicationContextAware {
     ICommentSpringDataRepository commentSpringDataRepository;
     @PersistenceContext
     EntityManager entityManager;
-    @Autowired
-    private ApplicationContext applicationContext;
 
     final static int batchSize = 250;
     List<Comment> commentEntities = new ArrayList<>();
@@ -40,49 +38,47 @@ public class Run implements ApplicationContextAware {
     String commentUrl = "";
     long idArticle;
 
-    public void extractAndSaveYesterday() {
-        Map<String, IPortalExtractor> extractors = applicationContext.getBeansOfType(IPortalExtractor.class);
-       for (IPortalExtractor portalExtractor : extractors.values()) {
-            System.out.println(portalExtractor.getPortalName());
-            try {
+    public void extractAndSaveYesterday(IPortalExtractor portalExtractor) {
+        System.out.println(portalExtractor.getPortalName());
+        try {
+            clearLists();
+            articleEntities = portalExtractor.findArticles(portalExtractor.prepareUrlForYesterday());
+            saveArticle(portalExtractor);
+            saveComments();
+            flushAndClearEntityManager();
+            System.out.println("yesterday done");
+        } catch (Exception e) {
+            e.printStackTrace();// TODO log exception
+        }
+
+    }
+
+    public void extractAndSaveMultipleDaysBefereYesterday(int numbebOfDaysBeforeYesterday, IPortalExtractor portalExtractor) {
+        try {
+            Date datum;
+            String day;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            final Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE, -1);
+            for (int i = 0; i < numbebOfDaysBeforeYesterday; i++) {
                 clearLists();
-                articleEntities = portalExtractor.findArticles(portalExtractor.prepareUrlForYesterday());
+                calendar.add(Calendar.DATE, -1);
+                Date yesterday = calendar.getTime();
+                day = new DateTime(yesterday).toString("dd.MM.yyyy");
+                datum = simpleDateFormat.parse(day);
+                articleEntities = portalExtractor.findArticles(portalExtractor.prepareUrl(datum));
                 saveArticle(portalExtractor);
                 saveComments();
                 flushAndClearEntityManager();
-                System.out.println("yesterday done");
-            } catch (Exception e) {
-                e.printStackTrace();// TODO log exception
+                System.out.println(datum);
+
             }
+            System.out.println(numbebOfDaysBeforeYesterday + " done");
+        } catch (Exception e) {
+            e.printStackTrace();// TODO log exception
         }
     }
 
-    public void extractAndSaveMultipleDaysBefereYesterday(int numbebOfDaysBeforeYesterday) {
-        Map<String, IPortalExtractor> extractors = applicationContext.getBeansOfType(IPortalExtractor.class);
-        for (IPortalExtractor portalExtractor : extractors.values()) {
-            try {
-                Date datum;
-                String day;
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
-                final Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.DATE, -1);
-                for (int i = 0; i < numbebOfDaysBeforeYesterday; i++) {
-                    clearLists();
-                    calendar.add(Calendar.DATE, -1);
-                    Date yesterday = calendar.getTime();
-                    day = new DateTime(yesterday).toString("dd.MM.yyyy");
-                    datum = simpleDateFormat.parse(day);
-                    articleEntities = portalExtractor.findArticles(portalExtractor.prepareUrl(datum));
-                    saveArticle(portalExtractor);
-                    saveComments();
-                    flushAndClearEntityManager();
-                }
-                System.out.println(numbebOfDaysBeforeYesterday + " done");
-            } catch (Exception e) {
-                e.printStackTrace();// TODO log exception
-            }
-        }
-    }
 
     private void flushAndClearEntityManager() {
         entityManager.flush();
@@ -93,7 +89,7 @@ public class Run implements ApplicationContextAware {
         System.out.println(commentEntities.size());
         for (int i = 0; i < commentEntities.size(); i++) {
             Comment comment = commentEntities.get(i);
-            //             entityManager.persist(comment);
+            entityManager.persist(comment);
             if (i % batchSize == 0) {
                 flushAndClearEntityManager();
             }
@@ -115,8 +111,5 @@ public class Run implements ApplicationContextAware {
         articleEntities.clear();
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 
-    }
 }

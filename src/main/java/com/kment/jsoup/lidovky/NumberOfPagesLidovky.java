@@ -42,6 +42,7 @@ public class NumberOfPagesLidovky {
     public int numberOfPagesComment(Document document) {
         Element element = document.select("div.disc-list").first();
         ExtractMetaFromArticleLidovky Ex = new ExtractMetaFromArticleLidovky();
+// nutno osetrin na null
         Elements elements = element.select("ul.itemrow").select("li");
         int number = Ex.extractDigits(elements.first().text());
         double numbertOfPages = number / 30.0;

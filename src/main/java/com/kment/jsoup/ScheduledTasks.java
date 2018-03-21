@@ -27,7 +27,7 @@ public class ScheduledTasks {
     IPortalSpringDataRepository portalSpringDataRepository;
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
-    static int NUMBER_OF_DAYS = 30;
+
     static int NUMBER_OF_DAYS_FOR_UPDATE = 2;
     @Autowired
     private ApplicationContext applicationContext;
@@ -42,11 +42,11 @@ public class ScheduledTasks {
         log.info("Time is ", dateFormat.format(new Date()));
         for (IPortalExtractor portalExtractor : extractors.values()) {
             try {
-                if (articleSpringDataRepository.findByNumberOfDayBeforeToday(0).size() == 0) {
+                //    if (articleSpringDataRepository.findByNumberOfDayBeforeToday(0).size() == 0) {
                     System.out.println("saving");
-                    run.extractAndSaveYesterday();
-                    update.updateIdnes(NUMBER_OF_DAYS_FOR_UPDATE);
-                }
+                run.extractAndSaveYesterday(portalExtractor);
+                update.updateIdnes(NUMBER_OF_DAYS_FOR_UPDATE, portalExtractor);
+                //  }
                 System.out.println("done");
             } catch (Exception e) {
                 e.printStackTrace();// TODO log exception

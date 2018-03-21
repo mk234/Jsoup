@@ -7,10 +7,7 @@ import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import com.kment.jsoup.springdata.ICommentSpringDataRepository;
 import com.kment.jsoup.springdata.IPortalSpringDataRepository;
 import org.jsoup.nodes.Document;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -18,12 +15,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @Component
-public class Update implements ApplicationContextAware {
-    @Autowired
-    private ApplicationContext applicationContext;
+public class Update {
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository;
     @Autowired
@@ -31,20 +25,17 @@ public class Update implements ApplicationContextAware {
     @Autowired
     IPortalSpringDataRepository iPortalSpringDataRepository;
 
-    public void updateIdnes(int numberOfDayToUpdate) {
-        Map<String, IPortalExtractor> extractors = applicationContext.getBeansOfType(IPortalExtractor.class);
-        for (IPortalExtractor portalExtractor : extractors.values()) {
-            try {
-                List<Portal> portals = iPortalSpringDataRepository.findByName(portalExtractor.getPortalName());
-                List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate, portals.get(0).getId());
-                System.out.println("-----------");
-                System.out.println(articleList.toString());
-                System.out.println("-----------");
-                findArticleWithNewComments(articleList, portalExtractor);
-                System.out.println("update done");
-            } catch (Exception e) {
-                e.printStackTrace();// TODO log exception
-            }
+    public void updateIdnes(int numberOfDayToUpdate, IPortalExtractor portalExtractor) {
+        try {
+            List<Portal> portals = iPortalSpringDataRepository.findByName(portalExtractor.getPortalName());
+            List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate, portals.get(0).getId());
+            System.out.println("-----------");
+            System.out.println(articleList.toString());
+            System.out.println("-----------");
+            findArticleWithNewComments(articleList, portalExtractor);
+            System.out.println("update done");
+        } catch (Exception e) {
+            e.printStackTrace();// TODO log exception
         }
     }
 
@@ -80,9 +71,4 @@ public class Update implements ApplicationContextAware {
         }
     }
 
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-
-    }
 }
