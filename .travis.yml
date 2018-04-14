@@ -1,13 +1,4 @@
 matrix:
   include:
-   language: groovy
-  install: true
-jdk:
-  - oraclejdk8
-script:
-  - ./gradlew build --scan -s
-
     - language: java
-    jdk: oraclejdk8
-      script:
-        - mvn run
+      jdk: oraclejdk8
