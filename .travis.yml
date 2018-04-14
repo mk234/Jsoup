@@ -3,3 +3,17 @@ jdk: oraclejdk8
 sudo: false
 script:
 - mvn test
+
+
+matrix:
+  include:
+    - language: python
+      python: 2.7
+      before_script:
+        - cd backend/tests
+      script:
+        - mvn test -B
+
+    - language: groovy
+      script:
+        - mvn run
