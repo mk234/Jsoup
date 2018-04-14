@@ -1,12 +1,9 @@
 matrix:
   include:
-    - language: python
-      python: 2.7
-      before_script:
-        - cd backend/tests
-      script:
-        - mvn test -B
-
     - language: groovy
+      script:
+        - mvn test
+
+    - language: java
       script:
         - mvn run
