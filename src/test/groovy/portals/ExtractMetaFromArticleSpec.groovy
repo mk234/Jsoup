@@ -94,8 +94,10 @@ class ExtractMetaFromArticleSpec extends Specification {
         def extractor = this."extractMetaFromArticle${portalName}"
         when:
         def dateFromArticle = extractor.getCreatedDate(articleAsDocument)
+        println "datum z artikli " + dateFromArticle
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm", new Locale("cze", "CZ"))
         String reportDate = df.format(dateFromArticle)
+        println "report date " + reportDate
         then:
         reportDate == date
         where:
