@@ -58,7 +58,7 @@ public class ExtractMetaFromArticleNovinky {
         } else {
             System.out.println("old date " + dateString);
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
-            sdf.setTimeZone(TimeZone.getTimeZone("CET"));
+            sdf.setTimeZone(TimeZone.getDefault());
             newDate = sdf.parse(dateString);
             System.out.println("new date " + newDate);
             DateTime dateTime_UTC = new DateTime(newDate, DateTimeZone.UTC);
