@@ -62,10 +62,6 @@ public class ExtractCommentLidovky {
     private List<Comment> getCommentsFromElements(Elements selectedDivs, long idArticle) throws ParseException {
         List<Comment> commentList = new ArrayList<>();
         for (Element div : selectedDivs) {
-            System.out.println("jmeno " + div.select("span.name").first().text());
-//            System.out.println("second span " + div.select("span").set(1, div).text());
-            System.out.println(div.select("td.right").first().select("p").set(1, div).text());
-            System.out.println(getCreatedDate(div.select("span").set(1, div)));
             String name = div.select("span.name").first().text();
             Date date = getCreatedDate(div.select("span").set(1, div));
             String content = div.select("td.right").first().select("p").set(1, div).text();

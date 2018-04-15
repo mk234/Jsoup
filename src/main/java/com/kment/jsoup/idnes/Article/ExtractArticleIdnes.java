@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +20,7 @@ public class ExtractArticleIdnes {
     @Autowired
     ExtractMetaFromArticleIdnes extractMetaFromArticleIdnes;
 
-    public List<Article> findArticles(String url) throws IOException, ParseException {
+    public List<Article> findArticles(String url) throws IOException {
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         return findArticles(url, document);
@@ -58,6 +57,24 @@ public class ExtractArticleIdnes {
 
     private List<Article> getArticles(Elements selectedDivs, Document document) throws IOException {
         List<Article> articleList = new ArrayList<>();
+        ParseUrl parseUrl = new ParseUrl();
+        for (Element div : selectedDivs) {
+            Elements name = div.select("h3");
+            Element link = div.select("a").first();
+            String absHref = link.attr("abs:href");
+            Document documentArticle = parseUrl.parse(absHref);
+            articleList.add(new Article(name.text(), absHref,
+                    extractMetaFromArticleIdnes.getCreatedDate(documentArticle), new Date(),
+                    extractMetaFromArticleIdnes.getKeywors(documentArticle), extractMetaFromArticleIdnes.getDescription(documentArticle),
+                    1, extractMetaFromArticleIdnes.getNumburOfComment(documentArticle),
+                    extractMetaFromArticleIdnes.getAuthor(documentArticle)));
+        }
+        return articleList;
+    }
+
+
+    /*   private List<Article> getArticles(Elements selectedDivs, Document document) throws IOException {
+        List<Article> articleList = new ArrayList<>();
         String selectorName = "div.cell";
         ParseUrl parseUrl = new ParseUrl();
         for (Element div : selectedDivs) {
@@ -73,7 +90,6 @@ public class ExtractArticleIdnes {
                     extractMetaFromArticleIdnes.getAuthor(documentArticle)));
         }
         return articleList;
-    }
-
+    }*/
 
 }

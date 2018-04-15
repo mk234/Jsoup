@@ -29,9 +29,6 @@ public class Update {
         try {
             List<Portal> portals = iPortalSpringDataRepository.findByName(portalExtractor.getPortalName());
             List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate, portals.get(0).getId());
-            System.out.println("-----------");
-            System.out.println(articleList.toString());
-            System.out.println("-----------");
             findArticleWithNewComments(articleList, portalExtractor);
             System.out.println("update done");
         } catch (Exception e) {
@@ -52,8 +49,6 @@ public class Update {
             dateLastCollection = article.getLastCollection();
             Document document = portalExtractor.parse(article.getUrl());
             int numberOfComment = portalExtractor.getNumburOfComment(document);
-            System.out.println(article.getCreated());
-            System.out.println(numberOfComment);
             if (numberOfComment > article.getNumberOfComments()) {
                 commentList = portalExtractor.findComments(portalExtractor.prepareUrlForCommentPage(article.getUrl()), article.getId());
                 for (int i = 0; i < commentList.size(); i++) {
@@ -65,7 +60,6 @@ public class Update {
                 articleSpringDataRepository.save(article);
             }
             article.setLastCollection(new Date());
-            System.out.println(article.getNumberOfComments());
             System.out.println(article.getNumberOfComments() - numberOfComment + " new comments");
             articleSpringDataRepository.save(article);
         }

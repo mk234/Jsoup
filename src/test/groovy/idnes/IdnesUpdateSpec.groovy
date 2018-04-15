@@ -1,8 +1,6 @@
 package idnes
 
 import com.kment.jsoup.Application
-import com.kment.jsoup.idnes.IdnesRun
-import com.kment.jsoup.idnes.IdnesUpdate
 import com.kment.jsoup.springdata.IArticleSpringDataRepository
 import com.kment.jsoup.springdata.ICommentSpringDataRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,12 +14,12 @@ class IdnesUpdateSpec extends Specification {
 
     @Autowired
     IArticleSpringDataRepository articleSpringDataRepository
-    @Autowired
-    IdnesRun idnesRun
+//    @Autowired
+//    IdnesRun idnesRun
     @Autowired
     ICommentSpringDataRepository commentSpringDataRepository
-    @Autowired
-    IdnesUpdate idnesUpdate
+//    @Autowired
+//    IdnesUpdate idnesUpdate
 
     /* @Rollback
      def "find new comment"() {

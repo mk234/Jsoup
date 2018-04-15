@@ -1,9 +1,9 @@
 package com.kment.jsoup;
 
+import com.kment.jsoup.entity.Portal;
 import com.kment.jsoup.extractor.IPortalExtractor;
 import com.kment.jsoup.extractor.Run;
 import com.kment.jsoup.extractor.Update;
-import com.kment.jsoup.springdata.IArticleSpringDataRepository;
 import com.kment.jsoup.springdata.IPortalSpringDataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +25,6 @@ public class ScheduledTasks {
 
     @Autowired
     IPortalSpringDataRepository portalSpringDataRepository;
-    @Autowired
-    IArticleSpringDataRepository articleSpringDataRepository;
 
     static int NUMBER_OF_DAYS_FOR_UPDATE = 2;
     @Autowired
@@ -42,11 +40,14 @@ public class ScheduledTasks {
         log.info("Time is ", dateFormat.format(new Date()));
         for (IPortalExtractor portalExtractor : extractors.values()) {
             try {
-                //    if (articleSpringDataRepository.findByNumberOfDayBeforeToday(0).size() == 0) {
-                    System.out.println("saving");
+                System.out.println(portalSpringDataRepository.findByLastCollectionAndName(portalExtractor.getPortalName(), new Date()));
+                System.out.println("saving");
+                System.out.println(portalExtractor.getPortalName());
                 run.extractAndSaveYesterday(portalExtractor);
                 update.updateIdnes(NUMBER_OF_DAYS_FOR_UPDATE, portalExtractor);
-                //  }
+                Portal portal = portalSpringDataRepository.findByName(portalExtractor.getPortalName()).get(0);
+                portal.setLastCollection(new Date());
+                portalSpringDataRepository.save(portal);
                 System.out.println("done");
             } catch (Exception e) {
                 e.printStackTrace();// TODO log exception
