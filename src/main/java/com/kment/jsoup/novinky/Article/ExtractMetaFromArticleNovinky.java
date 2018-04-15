@@ -58,8 +58,7 @@ public class ExtractMetaFromArticleNovinky {
             System.out.println("old date " + dateString);
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
             newDate = sdf.parse(dateString);
-            System.out.println("new date " + newDate);
-
+     
             DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, new Locale("cz", "CZ"));
             String formattedDate = df.format(newDate);
 
