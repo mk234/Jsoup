@@ -1,16 +1,15 @@
 package com.kment.jsoup.novinky.Article;
 
 import org.apache.commons.lang3.time.DateUtils;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
+import java.util.Locale;
 
 @Component
 public class ExtractMetaFromArticleNovinky {
@@ -58,13 +57,17 @@ public class ExtractMetaFromArticleNovinky {
         } else {
             System.out.println("old date " + dateString);
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
-            sdf.setTimeZone(TimeZone.getDefault());
             newDate = sdf.parse(dateString);
             System.out.println("new date " + newDate);
-            DateTime dateTime_UTC = new DateTime(newDate, DateTimeZone.UTC);
-            newDate = dateTime_UTC.toDate();
-            System.out.println("converted date " + newDate);
-            return newDate;
+
+            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, new Locale("cz", "CZ"));
+            String formattedDate = df.format(newDate);
+
+            System.out.println("foramted date " + formattedDate);
+            sdf = new SimpleDateFormat("MMMMM dd, yyyy HH:mm:ss a z", Locale.US);
+            System.out.println("new formated date " + sdf.parse(formattedDate));
+            return sdf.parse(formattedDate);
+//            return newDate;
         }
 
     }
