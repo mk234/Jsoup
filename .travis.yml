@@ -2,4 +2,4 @@ language: java
 jdk: oraclejdk8
 script: "mvn test"
 before_install:
-  - sudo apt-get update && sudo apt-get --reinstall install -qq language-pack-cz
+  - sudo apt-get update && sudo apt-get --reinstall install -qq language-pack-en language-pack-cz
