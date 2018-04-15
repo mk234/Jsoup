@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Component
 public class ExtractMetaFromArticleNovinky {
@@ -57,6 +58,7 @@ public class ExtractMetaFromArticleNovinky {
         } else {
             System.out.println("old date " + dateString);
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
+            sdf.setTimeZone(TimeZone.getTimeZone("CET"));
             newDate = sdf.parse(dateString);
             System.out.println("new date " + newDate);
             DateTime dateTime_UTC = new DateTime(newDate, DateTimeZone.UTC);
