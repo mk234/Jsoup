@@ -1,6 +1,8 @@
 package com.kment.jsoup.novinky.Article;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
@@ -21,7 +23,8 @@ public class ExtractMetaFromArticleNovinky {
         }
         if (dateString.contains("Aktualizováno")) {
             System.out.println("remove aktualizovano");
-            dateString = dateString = dateString.substring(0, dateString.indexOf("(") - 1);
+            dateString = dateString.substring(0, dateString.indexOf("(") - 1);
+            System.out.println("aktualiz " + dateString);
         }
         if (dateString.contains("Dnes")) {
             dateString = dateString.replaceAll("Dnes", "");
@@ -52,9 +55,13 @@ public class ExtractMetaFromArticleNovinky {
             System.out.println(newDate);
             return newDate;
         } else {
-            System.out.println(dateString);
+            System.out.println("old date " + dateString);
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
             newDate = sdf.parse(dateString);
+            System.out.println("new date " + newDate);
+            DateTime dateTime_UTC = new DateTime(newDate, DateTimeZone.UTC);
+            newDate = dateTime_UTC.toDate();
+            System.out.println("converted date " + newDate);
             return newDate;
         }
 
