@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.Rollback
 import org.springframework.transaction.annotation.Transactional
+import spock.lang.Ignore
 import spock.lang.Specification
 
 import java.text.SimpleDateFormat
@@ -23,6 +24,7 @@ class DatabaseSpec extends Specification {
     @Autowired
     IPortalSpringDataRepository portalSpringDataRepository
 
+    @Ignore
     @Rollback
     def "save article to db and read it"() {
         when:
@@ -34,6 +36,7 @@ class DatabaseSpec extends Specification {
         expectedArticleName == realArticleName
     }
 
+    @Ignore
     @Rollback
     def "update date of last collection and return new value"() {
         when:
@@ -54,7 +57,7 @@ class DatabaseSpec extends Specification {
         oldDateFromArticle.before(updateArticle.getLastCollection())
     }
 
-
+    @Ignore
     @Rollback
     def "find portal by name"() {
         given:
@@ -65,7 +68,7 @@ class DatabaseSpec extends Specification {
         portalList.contains(portal)
     }
 
-
+    @Ignore
     def "find yesterday articles"() {
         when:
         List<Article> articleList = articleSpringDataRepository.findByNumberOfDayBeforeToday(1)

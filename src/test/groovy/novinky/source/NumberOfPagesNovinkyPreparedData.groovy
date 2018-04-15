@@ -7,7 +7,7 @@ class NumberOfPagesNovinkyPreparedData {
     ParseFromFile parseFromFile = new ParseFromFile()
 
     Document getDocumentForArchive() {
-        return parseFromFile.'getDocumentFromFileWindows-1250'("html_novinky/archiv_source/archive_page1.htm")
+        return parseFromFile.getDocumentFromFile("html_novinky/archiv_source/archive_page1.htm")
     }
 
     def getNumberOFPagesInArchive() {
@@ -19,11 +19,11 @@ class NumberOfPagesNovinkyPreparedData {
     }
 
     Document getDocumentForComment() {
-        return parseFromFile.getDocumentFromFile("html_novinky/comments_source/discussion_page1.htm", "UTF-8")
+        return parseFromFile.getDocumentFromFile("html_novinky/comments_source/discussion_page1.html")
     }
 
     def getNumberOfPagesInArticle() {
-        return 7
+        return 2
     }
 
 }

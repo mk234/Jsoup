@@ -29,6 +29,7 @@ class ExtractCommentSpec extends Specification {
         def extractor = this."extractComment${portalName}"
         when:
         List<Comment> commentList = extractor.findComments("", 0, instance.getCommentPageAsDocument())
+        println instance.getCommentPageAsDocument()
         println commentList.toString()
         then:
         commentList.size() == instance.getNumberOfComments()

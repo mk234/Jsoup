@@ -8,20 +8,20 @@ class ExtractCommentNovinkyPreparedData {
 
 
     Document getCommentPageAsDocument() {
-        return parseFromFile.getDocumentFromFile("html_novinky/comments_source/discussion_one_page.htm", "UTF-8")
+        return parseFromFile.getDocumentFromFile("html_novinky/comments_source/discussion_one_page.html")
     }
 
     def getNumberOfComments() {
-        return 3
+        return 29
     }
 
 
     def getFirsComment() {
-        return "To je tak, když někdo z druhé strany republiky tady dělá chytrého a přitom se nepodíval dál, než za humna."
+        return "Josef Andrle, Ždánov.............................................. ČR leží uprostřed Evropy, je proto velmi výhodné přes nás létat, a ČR je ještě velice benevolentní, nejen k povolení letů přes nás, ale v cenách - máme nejlevnější ceny přeletu - informace ze zdrojů dokumentárního pořadu v TV. A naší vádě je to jedno, hlavně že \"kapají\" penízky, omezí to až nějaká letadla na nás spadnou, dříve ne, uvidíte.Prostě máme ve vládě lidi, co chtějí jen peníze, rozum je jim na hony vzdálený!"
     }
 
     def getLastComment() {
-        return "Jen se podívejte na tu fotku!? Uzoulinká silnička bez možnosti úniku,strmé stoupání,žádný pruh pro velepomalá a přetížená vozidla...to nemluvím o nějakém vysoce odolném podloží (beton) aby nebyl roletovitý efekt. Prostě takhle se stavěla Autobahn za Německa. Vlastně ani se tak tehdy nestavělo.Co je nejhorší není žádná objízdná trasa,....tedy ona je již 80 let hotová ,ale žabičkáři protestují.A Sosanům s Kapšem se to náramě hodí."
+        return "Venku je krásně, všechno kvete a včelky mají napilno, ale někdy si říkám, když je 23 stupnu v dubnu a slunce, kolik bude asi v červenci :))"
     }
 
 }

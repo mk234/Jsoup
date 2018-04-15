@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest
-class ExtractArticleIdnesTest extends Specification {
+class ExtractArticleIdnesSpec extends Specification {
     @Autowired
     ExtractArticleIdnes extractArticle
     @Autowired

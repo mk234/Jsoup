@@ -8,7 +8,7 @@ class ExtractMetaFromArticleNovinkyPreparedData {
 
 
     Document getArticleAsDocument() {
-        return parseFromFile.getDocumentFromFile("html_novinky/article_source/article.htm", "UTF-8")
+        return parseFromFile.getDocumentFromFile("html_novinky/article_source/article.html")
     }
 
     def getKeywors() {
@@ -24,7 +24,7 @@ class ExtractMetaFromArticleNovinkyPreparedData {
     }
 
     def getNumberOfComments() {
-        return 1
+        return 0
     }
 
     def getDate() {

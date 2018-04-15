@@ -5,15 +5,11 @@ import com.kment.jsoup.entity.Article
 import com.kment.jsoup.idnes.Article.ExtractArticleIdnes
 import com.kment.jsoup.lidovky.Article.ExtractArticleLidovky
 import com.kment.jsoup.novinky.Article.ExtractArticleNovinky
-import com.kment.jsoup.springdata.IArticleSpringDataRepository
-import com.kment.jsoup.springdata.ICommentSpringDataRepository
-import com.kment.jsoup.springdata.IPortalSpringDataRepository
 import idnes.source.ExtractArticlesIdnesPreparedData
 import lidovky.source.ExtractArticlesLidovkyPreparedData
 import novinky.source.ExtractArticlesNovinkyPreparedData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.stereotype.Repository
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -28,12 +24,7 @@ class ExtractArticlesFromArchiveSpec extends Specification {
     ExtractArticleIdnes extractArticleIdnes
     @Autowired
     ExtractArticleNovinky extractArticleNovinky
-    @Autowired
-    IArticleSpringDataRepository articleRepository
-    @Autowired
-    ICommentSpringDataRepository commentRepository
-    @MockBean
-    IPortalSpringDataRepository portalRepository
+
 
     @Unroll
     def "number of articles in #portalName archive for one day"() {
