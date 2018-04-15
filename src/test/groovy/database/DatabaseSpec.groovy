@@ -26,6 +26,7 @@ class DatabaseSpec extends Specification {
     @Rollback
     def "save article to db and read it"() {
         when:
+        articleSpringDataRepository.flush()
         String expectedArticleName = "test article"
         Article article = articleSpringDataRepository.save(new Article(name: expectedArticleName))
         String realArticleName = article.getName()
