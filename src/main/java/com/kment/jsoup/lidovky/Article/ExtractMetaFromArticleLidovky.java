@@ -16,9 +16,11 @@ public class ExtractMetaFromArticleLidovky {
             return new Date();
         String stringDate = document.select("meta[property=article:published_time]").first()
                 .attr("content");
+        System.out.println("string datw " + stringDate);
         DateTimeZone zone = DateTimeZone.getDefault();
         DateTime dateTime_Utc = new DateTime(stringDate, zone);
         Date date = dateTime_Utc.toDate();
+        System.out.println("date " + date);
         return date;
     }
 
