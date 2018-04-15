@@ -1,9 +1,6 @@
 package idnes
 
 import com.kment.jsoup.Application
-import com.kment.jsoup.springdata.IArticleSpringDataRepository
-import com.kment.jsoup.springdata.ICommentSpringDataRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
@@ -12,13 +9,13 @@ import spock.lang.Specification
 @SpringBootTest(classes = Application.class)
 class IdnesUpdateSpec extends Specification {
 
-    @Autowired
-    IArticleSpringDataRepository articleSpringDataRepository
 //    @Autowired
-//    IdnesRun idnesRun
-    @Autowired
-    ICommentSpringDataRepository commentSpringDataRepository
+//    IArticleSpringDataRepository articleSpringDataRepository
+////    @Autowired
+////    IdnesRun idnesRun
 //    @Autowired
+//    ICommentSpringDataRepository commentSpringDataRepository
+////    @Autowired
 //    IdnesUpdate idnesUpdate
 
     /* @Rollback

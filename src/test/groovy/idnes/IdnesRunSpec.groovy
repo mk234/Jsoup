@@ -1,9 +1,6 @@
 package idnes
 
 import com.kment.jsoup.Application
-import com.kment.jsoup.springdata.IArticleSpringDataRepository
-import com.kment.jsoup.springdata.ICommentSpringDataRepository
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.transaction.annotation.Transactional
 import spock.lang.Specification
@@ -14,10 +11,10 @@ class IdnesRunSpec extends Specification {
 
 //    @Autowired
 //    IdnesRun idnesRun
-    @Autowired
-    IArticleSpringDataRepository articleSpringDataRepository
-    @Autowired
-    ICommentSpringDataRepository commentSpringDataRepository
+//    @Autowired
+//    IArticleSpringDataRepository articleSpringDataRepository
+//    @Autowired
+//    ICommentSpringDataRepository commentSpringDataRepository
 
 /*
     @Rollback
