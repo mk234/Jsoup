@@ -11,9 +11,11 @@ import novinky.source.ExtractArticlesNovinkyPreparedData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.stereotype.Repository
+import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
 
+@Ignore
 @SpringBootTest(classes = Application.class)
 @Repository
 class ExtractArticlesFromArchiveSpec extends Specification {
