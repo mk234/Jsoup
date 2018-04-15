@@ -23,7 +23,6 @@ class DatabaseSpec extends Specification {
     @Autowired
     IPortalSpringDataRepository portalSpringDataRepository
 
-
     @Rollback
     def "save article to db and read it"() {
         when:
@@ -34,7 +33,6 @@ class DatabaseSpec extends Specification {
         then:
         expectedArticleName == realArticleName
     }
-
 
     @Rollback
     def "update date of last collection and return new value"() {
