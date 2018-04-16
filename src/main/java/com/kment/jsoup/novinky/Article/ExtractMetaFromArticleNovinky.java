@@ -1,20 +1,19 @@
 package com.kment.jsoup.novinky.Article;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 @Component
 public class ExtractMetaFromArticleNovinky {
     //done
-    public Date getCreatedDate(Document document) throws ParseException {
+    public Date getCreatedDate(Document document) {
         String dateString = document.select("p#articleDate").text();
         Date newDate = new Date();
         if (dateString.contains("-")) {
@@ -56,17 +55,24 @@ public class ExtractMetaFromArticleNovinky {
             return newDate;
         } else {
             System.out.println("old date " + dateString);
-            SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
-            newDate = sdf.parse(dateString);
-     
-            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, new Locale("cz", "CZ"));
-            String formattedDate = df.format(newDate);
+//            SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
+//            newDate = sdf.parse(dateString);
 
-            System.out.println("foramted date " + formattedDate);
-            sdf = new SimpleDateFormat("MMMMM dd, yyyy HH:mm:ss a z", Locale.US);
-            System.out.println("new formated date " + sdf.parse(formattedDate));
-            return sdf.parse(formattedDate);
-//            return newDate;
+            DateTimeFormatter format = DateTimeFormat.forPattern("EEEE dd. MMM yyyy, HH:mm");
+            DateTime time = format.parseDateTime(dateString);
+            System.out.println("time " + time);
+            newDate = time.toDate();
+            System.out.println("new date " + newDate);
+//            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, new Locale("cz", "CZ"));
+//            String formattedDate = df.format(newDate);
+//
+//            System.out.println("foramted date " + formattedDate);
+//            sdf = new SimpleDateFormat("MMMMM dd, yyyy HH:mm:ss a z", Locale.US);
+//            System.out.println("new formated date " + sdf.parse(formattedDate));
+
+
+//            return sdf.parse(formattedDate);
+            return newDate;
         }
 
     }
