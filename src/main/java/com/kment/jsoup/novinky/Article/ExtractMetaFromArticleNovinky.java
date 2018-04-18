@@ -1,7 +1,7 @@
 package com.kment.jsoup.novinky.Article;
 
 import org.apache.commons.lang3.time.DateUtils;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.nodes.Document;
@@ -59,7 +59,7 @@ public class ExtractMetaFromArticleNovinky {
 //            newDate = sdf.parse(dateString);
 
             DateTimeFormatter format = DateTimeFormat.forPattern("EEEE dd. MMM yyyy, HH:mm");
-            DateTime time = format.parseDateTime(dateString);
+            LocalDateTime time = format.parseLocalDateTime(dateString);
             System.out.println("time " + time);
             newDate = time.toDate();
             System.out.println("new date " + newDate);
