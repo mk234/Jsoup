@@ -54,15 +54,41 @@ public class ExtractMetaFromArticleNovinky {
             System.out.println(newDate);
             return newDate;
         } else {
+
             System.out.println("old date " + dateString);
 //            SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
 //            newDate = sdf.parse(dateString);
 
-            DateTimeFormatter format = DateTimeFormat.forPattern("EEEE dd. MMM yyyy, HH:mm");
+
+            dateString = dateString.substring(dateString.indexOf(' ') + 1);
+
+            DateTimeFormatter format = DateTimeFormat.forPattern("dd. MMMMM yyyy, HH:mm");
             LocalDateTime time = format.parseLocalDateTime(dateString);
             System.out.println("time " + time);
             newDate = time.toDate();
             System.out.println("new date " + newDate);
+
+          /*  String removedWord = dateString.substring(0, dateString.indexOf(' '));
+            dateString = dateString.substring(dateString.indexOf(' ') + 1);
+            System.out.println("removed " + removedWord);
+            System.out.println("date string " + dateString);
+
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd. MMMMM yyyy, HH:mm");
+            Month month = null;
+            for (Locale loc : Locale.getAvailableLocales()) {
+                try {
+                    // set the locale in the formatter and try to get the month
+                    month = Month.from(fmt.withLocale(loc).parse(dateString));
+                    System.out.println(loc);
+                    break; // found, no need to parse in other locales
+                } catch (DateTimeParseException e) {
+                    // can't parse, go to next locale
+                }
+            }
+            if (month != null) {
+                System.out.println("mesis " + month.getValue()); // 3
+            }
+*/
 //            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, new Locale("cz", "CZ"));
 //            String formattedDate = df.format(newDate);
 //
