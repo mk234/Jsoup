@@ -2,7 +2,6 @@ package idnes
 
 import com.kment.jsoup.Application
 import com.kment.jsoup.extractor.ParseUrl
-import idnes.source.ExtractArticlesIdnesPreparedData
 import org.jsoup.nodes.Document
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -13,11 +12,11 @@ class ParseUrlSpec extends Specification {
 
     @Autowired
     ParseUrl parseUrl
-    ExtractArticlesIdnesPreparedData preparedData = new ExtractArticlesIdnesPreparedData()
 
-    def "test parse url and retunr as jsoup document"() {
+
+    def "parse url and return as jsoup document"() {
         when:
-        Document document = parseUrl.parse(preparedData.getUrlForArchive())
+        Document document = parseUrl.parse("https://www.idnes.cz/")
         then:
         document != null
     }

@@ -37,8 +37,6 @@ class PrepareUrlForArchivesSpec extends Specification {
         "Lidovky"  | "https://www.lidovky.cz/archiv.aspx?datum=01.02.2018&idostrova=ln_lidovky"
         "Idnes"    | "https://zpravy.idnes.cz/archiv.aspx?datum=01.02.2018&idostrova=zpravodaj"
         "Novinky"  | "https://www.novinky.cz/archiv?id=966&date=01.02.2018"
-
-
     }
 
 }

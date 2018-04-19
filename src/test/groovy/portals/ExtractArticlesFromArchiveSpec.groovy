@@ -32,7 +32,7 @@ class ExtractArticlesFromArchiveSpec extends Specification {
         def extractor = this."extractArticle${portalName}"
         when:
         List<Article> articleList = extractor.findArticles(url)
-        println articleList.size()
+        println "pocet articlu " + articleList.size()
         then:
         articleList.size() == result
         where:

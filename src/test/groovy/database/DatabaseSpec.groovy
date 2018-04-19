@@ -10,12 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.Rollback
 import org.springframework.transaction.annotation.Transactional
-import spock.lang.Ignore
 import spock.lang.Specification
 
 import java.text.SimpleDateFormat
 
-@Ignore
 @Transactional
 @SpringBootTest(classes = Application.class)
 class DatabaseSpec extends Specification {
@@ -27,11 +25,12 @@ class DatabaseSpec extends Specification {
 
     @Rollback
     def "save article to db and read it"() {
-        when:
-        articleSpringDataRepository.flush()
+        given:
         String expectedArticleName = "test article"
-        Article article = articleSpringDataRepository.save(new Article(name: expectedArticleName))
-        String realArticleName = article.getName()
+        Article newArticle = new Article(name: expectedArticleName)
+        when:
+        Article article = articleSpringDataRepository.save(newArticle)
+        String realArticleName = articleSpringDataRepository.findOne(article.getId()).getName()
         then:
         expectedArticleName == realArticleName
     }
