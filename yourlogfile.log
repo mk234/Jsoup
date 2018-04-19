@@ -2089,3 +2089,44 @@ Caused by: org.postgresql.util.PSQLException: FATAL: too many connections for ro
 2018-04-19 12:52:25.685  INFO 6904 --- [main] portals.ExtractArticlesFromArchiveSpec   : Started ExtractArticlesFromArchiveSpec in 23.17 seconds (JVM running for 25.22)
 2018-04-19 12:53:14.230  INFO 6904 --- [Thread-3] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@1efe439d: startup date [Thu Apr 19 12:52:03 CEST 2018]; root of context hierarchy
 2018-04-19 12:53:14.242  INFO 6904 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2018-04-19 20:08:13.306  INFO 7988 --- [main] com.kment.jsoup.Application              : Starting Application on MartinPC with PID 7988 (C:\DiplomovaPrace\target\classes started by Martin in C:\DiplomovaPrace)
+2018-04-19 20:08:13.311  INFO 7988 --- [main] com.kment.jsoup.Application              : No active profile set, falling back to default profiles: default
+2018-04-19 20:08:13.751  INFO 7988 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@f8c1ddd: startup date [Thu Apr 19 20:08:13 CEST 2018]; root of context hierarchy
+2018-04-19 20:08:15.742  INFO 7988 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-04-19 20:08:15.756  INFO 7988 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-19 20:08:15.757  INFO 7988 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.23
+2018-04-19 20:08:15.916  INFO 7988 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-19 20:08:15.916  INFO 7988 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2171 ms
+2018-04-19 20:08:16.138  INFO 7988 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-04-19 20:08:16.143  INFO 7988 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-19 20:08:16.144  INFO 7988 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-19 20:08:16.144  INFO 7988 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-19 20:08:16.145  INFO 7988 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-04-19 20:08:26.385  INFO 7988 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-04-19 20:08:26.403  INFO 7988 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-04-19 20:08:26.638  INFO 7988 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.12.Final}
+2018-04-19 20:08:26.641  INFO 7988 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-04-19 20:08:26.643  INFO 7988 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2018-04-19 20:08:26.705  INFO 7988 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-04-19 20:08:26.959  INFO 7988 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2018-04-19 20:08:26.986  INFO 7988 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000422: Disabling contextual LOB creation as connection was null
+2018-04-19 20:08:26.988  INFO 7988 --- [main] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@47c40b56
+2018-04-19 20:08:27.145  WARN 7988 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-04-19 20:08:27.147  WARN 7988 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceHiLoGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-04-19 20:08:27.149  WARN 7988 --- [main] org.hibernate.orm.deprecation            : HHH90000014: Found use of deprecated [org.hibernate.id.SequenceGenerator] sequence-based id generator; use org.hibernate.id.enhanced.SequenceStyleGenerator instead.  See Hibernate Domain Model Mapping Guide for details.
+2018-04-19 20:08:27.488  INFO 7988 --- [main] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2018-04-19 20:08:31.892  INFO 7988 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-04-19 20:08:34.038  INFO 7988 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2018-04-19 20:08:35.446  INFO 7988 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@f8c1ddd: startup date [Thu Apr 19 20:08:13 CEST 2018]; root of context hierarchy
+2018-04-19 20:08:35.618  INFO 7988 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-19 20:08:35.622  INFO 7988 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-19 20:08:35.696  INFO 7988 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-19 20:08:35.699  INFO 7988 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-19 20:08:35.775  INFO 7988 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-19 20:08:35.849  INFO 7988 --- [main] oConfiguration$WelcomePageHandlerMapping : Adding welcome page: class path resource [static/index.html]
+2018-04-19 20:08:36.717  INFO 7988 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-19 20:08:36.749  INFO 7988 --- [main] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2018-04-19 20:08:36.863  INFO 7988 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-04-19 20:08:36.871  INFO 7988 --- [main] com.kment.jsoup.Application              : Started Application in 24.088 seconds (JVM running for 25.694)
