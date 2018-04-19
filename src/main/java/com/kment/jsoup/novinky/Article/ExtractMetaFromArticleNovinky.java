@@ -1,14 +1,13 @@
 package com.kment.jsoup.novinky.Article;
 
 import org.apache.commons.lang3.time.DateUtils;
-import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class ExtractMetaFromArticleNovinky {
@@ -56,50 +55,83 @@ public class ExtractMetaFromArticleNovinky {
         } else {
 
             System.out.println("old date " + dateString);
-//            SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd. MMM yyyy, HH:mm");
-//            newDate = sdf.parse(dateString);
-
-
+/*
             dateString = dateString.substring(dateString.indexOf(' ') + 1);
 
-            DateTimeFormatter format = DateTimeFormat.forPattern("dd. MMMMM yyyy, HH:mm");
+            DateTimeFormatter format = DateTimeFormat.forPattern("dd. MMM yyyy, HH:mm");
             LocalDateTime time = format.parseLocalDateTime(dateString);
             System.out.println("time " + time);
             newDate = time.toDate();
             System.out.println("new date " + newDate);
-
-          /*  String removedWord = dateString.substring(0, dateString.indexOf(' '));
-            dateString = dateString.substring(dateString.indexOf(' ') + 1);
-            System.out.println("removed " + removedWord);
-            System.out.println("date string " + dateString);
-
-            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd. MMMMM yyyy, HH:mm");
-            Month month = null;
-            for (Locale loc : Locale.getAvailableLocales()) {
-                try {
-                    // set the locale in the formatter and try to get the month
-                    month = Month.from(fmt.withLocale(loc).parse(dateString));
-                    System.out.println(loc);
-                    break; // found, no need to parse in other locales
-                } catch (DateTimeParseException e) {
-                    // can't parse, go to next locale
-                }
-            }
-            if (month != null) {
-                System.out.println("mesis " + month.getValue()); // 3
-            }
 */
-//            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, new Locale("cz", "CZ"));
-//            String formattedDate = df.format(newDate);
-//
-//            System.out.println("foramted date " + formattedDate);
-//            sdf = new SimpleDateFormat("MMMMM dd, yyyy HH:mm:ss a z", Locale.US);
-//            System.out.println("new formated date " + sdf.parse(formattedDate));
 
+            String day = dateString.substring(0, dateString.indexOf("."));
+            String month = dateString.substring(dateString.indexOf(".") + 2, dateString.lastIndexOf(",") - 5);
+            String year = dateString.substring(dateString.lastIndexOf(",") - 4, dateString.lastIndexOf(","));
+            String hour = dateString.substring(dateString.lastIndexOf(",") + 2, dateString.indexOf(":"));
+            String minute = dateString.substring(dateString.indexOf(":") + 1, dateString.length());
+            System.out.println("time " + day + "." + month + " " + year + " " + hour + ":" + minute);
+            newDate = DateUtils.setDays(newDate, Integer.parseInt(day));
+            System.out.println(newDate);
+            Map<String, Integer> months = new HashMap<String, Integer>();
+            months.put("ledna", 1);
+            months.put("února", 2);
+            months.put("března", 3);
+            months.put("dubna", 4);
+            months.put("května", 5);
+            months.put("června", 6);
+            months.put("července", 7);
+            months.put("srpna", 8);
+            months.put("září", 9);
+            months.put("října", 10);
+            months.put("listopadu", 11);
+            months.put("prosince", 12);
+            newDate = DateUtils.setMonths(newDate, months.get(month));
+            System.out.println(newDate);
+            newDate = DateUtils.setYears(newDate, Integer.parseInt(year));
 
-//            return sdf.parse(formattedDate);
+            newDate = DateUtils.setHours(newDate, Integer.parseInt(hour));
+            System.out.println(newDate);
+            newDate = DateUtils.setMinutes(newDate, Integer.parseInt(minute));
+            System.out.println(newDate);
             return newDate;
         }
+
+    }
+
+    public static void main(String[] args) {
+        String dateString = "20. března 2018, 8:47";
+        Date newDate = new Date();
+        System.out.println(dateString);
+        String day = dateString.substring(0, dateString.indexOf("."));
+        String month = dateString.substring(dateString.indexOf(".") + 2, dateString.lastIndexOf(",") - 5);
+        String year = dateString.substring(dateString.lastIndexOf(",") - 4, dateString.lastIndexOf(","));
+        String hour = dateString.substring(dateString.lastIndexOf(",") + 2, dateString.indexOf(":"));
+        String minute = dateString.substring(dateString.indexOf(":") + 1, dateString.length());
+        System.out.println("time " + day + "." + month + " " + year + " " + hour + ":" + minute);
+        newDate = DateUtils.setDays(newDate, Integer.parseInt(day));
+        System.out.println(newDate);
+        Map<String, Integer> months = new HashMap<String, Integer>();
+        months.put("ledna", 1);
+        months.put("února", 2);
+        months.put("března", 3);
+        months.put("dubna", 4);
+        months.put("května", 5);
+        months.put("června", 6);
+        months.put("července", 7);
+        months.put("srpna", 8);
+        months.put("září", 9);
+        months.put("října", 10);
+        months.put("listopadu", 11);
+        months.put("prosince", 12);
+        newDate = DateUtils.setMonths(newDate, months.get(month));
+        System.out.println(newDate);
+        newDate = DateUtils.setYears(newDate, Integer.parseInt(year));
+
+        newDate = DateUtils.setHours(newDate, Integer.parseInt(hour));
+        System.out.println(newDate);
+        newDate = DateUtils.setMinutes(newDate, Integer.parseInt(minute));
+        System.out.println(newDate);
 
     }
 
