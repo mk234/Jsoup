@@ -64,7 +64,7 @@ public class ExtractMetaFromArticleNovinky {
             newDate = time.toDate();
             System.out.println("new date " + newDate);
 */
-
+            dateString = dateString.substring(dateString.indexOf(' ') + 1);
             String day = dateString.substring(0, dateString.indexOf("."));
             String month = dateString.substring(dateString.indexOf(".") + 2, dateString.lastIndexOf(",") - 5);
             String year = dateString.substring(dateString.lastIndexOf(",") - 4, dateString.lastIndexOf(","));
