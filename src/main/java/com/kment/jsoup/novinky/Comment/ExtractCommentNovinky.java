@@ -77,19 +77,21 @@ public class ExtractCommentNovinky {
     }
 
 
-    //stejne
+    //nutna zmena formatu
     public Date getCreatedDate(Element dateElement) throws ParseException {
         String data = dateElement.text();
+        data = data.substring(data.indexOf(",") + 2, data.length());
         if (data.contains(":")) {
             System.out.println(data);
-            SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd. MMM yyyy, HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd. MMM yyyy, HH:mm:ss");
             Date date = sdf.parse(data);
             return date;
         } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd. MMM yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd. MMM yyyy");
             Date date = sdf.parse(data);
             return date;
         }
     }
+
 
 }
