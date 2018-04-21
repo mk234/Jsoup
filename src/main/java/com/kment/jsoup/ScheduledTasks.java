@@ -40,6 +40,7 @@ public class ScheduledTasks {
         log.info("Time is ", dateFormat.format(new Date()));
         for (IPortalExtractor portalExtractor : extractors.values()) {
             try {
+                System.out.println(portalExtractor);
                 run.extractAndSaveYesterday(portalExtractor);
                 update.updateIdnes(NUMBER_OF_DAYS_FOR_UPDATE, portalExtractor);
                 Portal portal = portalSpringDataRepository.findByName(portalExtractor.getPortalName()).get(0);

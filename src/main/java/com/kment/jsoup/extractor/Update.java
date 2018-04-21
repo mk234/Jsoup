@@ -28,9 +28,11 @@ public class Update {
     public void updateIdnes(int numberOfDayToUpdate, IPortalExtractor portalExtractor) {
         try {
             List<Portal> portals = iPortalSpringDataRepository.findByName(portalExtractor.getPortalName());
-            List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate, portals.get(0).getId());
-            findArticleWithNewComments(articleList, portalExtractor);
-            System.out.println("update done");
+            if (portals != null) {
+                List<Article> articleList = fetchArticleForDays(numberOfDayToUpdate, portals.get(0).getId());
+                findArticleWithNewComments(articleList, portalExtractor);
+                System.out.println("update done");
+            }
         } catch (Exception e) {
             e.printStackTrace();// TODO log exception
         }
