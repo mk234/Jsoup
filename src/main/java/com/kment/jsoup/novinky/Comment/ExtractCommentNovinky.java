@@ -85,13 +85,13 @@ public class ExtractCommentNovinky {
             String day = data.substring(0, data.lastIndexOf("."));
             String year = data.substring(data.lastIndexOf(",") - 4, data.lastIndexOf(","));
             String time = data.substring(data.indexOf(",") + 2, data.length());
-            date = DateUtils.parseDateStrictly(day + "." + month + " " + year + ", " + time, "dd.MMM yyyy, HH:mm:ss");
+            date = DateUtils.parseDateStrictly(day + "." + getMonth(month) + " " + year + ", " + time, "dd.MM yyyy, HH:mm:ss");
             return date;
         } else {
             String month = data.substring(data.indexOf(".") + 2, data.length() - 5);
             String day = data.substring(0, data.lastIndexOf("."));
             String year = data.substring(data.length() - 4, data.length());
-            date = DateUtils.parseDateStrictly(day + "." + month + " " + year + ", 00:00", "dd.MMM yyyy, HH:mm");
+            date = DateUtils.parseDateStrictly(day + "." + getMonth(month) + " " + year + ", 00:00", "dd.MM yyyy, HH:mm");
             return date;
         }
 
