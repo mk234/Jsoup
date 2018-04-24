@@ -24,7 +24,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        scheduledTasks.scheduledRun();
+//        scheduledTasks.scheduledRun();
 
 //        init.initPortals();
     }
