@@ -1,15 +1,24 @@
 package com.kment.jsoup.lidovky;
 
+import com.kment.jsoup.entity.Article;
+import com.kment.jsoup.entity.Comment;
+import com.kment.jsoup.extractor.IPortalExtractor;
 import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.lidovky.Article.ExtractArticleLidovky;
 import com.kment.jsoup.lidovky.Article.ExtractMetaFromArticleLidovky;
 import com.kment.jsoup.lidovky.Comment.ExtractCommentLidovky;
 import com.kment.jsoup.lidovky.Comment.PrepareUrlForCommentaryLidovky;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+
 @Component
-public class PortalExtractorLidovky /*implements IPortalExtractor */ {
+public class PortalExtractorLidovky implements IPortalExtractor {
     @Autowired
     ExtractArticleLidovky extractArticle;
     @Autowired
@@ -25,7 +34,7 @@ public class PortalExtractorLidovky /*implements IPortalExtractor */ {
     @Autowired
     PrepareUrlForArchivesLidovky prepareUrlForArchives;
 
-/*
+
     @Override
     public String getPortalName() {
         return "Lidovky";
@@ -90,5 +99,5 @@ public class PortalExtractorLidovky /*implements IPortalExtractor */ {
     @Override
     public String getUrl() {
         return "www.lidovky.cz";
-    }*/
+    }
 }

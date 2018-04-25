@@ -1,15 +1,24 @@
 package com.kment.jsoup.idnes;
 
+import com.kment.jsoup.entity.Article;
+import com.kment.jsoup.entity.Comment;
+import com.kment.jsoup.extractor.IPortalExtractor;
 import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.idnes.Article.ExtractArticleIdnes;
 import com.kment.jsoup.idnes.Article.ExtractMetaFromArticleIdnes;
 import com.kment.jsoup.idnes.Comment.ExtractCommentIdnes;
 import com.kment.jsoup.idnes.Comment.PrepareUrlForCommentaryIdnes;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+
 @Component
-public class PortalExtractorIdnes /*implements IPortalExtractor */ {
+public class PortalExtractorIdnes implements IPortalExtractor {
 
     @Autowired
     ExtractArticleIdnes extractArticleIdnes;
@@ -25,7 +34,7 @@ public class PortalExtractorIdnes /*implements IPortalExtractor */ {
     ParseUrl parseUrl;
     @Autowired
     PrepareUrlForArchivesIdnes prepareUrlForArchivesIdnes;
-/*
+
     @Override
     public String getPortalName() {
         return "iDNES";
@@ -33,7 +42,7 @@ public class PortalExtractorIdnes /*implements IPortalExtractor */ {
 
 
     @Override
-    public List<Article> findArticles(String url) throws IOException, ParseException {
+    public List<Article> findArticles(String url) throws IOException {
         return extractArticleIdnes.findArticles(url);
     }
 
@@ -90,5 +99,5 @@ public class PortalExtractorIdnes /*implements IPortalExtractor */ {
     @Override
     public String getUrl() {
         return "www.idnes.cz";
-    }*/
+    }
 }
