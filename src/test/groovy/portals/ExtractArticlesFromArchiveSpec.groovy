@@ -28,18 +28,17 @@ class ExtractArticlesFromArchiveSpec extends Specification {
 
     @Unroll
     def "number of articles in #portalName archive for one day"() {
-        given:
+        given: "preparing extractor for portals"
         def extractor = this."extractArticle${portalName}"
-        when:
-        List<Article> articleList = extractor.findArticles(url)
-        println "pocet articlu " + articleList.size()
-        then:
-        articleList.size() == result
-        where:
-        portalName | url                                                         | result
-        "Lidovky"  | new ExtractArticlesLidovkyPreparedData().getUrlForArchive() | new ExtractArticlesLidovkyPreparedData().getNumberOfArticlesInArchive()
-        "Idnes"    | new ExtractArticlesIdnesPreparedData().getUrlForArchive()   | new ExtractArticlesIdnesPreparedData().getNumberOfArticlesInArchive()
-        "Novinky"  | new ExtractArticlesNovinkyPreparedData().getUrlForArchive() | new ExtractArticlesNovinkyPreparedData().getNumberOfArticlesInArchive()
+        when: "extract number of articles in archive"
+        List<Article> articleList = extractor.findArticles(preparedData.getUrlForArchive())
+        then: "comparing size of list with real number of article in archive"
+        articleList.size() == preparedData.getNumberOfArticlesInArchive()
+        where: "parameters for test"
+        portalName | preparedData
+        "Lidovky"  | new ExtractArticlesLidovkyPreparedData()
+        "Idnes"    | new ExtractArticlesIdnesPreparedData()
+        "Novinky"  | new ExtractArticlesNovinkyPreparedData()
     }
 
 

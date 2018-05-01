@@ -23,7 +23,7 @@ class NumberOfPagesNovinkyPreparedData {
     }
 
     def getNumberOfPagesInArticle() {
-        return 2
+        return 0
     }
 
 }

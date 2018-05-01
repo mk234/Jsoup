@@ -14,4 +14,8 @@ class ParseFromFile {
         document = Jsoup.parse(file, "windows-1250")
         return document
     }
+
+    Document getEmptyDocument() {
+        Document document = Jsoup.parse("<HTML></HTML>")
+    }
 }

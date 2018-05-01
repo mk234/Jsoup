@@ -6,6 +6,7 @@ import com.kment.jsoup.lidovky.Article.ExtractMetaFromArticleLidovky
 import com.kment.jsoup.novinky.Article.ExtractMetaFromArticleNovinky
 import idnes.source.ExtractMetaFromArticleIdnesPreparedData
 import lidovky.source.ExtractMetaFromArticleLidovkyPreparedData
+import lidovky.source.ParseFromFile
 import novinky.source.ExtractMetaFromArticleNovinkyPreparedData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -27,19 +28,19 @@ class ExtractMetaFromArticleSpec extends Specification {
 
     @Unroll
     def "get keywords from article on #portalName"() {
-        given:
+        given: "prepared extractor"
         def extractor = this."extractMetaFromArticle${portalName}"
-        when:
-        String keywordsFromArticle = extractor.getKeywors(articleAsDocument)
-        then:
-        keywordsFromArticle.equals(keywords)
-        where:
-        portalName | articleAsDocument                                                      | keywords
-        "Lidovky"  | new ExtractMetaFromArticleLidovkyPreparedData().getArticleAsDocument() | new ExtractMetaFromArticleLidovkyPreparedData().getKeywors()
-        "Idnes"    | new ExtractMetaFromArticleIdnesPreparedData().getArticleAsDocument()   | new ExtractMetaFromArticleIdnesPreparedData().getKeywors()
-        "Novinky"  | new ExtractMetaFromArticleNovinkyPreparedData().getArticleAsDocument() | new ExtractMetaFromArticleNovinkyPreparedData().getKeywors()
-
+        when: "get keywords"
+        String keywordsFromArticle = extractor.getKeywors(preparedData.getArticleAsDocument())
+        then: "compare keywords from article with real keywords"
+        keywordsFromArticle.equals(preparedData.getKeywords())
+        where: "parameters for test"
+        portalName | preparedData
+        "Lidovky"  | new ExtractMetaFromArticleLidovkyPreparedData()
+        "Idnes"    | new ExtractMetaFromArticleIdnesPreparedData()
+        "Novinky"  | new ExtractMetaFromArticleNovinkyPreparedData()
     }
+
 
     @Unroll
     def "get author from article on #portalName"() {
@@ -70,6 +71,21 @@ class ExtractMetaFromArticleSpec extends Specification {
         "Lidovky"  | new ExtractMetaFromArticleLidovkyPreparedData().getArticleAsDocument() | new ExtractMetaFromArticleLidovkyPreparedData().getDescription()
         "Idnes"    | new ExtractMetaFromArticleIdnesPreparedData().getArticleAsDocument()   | new ExtractMetaFromArticleIdnesPreparedData().getDescription()
         "Novinky"  | new ExtractMetaFromArticleNovinkyPreparedData().getArticleAsDocument() | new ExtractMetaFromArticleNovinkyPreparedData().getDescription()
+    }
+
+    @Unroll
+    def "get description for empty document on #portalName"() {
+        given:
+        def extractor = this."extractMetaFromArticle${portalName}"
+        when:
+        String descriptionFromArticle = extractor.getDescription(articleAsDocument)
+        then:
+        descriptionFromArticle.equals(description)
+        where:
+        portalName | articleAsDocument                      | description
+        "Lidovky"  | new ParseFromFile().getEmptyDocument() | ""
+        "Idnes"    | new ParseFromFile().getEmptyDocument() | ""
+        "Novinky"  | new ParseFromFile().getEmptyDocument() | ""
 
     }
 

@@ -23,6 +23,17 @@ class DatabaseSpec extends Specification {
     @Autowired
     IPortalSpringDataRepository portalSpringDataRepository
 
+    def "mock save portal"() {
+        given:
+        def portal = new Portal(name: "iDnes")
+        IPortalSpringDataRepository iPortal = Mock()
+        when:
+        iPortal.save(portal)
+        then:
+        1 * iPortal.save(portal)
+    }
+
+
     @Rollback
     def "save article to db and read it"() {
         given:
@@ -37,20 +48,18 @@ class DatabaseSpec extends Specification {
 
     @Rollback
     def "update date of last collection and return new value"() {
-        when:
+        given:
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy")
         final Calendar calendar = Calendar.getInstance()
         calendar.add(Calendar.DATE, -1)
         Date yesterday = calendar.getTime()
         String day = new DateTime(yesterday).toString("dd.MM.yyyy")
         Date oldDate = simpleDateFormat.parse(day)
-        Date newDate = new Date()
+        when:
         Article article = articleSpringDataRepository.save(new Article(lastCollection: oldDate))
         Date oldDateFromArticle = article.getLastCollection()
-        println oldDate
-        article.setLastCollection(newDate)
+        article.setLastCollection(new Date())
         Article updateArticle = articleSpringDataRepository.save(article)
-        println updateArticle.getLastCollection()
         then:
         oldDateFromArticle.before(updateArticle.getLastCollection())
     }
@@ -58,19 +67,11 @@ class DatabaseSpec extends Specification {
 
     @Rollback
     def "find portal by name"() {
-        given:
-        Portal portal = portalSpringDataRepository.save(new Portal("iDNES", "www.idnes.cz/", new Date()))
-        when:
+        given: "save new portal to db"
+        Portal portal = portalSpringDataRepository.save(new Portal(name: "iDNES"))
+        when: "finding portal by name"
         List<Portal> portalList = portalSpringDataRepository.findByName("iDNES")
-        then:
+        then: "check if any portal exist"
         portalList.contains(portal)
-    }
-
-
-    def "find yesterday articles"() {
-        when:
-        List<Article> articleList = articleSpringDataRepository.findByNumberOfDayBeforeToday(1)
-        then:
-        articleList.size() != 0
     }
 }

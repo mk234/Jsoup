@@ -1,16 +1,20 @@
 package com.kment.jsoup.idnes.Article;
 
+import com.kment.jsoup.extractor.ExtractMeta;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
 public class ExtractMetaFromArticleIdnes {
+    @Autowired
+    ExtractMeta extractMeta = new ExtractMeta();
 
     public Date getCreatedDate(Document document) {
         if (document.select("meta[property=article:published_time]").first() == null)
@@ -24,21 +28,11 @@ public class ExtractMetaFromArticleIdnes {
     }
 
     public String getKeywors(Document document) {
-        if (document.select("meta[name=keywords]").first() == null)
-            return "";
-        else
-            return
-                    document.select("meta[name=keywords]").first()
-                            .attr("content");
+        return extractMeta.getKeywors(document);
     }
 
     public String getDescription(Document document) {
-        if (document.select("meta[name=description]").get(0) == null)
-            return "";
-        String description =
-                document.select("meta[name=description]").get(0)
-                        .attr("content");
-        return description;
+        return extractMeta.getDescription(document);
     }
 
 
@@ -58,23 +52,7 @@ public class ExtractMetaFromArticleIdnes {
             return 0;
         else {
             Elements numberOfComment = document.select("li.community-discusion").first().select("a#moot-linkin").first().select("span");
-            return extractDigits(numberOfComment.text());
-        }
-    }
-
-
-    public int extractDigits(String src) {
-        if (src.equals("")) {
-            return 0;
-        } else {
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < src.length(); i++) {
-                char c = src.charAt(i);
-                if (Character.isDigit(c)) {
-                    builder.append(c);
-                }
-            }
-            return Integer.parseInt(builder.toString());
+            return extractMeta.extractDigits(numberOfComment.text());
         }
     }
 

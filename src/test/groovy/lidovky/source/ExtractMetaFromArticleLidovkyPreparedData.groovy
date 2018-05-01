@@ -11,7 +11,8 @@ class ExtractMetaFromArticleLidovkyPreparedData {
         return parseFromFile.getDocumentFromFile("html_lidovky/article_source/article.htm")
     }
 
-    def getKeywors() {
+
+    def getKeywords() {
         return "Zahraničí"
     }
 
@@ -29,5 +30,9 @@ class ExtractMetaFromArticleLidovkyPreparedData {
 
     def getDate() {
         return "02/01/2018 21:45"
+    }
+
+    Document getEmptyArticleAsDocument() {
+        null
     }
 }

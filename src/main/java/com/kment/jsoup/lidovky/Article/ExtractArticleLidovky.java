@@ -20,14 +20,14 @@ public class ExtractArticleLidovky {
     @Autowired
     ExtractMetaFromArticleLidovky extractMetaFromArticleLidovky;
 
-    //stejne
+
     public List<Article> findArticles(String url) throws IOException {
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         return findArticles(url, document);
     }
 
-    //stejne
+
     public List<Article> findArticles(String url, Document document) throws IOException {
         List<Article> articleList = new ArrayList<>();
         String urlForNextPage;
@@ -52,12 +52,12 @@ public class ExtractArticleLidovky {
         return articleList;
     }
 
-    //stejne
+
     private String getDocumentForNextPage(String url, int i) {
         return url + "&strana=" + i;
     }
 
-    //castecne predelane
+
     private List<Article> getArticles(Elements selectedDivs) throws IOException {
         List<Article> articleList = new ArrayList<>();
         ParseUrl parseUrl = new ParseUrl();

@@ -1,5 +1,6 @@
 package com.kment.jsoup.lidovky;
 
+import com.kment.jsoup.extractor.ExtractMeta;
 import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.lidovky.Article.ExtractMetaFromArticleLidovky;
 import org.jsoup.nodes.Document;
@@ -21,7 +22,6 @@ public class NumberOfPagesLidovky {
     @Autowired
     ParseUrl parseUrl = new ParseUrl();
 
-    //predelano, odstraneny elementy, zustalo   vse od ifu
     public int numberOfPagesArchive(Document document, String selectorContributions) {
         Element element = document.select("div.navig").first();
         if (element == null)
@@ -38,13 +38,12 @@ public class NumberOfPagesLidovky {
     }
 
 
-    //kompletne predelano
     public int numberOfPagesComment(Document document) {
         Element element = document.select("div.disc-list").first();
-        ExtractMetaFromArticleLidovky Ex = new ExtractMetaFromArticleLidovky();
-// nutno osetrin na null
+
         Elements elements = element.select("ul.itemrow").select("li");
-        int number = Ex.extractDigits(elements.first().text());
+        ExtractMeta extractMeta = new ExtractMeta();
+        int number = extractMeta.extractDigits(elements.first().text());
         double numbertOfPages = number / 30.0;
         return (int) Math.ceil(numbertOfPages);
     }

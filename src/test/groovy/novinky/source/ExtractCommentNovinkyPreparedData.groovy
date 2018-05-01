@@ -4,7 +4,7 @@ import org.jsoup.nodes.Document
 
 class ExtractCommentNovinkyPreparedData {
 
-    novinky.source.ParseFromFile parseFromFile = new novinky.source.ParseFromFile()
+    ParseFromFile parseFromFile = new ParseFromFile()
 
 
     Document getCommentPageAsDocument() {
@@ -12,7 +12,7 @@ class ExtractCommentNovinkyPreparedData {
     }
 
     def getNumberOfComments() {
-        return 29
+        return 0
     }
 
 

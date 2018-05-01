@@ -72,24 +72,4 @@ public class ExtractArticleIdnes {
         return articleList;
     }
 
-
-    /*   private List<Article> getArticles(Elements selectedDivs, Document document) throws IOException {
-        List<Article> articleList = new ArrayList<>();
-        String selectorName = "div.cell";
-        ParseUrl parseUrl = new ParseUrl();
-        for (Element div : selectedDivs) {
-            Element cell = div.select(selectorName).first();
-            Elements name = cell.select("h3");
-            Element link = name.select("a").first();
-            String absHref = link.attr("abs:href");
-            Document documentArticle = parseUrl.parse(absHref);
-            articleList.add(new Article(name.text(), absHref,
-                    extractMetaFromArticleIdnes.getCreatedDate(documentArticle), new Date(),
-                    extractMetaFromArticleIdnes.getKeywors(documentArticle), extractMetaFromArticleIdnes.getDescription(documentArticle),
-                    1, extractMetaFromArticleIdnes.getNumburOfComment(documentArticle),
-                    extractMetaFromArticleIdnes.getAuthor(documentArticle)));
-        }
-        return articleList;
-    }*/
-
 }

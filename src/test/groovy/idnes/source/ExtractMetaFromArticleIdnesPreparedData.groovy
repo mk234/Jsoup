@@ -11,7 +11,7 @@ class ExtractMetaFromArticleIdnesPreparedData {
          return parseFromFile.getDocumentFromFile("html_idnes/article_source/article.htm")
     }
 
-    def getKeywors() {
+    def getKeywords() {
         return "Afghánistán, Írán, Španělsko, CNN, kuchyně, Světová banka"
     }
 
@@ -29,5 +29,9 @@ class ExtractMetaFromArticleIdnesPreparedData {
 
     def getDate(){
         return "08/02/2015 20:49"
+    }
+
+    String getEmptyArticleAsDocument() {
+        null
     }
 }

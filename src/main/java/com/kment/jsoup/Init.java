@@ -28,22 +28,24 @@ public class Init {
     @Autowired
     Run run;
 
-    public void initPortals() {
 
+    public void initPortals() {
+        // get all beans of type IPOrtalExtractor
         Map<String, IPortalExtractor> extractors = applicationContext.getBeansOfType(IPortalExtractor.class);
-        log.info("Time is ", dateFormat.format(new Date()));
+        // iteration throught collection
         for (IPortalExtractor portalExtractor : extractors.values()) {
             try {
+                // checking if portal exist in db
                 if (portalSpringDataRepository.findByName(portalExtractor.getPortalName()).size() == 0) {
+                    // save new portal to table
                     portalSpringDataRepository.save(new Portal(portalExtractor.getPortalName(), portalExtractor.getUrl(), new Date()));
-                    System.out.println("add " + portalExtractor.getPortalName());
+                    // extract and save yesterday article and comment
                     run.extractAndSaveYesterday(portalExtractor);
+                    // extract and save article and comment for the last week
                     run.extractAndSaveMultipleDaysBefereYesterday(NUMBER_OF_DAYS, portalExtractor);
-                    System.out.println("done");
                 }
-                System.out.println("done");
             } catch (Exception e) {
-                e.printStackTrace();// TODO log exception
+                e.printStackTrace();
             }
         }
     }

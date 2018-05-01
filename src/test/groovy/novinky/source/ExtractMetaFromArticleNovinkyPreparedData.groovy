@@ -6,12 +6,13 @@ class ExtractMetaFromArticleNovinkyPreparedData {
 
     ParseFromFile parseFromFile = new ParseFromFile()
 
-
+    // parse document from HTML file
     Document getArticleAsDocument() {
         return parseFromFile.getDocumentFromFile("html_novinky/article_source/article.html")
     }
 
-    def getKeywors() {
+    // real keywords from article
+    def getKeywords() {
         return "d6, dálnice, nehoda,, Krimi"
     }
 
@@ -30,4 +31,6 @@ class ExtractMetaFromArticleNovinkyPreparedData {
     def getDate() {
         return "03/20/2018 08:47"
     }
+
+
 }

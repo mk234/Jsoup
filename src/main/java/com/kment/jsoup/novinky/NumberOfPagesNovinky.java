@@ -16,26 +16,11 @@ public class NumberOfPagesNovinky {
     @Autowired
     ParseUrl parseUrl = new ParseUrl();
 
-    //predelano, odstraneny elementy, zustalo   vse od ifu
-    //neni potrebne, vzdy je pouze jedna stranka
     public int numberOfPagesArchive(Document document, String selectorContributions) {
-//        Element element = document.select("div.navig").first();
-//        if (element == null)
-//            return 1;
-//        int numberOfPages = 0;
-//        List<Integer> pageNumber = new ArrayList<>();
-//        Pattern p = Pattern.compile("-?\\d+");
-//        Matcher m = p.matcher(element.text());
-//        while (m.find()) {
-//            pageNumber.add(Integer.parseInt(m.group()));
-//            numberOfPages++;
-//        }
-//        return numberOfPages;
         return 1;
     }
 
 
-    //kompletne predelano
     public int numberOfPagesComment(Document document) throws IOException {
         String articleAddress = extractMetaFromArticleNovinky.getArticleAddressFromCommentPage(document);
         ExtractMetaFromArticleNovinky meta = new ExtractMetaFromArticleNovinky();

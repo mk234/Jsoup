@@ -25,7 +25,7 @@ public class Update {
     @Autowired
     IPortalSpringDataRepository iPortalSpringDataRepository;
 
-    public void updateIdnes(int numberOfDayToUpdate, IPortalExtractor portalExtractor) {
+    public void update(int numberOfDayToUpdate, IPortalExtractor portalExtractor) {
         try {
             List<Portal> portals = iPortalSpringDataRepository.findByName(portalExtractor.getPortalName());
             if (portals != null) {

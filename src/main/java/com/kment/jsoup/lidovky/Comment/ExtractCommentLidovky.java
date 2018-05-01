@@ -1,6 +1,7 @@
 package com.kment.jsoup.lidovky.Comment;
 
 import com.kment.jsoup.entity.Comment;
+import com.kment.jsoup.extractor.ExtractMeta;
 import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.lidovky.NumberOfPagesLidovky;
 import org.jsoup.nodes.Document;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,12 +20,10 @@ import java.util.List;
 public class ExtractCommentLidovky {
     public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
-        // System.out.println(urlComment);
         Document document = parseUrl.parse(urlComment);
         return findComments(urlComment, idArticle, document);
     }
 
-    //stejne
     public List<Comment> findComments(String url, long idArticle, Document document) throws IOException, ParseException {
         List<Comment> commentList = new ArrayList<>();
         String urlForNextPage;
@@ -58,7 +56,7 @@ public class ExtractCommentLidovky {
         return url + "&strana=" + i;
     }
 
-    //predelano
+
     private List<Comment> getCommentsFromElements(Elements selectedDivs, long idArticle) throws ParseException {
         List<Comment> commentList = new ArrayList<>();
         for (Element div : selectedDivs) {
@@ -72,18 +70,9 @@ public class ExtractCommentLidovky {
     }
 
 
-    //stejne
     public Date getCreatedDate(Element dateElement) throws ParseException {
-        String data = dateElement.text();
-        if (data.contains(":")) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-            Date date = sdf.parse(data);
-            return date;
-        } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            Date date = sdf.parse(data);
-            return date;
-        }
+        ExtractMeta extractMeta = new ExtractMeta();
+        return extractMeta.getCreatedDate(dateElement);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.kment.jsoup.idnes.Comment;
 
 import com.kment.jsoup.entity.Comment;
+import com.kment.jsoup.extractor.ExtractMeta;
 import com.kment.jsoup.extractor.ParseUrl;
 import com.kment.jsoup.idnes.NumberOfPagesIdnes;
 import org.jsoup.Jsoup;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +21,6 @@ import java.util.List;
 public class ExtractCommentIdnes {
     public List<Comment> findComments(String urlComment, long idArticle) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
-        // System.out.println(urlComment);
         Document document = parseUrl.parse(urlComment);
         return findComments(urlComment, idArticle, document);
     }
@@ -80,16 +79,8 @@ public class ExtractCommentIdnes {
     }
 
     public Date getCreatedDate(Element dateElement) throws ParseException {
-        String data = dateElement.text();
-        if (data.contains(":")) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-            Date date = sdf.parse(data);
-            return date;
-        } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            Date date = sdf.parse(data);
-            return date;
-        }
+        ExtractMeta extractMeta = new ExtractMeta();
+        return extractMeta.getCreatedDate(dateElement);
     }
 
 }

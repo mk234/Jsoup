@@ -20,15 +20,15 @@ public class ExtractArticleNovinky {
     @Autowired
     ExtractMetaFromArticleNovinky extractMetaFromArticleNovinky;
 
-    //stejne
+
     public List<Article> findArticles(String url) throws IOException, ParseException {
         ParseUrl parseUrl = new ParseUrl();
         Document document = parseUrl.parse(url);
         return findArticles(url, document);
     }
 
-    //stejne
-    public List<Article> findArticles(String url, Document document) throws IOException, ParseException {
+
+    public List<Article> findArticles(String url, Document document) throws IOException {
         List<Article> articleList = new ArrayList<>();
 
         String selectorContent = "div#sectionBox";
@@ -41,8 +41,7 @@ public class ExtractArticleNovinky {
     }
 
 
-    //castecne predelane
-    private List<Article> getArticles(Elements selectedDivs) throws IOException, ParseException {
+    private List<Article> getArticles(Elements selectedDivs) throws IOException {
         List<Article> articleList = new ArrayList<>();
         ParseUrl parseUrl = new ParseUrl();
         extractMetaFromArticleNovinky = new ExtractMetaFromArticleNovinky();
@@ -52,14 +51,6 @@ public class ExtractArticleNovinky {
             Element link = name.select("a").first();
             String absHref = link.attr("abs:href");
             Document documentArticle = parseUrl.parse(absHref);
-            System.out.println(name.text());
-            System.out.println(absHref);
-            System.out.println(extractMetaFromArticleNovinky.getCreatedDate(documentArticle));
-            System.out.println(extractMetaFromArticleNovinky.getKeywors(documentArticle));
-            System.out.println(extractMetaFromArticleNovinky.getDescription(documentArticle));
-            System.out.println(extractMetaFromArticleNovinky.getNumburOfComment(documentArticle));
-            System.out.println(extractMetaFromArticleNovinky.getAuthor(documentArticle));
-
             articleList.add(new Article(name.text(), absHref,
                     extractMetaFromArticleNovinky.getCreatedDate(documentArticle), new Date(),
                     extractMetaFromArticleNovinky.getKeywors(documentArticle), extractMetaFromArticleNovinky.getDescription(documentArticle),

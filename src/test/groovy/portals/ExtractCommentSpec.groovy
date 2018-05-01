@@ -52,7 +52,6 @@ class ExtractCommentSpec extends Specification {
         portalName | instance
         "Lidovky"  | new ExtractCommentLidovkyPreparedData()
         "Idnes"    | new ExtractCommentIdnesPreparedData()
-        "Novinky"  | new ExtractCommentNovinkyPreparedData()
     }
 
     @Unroll
@@ -67,7 +66,6 @@ class ExtractCommentSpec extends Specification {
         portalName | instance
         "Lidovky"  | new ExtractCommentLidovkyPreparedData()
         "Idnes"    | new ExtractCommentIdnesPreparedData()
-        "Novinky"  | new ExtractCommentNovinkyPreparedData()
     }
 
 
