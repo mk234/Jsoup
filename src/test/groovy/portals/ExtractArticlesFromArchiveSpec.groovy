@@ -40,6 +40,5 @@ class ExtractArticlesFromArchiveSpec extends Specification {
         "Idnes"    | new ExtractArticlesIdnesPreparedData()
         "Novinky"  | new ExtractArticlesNovinkyPreparedData()
     }
-
-
+    
 }
