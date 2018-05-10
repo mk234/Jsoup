@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest(classes = Application.class)
-class ParseNameIdnesSpec extends Specification {
+class ParseNameSpec extends Specification {
     @Autowired
     ParseNameIdnes parseNameIdnes
 

@@ -6,7 +6,6 @@ import com.kment.jsoup.lidovky.Article.ExtractMetaFromArticleLidovky
 import com.kment.jsoup.novinky.Article.ExtractMetaFromArticleNovinky
 import idnes.source.ExtractMetaFromArticleIdnesPreparedData
 import lidovky.source.ExtractMetaFromArticleLidovkyPreparedData
-import lidovky.source.ParseFromFile
 import novinky.source.ExtractMetaFromArticleNovinkyPreparedData
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -110,10 +109,8 @@ class ExtractMetaFromArticleSpec extends Specification {
         def extractor = this."extractMetaFromArticle${portalName}"
         when:
         def dateFromArticle = extractor.getCreatedDate(articleAsDocument)
-        println "datum z artikli " + dateFromArticle
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm", new Locale("cze", "CZ"))
         String reportDate = df.format(dateFromArticle)
-        println "report date " + reportDate
         then:
         reportDate == date
         where:

@@ -1,6 +1,7 @@
 package lidovky.source
 
 import org.jsoup.nodes.Document
+import portals.ParseFromFile
 
 class ExtractCommentLidovkyPreparedData {
 

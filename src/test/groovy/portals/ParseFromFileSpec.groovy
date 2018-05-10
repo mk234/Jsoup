@@ -1,6 +1,5 @@
 package portals
 
-import idnes.source.ParseFromFile
 import org.jsoup.nodes.Document
 import spock.lang.Specification
 

@@ -1,6 +1,7 @@
 package novinky.source
 
 import org.jsoup.nodes.Document
+import portals.ParseFromFile
 
 class ExtractMetaFromArticleNovinkyPreparedData {
 

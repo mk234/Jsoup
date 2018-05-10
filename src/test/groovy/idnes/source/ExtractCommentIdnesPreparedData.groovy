@@ -1,6 +1,7 @@
 package idnes.source
 
 import org.jsoup.nodes.Document
+import portals.ParseFromFile
 
 class ExtractCommentIdnesPreparedData {
 
